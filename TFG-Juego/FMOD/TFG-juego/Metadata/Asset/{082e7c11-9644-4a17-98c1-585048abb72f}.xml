@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{082e7c11-9644-4a17-98c1-585048abb72f}">
+		<property name="assetPath">
+			<value>Guns/Flame Thrower/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e931e5db-54fc-4721-92b0-b9e74dfb0858}</destination>
+		</relationship>
+	</object>
+</objects>

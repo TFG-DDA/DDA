@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{c4354cbc-0d0b-46c8-967e-d1e16bcdb0b1}">
+		<property name="assetPath">
+			<value>Old sounds/fracotirador.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.6060416666666666</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e931e5db-54fc-4721-92b0-b9e74dfb0858}</destination>
+		</relationship>
+	</object>
+</objects>

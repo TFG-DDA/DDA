@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9135fd718700945479cf9164e1f1bc99, type: 3}
+  m_Name: Sniper
+  m_EditorClassIdentifier: 
+  cadence: 1.2
+  ammoPerAttack: 1
+  attackSpeed: 10
+  damage: 15
+  sprite: {fileID: 21300000, guid: 6dd82e8271dbaf14bb9ceccddec84ac2, type: 3}
+  uiTexture: {fileID: 2800000, guid: e6634e9645053c544bdaed5d2b275744, type: 3}
+  fmodParamValue: 0
+  infiniteAmmo: 0
+  initialAmmo: 40
+  maxAmmo: 40
+  ammoMultiplier: 5
+  timeBetweenBullets: 0
+  shotAngle: 5
+  bulletType: {fileID: 3267609022091429887, guid: d5e28be1cbe078248aecfba07695cbf2, type: 3}
+  knockback: 0
+  sound: 2
+  spawnPos: {x: 0.972, y: 0.148, z: 0}
+  vfxShoot: {fileID: 3321792067501531045, guid: 6409b2cfe2999b340884c57f028595dd, type: 3}

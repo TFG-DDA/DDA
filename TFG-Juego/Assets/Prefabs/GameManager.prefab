@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7431705604926431474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2347806397129354805}
+  - component: {fileID: 7808777086844881130}
+  - component: {fileID: 5251030940988174899}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2347806397129354805
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7431705604926431474}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.10185969, y: 0.021800935, z: 0.60793006}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7808777086844881130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7431705604926431474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c404d7fde647144cab182ac66e5c614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLevel: 2
+  stairs: {fileID: 2261557561868971032, guid: 5128f128237eb5a4f9fe41e309a397b6, type: 3}
+  cardsQ1: []
+  cardsQ2: []
+  cardsQ3: []
+  cardsPrimera: []
+  slowAmount: 0.1
+  slowDuration: 0.5
+  PLAYER_LIFE: 10
+  MAX_PLAYER_LIFE: 10
+  weapons:
+  - {fileID: 11400000, guid: 7ab5948394ec60347826c3218f9dcf39, type: 2}
+  - {fileID: 11400000, guid: caec89c5cd2556448873496cb44e5f57, type: 2}
+  - {fileID: 11400000, guid: fbfff94be58c8ac4489549b8016a2ac0, type: 2}
+  - {fileID: 11400000, guid: 0a206968458804d4cae6fe49c6972846, type: 2}
+  - {fileID: 11400000, guid: 63e3d18ddc4b5164691bb4f66f1e2241, type: 2}
+  - {fileID: 11400000, guid: 6fe4809f607ec6446adcc65e4519e829, type: 2}
+  enemyWeapons:
+  - weapon: {fileID: 11400000, guid: 287ba35c35873864297988e4c5abd900, type: 2}
+    probability: 1
+  - weapon: {fileID: 11400000, guid: 8bcf5465ef0110640bbeceb6d5abad76, type: 2}
+    probability: 0
+  - weapon: {fileID: 11400000, guid: 68f57a2bf1ef0be4d9f4f6f827590155, type: 2}
+    probability: 0
+  enemySpriteLibraryAssetsList:
+  - {fileID: 7108339969198208228, guid: dbb968e7c62e08d4e97efaf3551f0165, type: 3}
+  - {fileID: 7108339969198208228, guid: 9408f7b5e6406c04db1e6f0919976dcb, type: 3}
+  timeToShowArrow: 5
+  percentToShowArrow: 15
+--- !u!114 &5251030940988174899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7431705604926431474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 829702019
+      Data2: 1326716319
+      Data3: -1504524113
+      Data4: 1105332714
+    Path: event:/Music/Gameplay Music
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20

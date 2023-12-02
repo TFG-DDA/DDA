@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9135fd718700945479cf9164e1f1bc99, type: 3}
+  m_Name: GrenadeLauncher
+  m_EditorClassIdentifier: 
+  cadence: 0.7
+  ammoPerAttack: 1
+  attackSpeed: 2
+  damage: 1
+  sprite: {fileID: 21300000, guid: d3705a7d5f8fc0a4bb5cdf8956efc847, type: 3}
+  uiTexture: {fileID: 2800000, guid: fff891364cd0d124dab9628e929d7f14, type: 3}
+  fmodParamValue: 1
+  infiniteAmmo: 0
+  initialAmmo: 40
+  maxAmmo: 40
+  ammoMultiplier: 5
+  timeBetweenBullets: 0
+  shotAngle: 0
+  bulletType: {fileID: 3267609022091429887, guid: 54f755d265374af4eaddefd786660958, type: 3}
+  knockback: 0
+  sound: 7
+  spawnPos: {x: 0.753, y: 0.182, z: 0}
+  vfxShoot: {fileID: 3321792067501531045, guid: 6409b2cfe2999b340884c57f028595dd, type: 3}

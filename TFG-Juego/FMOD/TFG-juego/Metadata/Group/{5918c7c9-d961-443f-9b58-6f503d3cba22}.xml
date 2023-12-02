@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerGroup" id="{5918c7c9-d961-443f-9b58-6f503d3cba22}">
+		<property name="volume">
+			<value>4.5</value>
+		</property>
+		<property name="name">
+			<value>EnemyShots</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{9840c660-34a8-4fea-bba9-252df7507164}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{20310b65-ab62-477b-b7b6-91408de5a93a}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{3f258294-6224-495d-89ee-84311d73770f}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{9840c660-34a8-4fea-bba9-252df7507164}">
+		<relationship name="effects">
+			<destination>{c5e75722-8756-4e37-868b-b402024d038b}</destination>
+			<destination>{ae62d3c2-1c98-4658-9b59-187686fd725a}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{20310b65-ab62-477b-b7b6-91408de5a93a}" />
+	<object class="ThreeEQEffect" id="{c5e75722-8756-4e37-868b-b402024d038b}">
+		<property name="lowGain">
+			<value>-80</value>
+		</property>
+		<property name="lowCrossover">
+			<value>100</value>
+		</property>
+	</object>
+	<object class="MixerBusFader" id="{ae62d3c2-1c98-4658-9b59-187686fd725a}" />
+</objects>

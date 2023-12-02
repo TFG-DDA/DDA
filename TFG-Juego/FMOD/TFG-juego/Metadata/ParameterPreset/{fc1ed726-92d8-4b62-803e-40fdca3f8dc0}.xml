@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{fc1ed726-92d8-4b62-803e-40fdca3f8dc0}">
+		<property name="name">
+			<value>FlameThrowerEnd</value>
+		</property>
+		<relationship name="folder">
+			<destination>{b92b8a54-5700-4623-acf0-796b4d5be5f4}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{617e35a5-ad12-430a-90c6-74d3afe1989c}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{617e35a5-ad12-430a-90c6-74d3afe1989c}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>0.89999997615814209</value>
+		</property>
+		<property name="seekSpeedAsymmetric">
+			<value>true</value>
+		</property>
+	</object>
+</objects>

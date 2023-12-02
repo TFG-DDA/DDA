@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9135fd718700945479cf9164e1f1bc99, type: 3}
+  m_Name: EnemyMetralleta
+  m_EditorClassIdentifier: 
+  cadence: 1
+  ammoPerAttack: 1
+  attackSpeed: 3
+  damage: 2
+  sprite: {fileID: 21300000, guid: e8a633779daf3144c853dcd74591b21a, type: 3}
+  uiTexture: {fileID: 2800000, guid: e0178ee3c4a1d134aa0c8c61eebd2116, type: 3}
+  fmodParamValue: 2
+  infiniteAmmo: 0
+  initialAmmo: 150
+  maxAmmo: 300
+  ammoMultiplier: 5
+  timeBetweenBullets: 0
+  shotAngle: 2
+  bulletType: {fileID: 3267609022091429887, guid: 4207ecd5028d55a4bba844dc78943a30, type: 3}
+  knockback: 0
+  sound: 1
+  spawnPos: {x: 0.656, y: 0.124, z: 0}
+  vfxShoot: {fileID: 3321792067501531045, guid: 6409b2cfe2999b340884c57f028595dd, type: 3}

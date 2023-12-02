@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9135fd718700945479cf9164e1f1bc99, type: 3}
+  m_Name: Bazooka
+  m_EditorClassIdentifier: 
+  cadence: 1
+  ammoPerAttack: 1
+  attackSpeed: 3
+  damage: 1
+  sprite: {fileID: 21300000, guid: 7105ba7a9f4129e4b9a7ae567463848f, type: 3}
+  uiTexture: {fileID: 2800000, guid: 7176a4271d7ef7f4c8881fea1ede0d9f, type: 3}
+  fmodParamValue: 1
+  infiniteAmmo: 0
+  initialAmmo: 30
+  maxAmmo: 30
+  ammoMultiplier: 5
+  timeBetweenBullets: 0
+  shotAngle: 0
+  bulletType: {fileID: 3267609022091429887, guid: cec964cf9a9263645ae8334f77e0ca58, type: 3}
+  knockback: 120
+  sound: 8
+  spawnPos: {x: 0.753, y: 0.182, z: 0}
+  vfxShoot: {fileID: 3321792067501531045, guid: 6409b2cfe2999b340884c57f028595dd, type: 3}
