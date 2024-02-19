@@ -16,11 +16,11 @@ public class Tracker
     FilePersistence filePersistence;
     bool filePers = false;
     ServerPersistence serverPersistence;
-    bool serverPers = false;
+    bool serverPers = true;
 #if !UNITY_WEBGL
     ServerPersistenceDesktop serverPersistenceDesktop;
 #endif
-    bool serverPersDesktop = false;
+    bool serverPersDesktop = true;
     // Diccionario para comprobar rápidamente si debe trackearse un evento durante ejecución
     Dictionary<string, bool> eventsTracked = new Dictionary<string, bool>();
 

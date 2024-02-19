@@ -31,12 +31,12 @@ public class ServerPersistenceDesktop : IPersistence
 
         AppOptions options = new AppOptions
         {
-            ApiKey = "",
-            AppId = "",
-            DatabaseUrl = new System.Uri(""),
-            MessageSenderId = "",
-            ProjectId = "h",
-            StorageBucket = ""
+            ApiKey = "AIzaSyBM0BocMaLV2Ovc5xYMYEuretiz97szx7M",
+            AppId = "1:1056459091112:web:4606e9c5986a206cda669d",
+            DatabaseUrl = new System.Uri("https://hellfireponcho-desktop-default-rtdb.europe-west1.firebasedatabase.app"),
+            MessageSenderId = "1056459091112",
+            ProjectId = "hellfireponcho-desktop",
+            StorageBucket = "hellfireponcho-desktop.appspot.com"
         };
         FirebaseApp app = FirebaseApp.Create(options);
         dbRef = FirebaseDatabase.DefaultInstance.RootReference;
