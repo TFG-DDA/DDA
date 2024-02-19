@@ -258,6 +258,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.line_Width
+      value: 0.0423
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.point_Size
+      value: 0.277
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.actualGraphCol.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.actualGraphCol.g
+      value: 0.15510917
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.actualGraphCol.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.designerGraphCol.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.designerGraphCol.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.designerGraphCol.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067396912352002531, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: constraintsGraphs
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3067396912352002542, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
       propertyPath: m_Name
       value: Tracker
