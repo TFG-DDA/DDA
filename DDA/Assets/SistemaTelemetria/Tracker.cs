@@ -68,9 +68,9 @@ public class Tracker
         AddEvent(new InicioEvent());
     }
 
-    public void InitGraphs(GraphConfig[] graphs, int maxRow, int maxCol)
+    public void InitGraphs(GraphConfig[] graphs)
     {
-        if(graphPers) graphPersistence = new GraphPersistence(graphs, maxRow, maxCol);
+        if(graphPers) graphPersistence = new GraphPersistence(graphs);
     }
 
     public void Update()

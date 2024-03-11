@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3067396912352002529}
+  - component: {fileID: 3067396912352002533}
   - component: {fileID: 3067396912352002531}
   - component: {fileID: 3067396912352002530}
-  - component: {fileID: 3067396912352002533}
   m_Layer: 0
   m_Name: Tracker
   m_TagString: Untagged
@@ -34,6 +34,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3067396912352002533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3067396912352002542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad5b1e1ab5070844aac97ae9b992a5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3067396912352002531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,10 +59,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dimension: {x: 0, y: 0}
-  constraintsGraphs: 0
+  constraintsGraphs: 1
   preset_Scale: 1
   max_charts_per_row: 4
   max_charts_per_col: 3
+  graphObject: {fileID: 6347305303955201752, guid: d38459b0f3e92154ebc1676397bc1770, type: 3}
 --- !u!114 &3067396912352002530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,7 +76,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca2d20ace5eb4841b395f8d5e8a7558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphObject: {fileID: 6347305303955201752, guid: d38459b0f3e92154ebc1676397bc1770, type: 3}
   shownGraph: {fileID: 0}
   data:
     name: Ejemplo
@@ -121,20 +133,8 @@ MonoBehaviour:
     x_segments: 2
     y_segments: 2
     scaling: 0
-    line_Width: 0.01
-    point_Size: 0.01
+    line_Width: 0.0423
+    point_Size: 0.277
     graphType: 0
-    designerGraphCol: {r: 0, g: 0, b: 0, a: 1}
-    actualGraphCol: {r: 0, g: 0, b: 0, a: 1}
---- !u!114 &3067396912352002533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3067396912352002542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cad5b1e1ab5070844aac97ae9b992a5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+    designerGraphCol: {r: 1, g: 0, b: 0, a: 1}
+    actualGraphCol: {r: 0, g: 0.15510917, b: 1, a: 1}

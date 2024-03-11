@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
-using static UnityEditor.PlayerSettings;
 
 public class Window_Graph : MonoBehaviour
 {
@@ -98,15 +97,19 @@ public class Window_Graph : MonoBehaviour
     ScrollRect render_viewport;
 
 
-    public void SetConfig(GraphData g)
+    public void SetConfig(ref GraphData g)
     {
-        graphConfig = g;
-        label_Y_List = new TextMeshProUGUI[graphConfig.y_segments + 1];
+        // Tamaño del graph
+        g.graph_Height = ((RectTransform)graph_container.parent).sizeDelta.y;
+        g.graph_Width = ((RectTransform)graph_container.parent).sizeDelta.x;
 
-        // Altura del grid, altura base 5
+        graphConfig = g;
+
+        // Tamaño de la cuadricula
         graphConfig.graph_Height = graph_container.sizeDelta.y;
-        // Ancho del grid, anchuira base 5
         graphConfig.graph_Width = graph_container.sizeDelta.x;
+
+        label_Y_List = new TextMeshProUGUI[graphConfig.y_segments + 1];
 
         // Listas con lo necesario para pintar las lineas
         circles = new List<GameObject>();

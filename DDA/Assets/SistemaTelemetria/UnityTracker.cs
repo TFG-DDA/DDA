@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine.Analytics;
 using UnityEngine.UI;
 using static GraphConfig;
 
-public enum Constraints { FREE_CONFIG, LEFT_TOP, LEFT_BOTTOM, LEFT_VERTICAL, RIGHT_VERTICAL }
+public enum Constraints { FREE_CONFIG, LEFT_TOP, LEFT_BOTTOM, LEFT_VERTICAL_TOP, LEFT_VERTICAL_BOTTOM, RIGHT_VERTICAL_TOP, RIGHT_VERTICAL_BOTTOM }
 public class UnityTracker : MonoBehaviour
 {
     [HideInInspector]
@@ -15,6 +16,8 @@ public class UnityTracker : MonoBehaviour
     public float preset_Scale = 1f;
     public int max_charts_per_row = 4;
     public int max_charts_per_col = 3;
+
+    public GameObject graphObject;
 
     public static UnityTracker instance;
 
@@ -54,7 +57,7 @@ public class UnityTracker : MonoBehaviour
         //Tamano
         dimension = new Vector2(Screen.width, Screen.height);
 
-        Tracker.Instance.InitGraphs(GetComponents<GraphConfig>(), max_charts_per_row, max_charts_per_col);
+        Tracker.Instance.InitGraphs(GetComponents<GraphConfig>());
     }
 
     // Start is called before the first frame update
@@ -78,50 +81,122 @@ public class UnityTracker : MonoBehaviour
     }
 
     // Ajusta la posicion y escala de la Grafica
-    public void SetGraphInWindow(ref GameObject chart, int index, int rowIndex, int colIndex, GraphData config)
+    public void SetGraphInWindow(ref GameObject chart, int index, GraphData config, Tuple<int, int>[] offset)
     {
+        if(index > max_charts_per_col * max_charts_per_row - 1)
+        {
+            Debug.LogError("Numero de graficas superior al limite");
+            Destroy(chart);
+            chart = null;
+            return;
+        }
         RectTransform rectChart = chart.GetComponent<RectTransform>();
-        rectChart.localScale = new Vector3(preset_Scale / max_charts_per_row, preset_Scale / max_charts_per_row, preset_Scale / max_charts_per_row);
+        rectChart.localScale = new Vector3(preset_Scale * config.scale, preset_Scale * config.scale, preset_Scale * config.scale);
 
         float offsetX = 0;
         float offsetY = 0;
-        int row = 0;
-        int col = 0;
+        float actDimX = rectChart.rect.width * rectChart.localScale.x;
+        float actDimY = rectChart.rect.height * rectChart.localScale.y;
+        int row;
+        int col;
 
         switch (constraintsGraphs)
         {
             // HORIZONTAL ABAJO
             case Constraints.LEFT_BOTTOM:
-                offsetX = (resolution.width / max_charts_per_row) * rowIndex;
                 row = index / max_charts_per_row;
-                offsetY = rectChart.anchoredPosition.y + row * (rectChart.rect.height / max_charts_per_row); // el height es el original por eso hay que reescalarlo para abajo
+                col = index % max_charts_per_row;
+                //rectChart.rect.height* rectChart.localScale.y;
+                for (int i=0; i<col; i++)
+                {
+                    offsetX += offset[row * max_charts_per_row + i].Item1;
+                }
+                for (int i = 0; i < row; i++)
+                {
+                    offsetY += offset[col + max_charts_per_row*i].Item2;
+                }
+
                 rectChart.anchoredPosition = new Vector2(offsetX, offsetY);
                 break;
 
             case Constraints.LEFT_TOP:
-                offsetX = (resolution.width / max_charts_per_row) * rowIndex;
                 row = index / max_charts_per_row;
-                offsetY = resolution.height - ((row + 1) * (rectChart.rect.height / max_charts_per_row)); // el height es el original por eso hay que reescalarlo para abajo
-                rectChart.anchoredPosition = new Vector2(offsetX, offsetY);
+                col = index % max_charts_per_row;
+
+                for (int i = 0; i < col; i++)
+                {
+                    offsetX += offset[row * max_charts_per_row + i].Item1;
+                }
+                for (int i = 0; i < row; i++)
+                {
+                    offsetY += offset[col + max_charts_per_row * i].Item2;
+                }
+
+                rectChart.anchoredPosition = new Vector2(offsetX, resolution.height - actDimY - offsetY);
                 break;
 
-            case Constraints.LEFT_VERTICAL:
+            case Constraints.LEFT_VERTICAL_TOP:
                 col = index / max_charts_per_col;
-                offsetX = (resolution.width / max_charts_per_col) * col;
-                offsetY = resolution.height - (1080 / max_charts_per_col) - (resolution.height / max_charts_per_col) * colIndex; // el height es el original por eso hay que reescalarlo para abajo
-                rectChart.anchoredPosition = new Vector2(offsetX, offsetY);
+                row = index % max_charts_per_col;
+
+                for (int i = 0; i < col; i++)
+                {
+                    offsetX += offset[row + max_charts_per_col * i].Item1;
+                }
+                for (int i = 0; i < row; i++)
+                {
+                    offsetY += offset[col * max_charts_per_col + i].Item2;
+                }
+
+                rectChart.anchoredPosition = new Vector2(offsetX, resolution.height - actDimY - offsetY);
                 break;
 
-            case Constraints.RIGHT_VERTICAL:
+            case Constraints.LEFT_VERTICAL_BOTTOM:
                 col = index / max_charts_per_col;
-                offsetX = resolution.width - (rectChart.rect.width / max_charts_per_col) * (col + 1);
-                offsetY = resolution.height - (1080 / max_charts_per_col) - (1080 / max_charts_per_col) * colIndex; // el height es el original por eso hay que reescalarlo para abajo
+                row = index % max_charts_per_col;
+
+                for (int i = 0; i < col; i++)
+                {
+                    offsetX += offset[row + max_charts_per_col * i].Item1;
+                }
+                for (int i = 0; i < row; i++)
+                {
+                    offsetY += offset[col * max_charts_per_col + i].Item2;
+                }
+
                 rectChart.anchoredPosition = new Vector2(offsetX, offsetY);
                 break;
 
-            case Constraints.FREE_CONFIG:
-                rectChart.anchoredPosition = new Vector2(config.graph_X, config.graph_Y);
-                rectChart.localScale = new Vector3(preset_Scale * config.scale, preset_Scale * config.scale, preset_Scale * config.scale);
+            case Constraints.RIGHT_VERTICAL_TOP:
+                col = index / max_charts_per_col;
+                row = index % max_charts_per_col;
+
+                for (int i = 0; i < col; i++)
+                {
+                    offsetX += offset[row + max_charts_per_col * i].Item1;
+                }
+                for (int i = 0; i < row; i++)
+                {
+                    offsetY += offset[col * max_charts_per_col + i].Item2;
+                }
+
+                rectChart.anchoredPosition = new Vector2(resolution.width - actDimX - offsetX, resolution.height - actDimY - offsetY);
+                break;
+
+            case Constraints.RIGHT_VERTICAL_BOTTOM:
+                col = index / max_charts_per_col;
+                row = index % max_charts_per_col;
+
+                for (int i = 0; i < col; i++)
+                {
+                    offsetX += offset[row + max_charts_per_col * i].Item1;
+                }
+                for (int i = 0; i < row; i++)
+                {
+                    offsetY += offset[col * max_charts_per_col + i].Item2;
+                }
+
+                rectChart.anchoredPosition = new Vector2(resolution.width - actDimX - offsetX, offsetY);
                 break;
         }
     }

@@ -2,9 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
-using UnityEditor;
 using System.Linq;
-using UnityEngine.UI;
 
 public class GraphPersistence : IPersistence
 {
@@ -14,7 +12,7 @@ public class GraphPersistence : IPersistence
     private string baseSaveRoute = "Trazas\\Graphs\\";
     private Dictionary<string, StreamWriter> graphWriters;
 
-    public GraphPersistence(GraphConfig[] g, int maxRow, int maxCol)
+    public GraphPersistence(GraphConfig[] g)
     {
         graphs = g;
 
@@ -24,19 +22,14 @@ public class GraphPersistence : IPersistence
         string fullRoute = baseSaveRoute + id + "\\";
         Directory.CreateDirectory(fullRoute);
 
-        int rowIndex = 0;
-        int colIndex = 0;
+        Tuple<int, int>[] offset = new Tuple<int, int>[graphs.Count()];
         for (int i = 0; i < graphs.Count(); ++i)
         {
-            graphs[i].Init(rowIndex, colIndex, i);
+            graphs[i].Init(i, offset);
+            offset[i] = Tuple.Create((int)(graphs[i].data.graph_Width * graphs[i].data.scale), (int)(graphs[i].data.graph_Height * graphs[i].data.scale));
             // Crear el archivo en el que se guardaran los puntos en formato de texto
             graphWriters.Add(graphs[i].data.name, new StreamWriter(fullRoute + graphs[i].data.name + ".csv"));
-            graphWriters[graphs[i].data.name].WriteLine(graphs[i].data.eventX + "," + graphs[i].data.eventY);
-            if (rowIndex >= maxRow)
-                rowIndex = 0;
-            colIndex++;
-            if (colIndex >= maxCol)
-                colIndex = 0;
+            graphWriters[graphs[i].data.name].WriteLine(graphs[i].data.eventX + "," + graphs[i].data.eventY);            
         }
     }
 

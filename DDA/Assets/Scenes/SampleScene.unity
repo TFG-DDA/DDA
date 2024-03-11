@@ -207,6 +207,390 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1554738656 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3067396912352002542, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+  m_PrefabInstance: {fileID: 3067396910884415689}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1554738657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554738656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca2d20ace5eb4841b395f8d5e8a7558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shownGraph: {fileID: 0}
+  data:
+    name: A
+    eventX: Inicio
+    eventY: Fin
+    pointsNumber: 5
+    myCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 2
+        value: 2
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 3
+        value: 3
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 4
+        value: 4
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    window_graph: {fileID: 0}
+    graph_Height: 150
+    graph_Width: 75
+    graph_X: 0
+    graph_Y: 0
+    scale: 0.15
+    x_segments: 2
+    y_segments: 2
+    scaling: 0
+    line_Width: 0.01
+    point_Size: 0.01
+    graphType: 0
+    designerGraphCol: {r: 0, g: 0, b: 0, a: 1}
+    actualGraphCol: {r: 0, g: 0, b: 0, a: 1}
+--- !u!114 &1554738662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554738656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca2d20ace5eb4841b395f8d5e8a7558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shownGraph: {fileID: 0}
+  data:
+    name: B
+    eventX: Inicio
+    eventY: Fin
+    pointsNumber: 4
+    myCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 2
+        value: 2
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 3
+        value: 3
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    window_graph: {fileID: 0}
+    graph_Height: 100
+    graph_Width: 100
+    graph_X: 0
+    graph_Y: 0
+    scale: 0.15
+    x_segments: 2
+    y_segments: 2
+    scaling: 0
+    line_Width: 0.0423
+    point_Size: 0.277
+    graphType: 0
+    designerGraphCol: {r: 1, g: 0, b: 0, a: 1}
+    actualGraphCol: {r: 0, g: 0.15510917, b: 1, a: 1}
+--- !u!114 &1554738663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554738656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca2d20ace5eb4841b395f8d5e8a7558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shownGraph: {fileID: 0}
+  data:
+    name: C
+    eventX: Inicio
+    eventY: Fin
+    pointsNumber: 4
+    myCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 2
+        value: 2
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 3
+        value: 3
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    window_graph: {fileID: 0}
+    graph_Height: 100
+    graph_Width: 100
+    graph_X: 0
+    graph_Y: 0
+    scale: 0.15
+    x_segments: 2
+    y_segments: 2
+    scaling: 0
+    line_Width: 0.0423
+    point_Size: 0.277
+    graphType: 0
+    designerGraphCol: {r: 1, g: 0, b: 0, a: 1}
+    actualGraphCol: {r: 0, g: 0.15510917, b: 1, a: 1}
+--- !u!114 &1554738664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554738656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca2d20ace5eb4841b395f8d5e8a7558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shownGraph: {fileID: 0}
+  data:
+    name: D
+    eventX: Inicio
+    eventY: Fin
+    pointsNumber: 4
+    myCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 2
+        value: 2
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 3
+        value: 3
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    window_graph: {fileID: 0}
+    graph_Height: 100
+    graph_Width: 100
+    graph_X: 0
+    graph_Y: 0
+    scale: 0.15
+    x_segments: 2
+    y_segments: 2
+    scaling: 0
+    line_Width: 0.0423
+    point_Size: 0.277
+    graphType: 0
+    designerGraphCol: {r: 1, g: 0, b: 0, a: 1}
+    actualGraphCol: {r: 0, g: 0.15510917, b: 1, a: 1}
+--- !u!114 &1554738665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554738656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca2d20ace5eb4841b395f8d5e8a7558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shownGraph: {fileID: 0}
+  data:
+    name: E
+    eventX: Inicio
+    eventY: Fin
+    pointsNumber: 4
+    myCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 2
+        value: 2
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 3
+        value: 3
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    window_graph: {fileID: 0}
+    graph_Height: 100
+    graph_Width: 100
+    graph_X: 0
+    graph_Y: 0
+    scale: 0.15
+    x_segments: 2
+    y_segments: 2
+    scaling: 0
+    line_Width: 0.0423
+    point_Size: 0.277
+    graphType: 0
+    designerGraphCol: {r: 1, g: 0, b: 0, a: 1}
+    actualGraphCol: {r: 0, g: 0.15510917, b: 1, a: 1}
 --- !u!1001 &3067396910884415689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -259,40 +643,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
-      propertyPath: data.line_Width
-      value: 0.0423
+      propertyPath: data.scale
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
-      propertyPath: data.point_Size
-      value: 0.277
+      propertyPath: data.graph_Width
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
-      propertyPath: data.actualGraphCol.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
-      propertyPath: data.actualGraphCol.g
-      value: 0.15510917
-      objectReference: {fileID: 0}
-    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
-      propertyPath: data.actualGraphCol.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
-      propertyPath: data.designerGraphCol.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
-      propertyPath: data.designerGraphCol.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
-      propertyPath: data.designerGraphCol.r
-      value: 1
+      propertyPath: data.graph_Height
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3067396912352002531, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
       propertyPath: constraintsGraphs
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067396912352002531, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: max_charts_per_col
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067396912352002531, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: max_charts_per_row
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3067396912352002542, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
       propertyPath: m_Name

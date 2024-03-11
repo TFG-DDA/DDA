@@ -99,8 +99,7 @@ public struct GraphData
 
 public class GraphConfig : MonoBehaviour
 {
-    [HideInInspector]
-    public GameObject graphObject;
+    GameObject graphObject;
 
     [HideInInspector]
     public Window_Graph shownGraph;
@@ -108,21 +107,18 @@ public class GraphConfig : MonoBehaviour
     [HideInInspector]
     public GraphData data;
 
-    int rowIndex, columnIndex;
-
-    public void Init(int row, int col, int index)
+    public void Init(int index, Tuple<int, int>[] offset)
     {
         // Creamos el objeto grafica
+        graphObject = transform.GetComponent<UnityTracker>().graphObject;
         GameObject aux = Instantiate(graphObject, parent: UnityTracker.instance.GetGraphCanvas().transform);
 
-        rowIndex = row;
-        columnIndex = col;
         // Rescalamos y posicionamos 
-        UnityTracker.instance.SetGraphInWindow(ref aux, index, rowIndex, columnIndex, data);
-
         shownGraph = aux.GetComponent<Window_Graph>();
         shownGraph.name = data.name;
-        shownGraph.SetConfig(data);
+        shownGraph.SetConfig(ref data);
+        UnityTracker.instance.SetGraphInWindow(ref aux, index, data, offset);
+        if (aux == null) shownGraph = null;
     }
 
     // Update is called once per frame
@@ -133,7 +129,8 @@ public class GraphConfig : MonoBehaviour
 
     private void FixedUpdate()
     {
-        shownGraph.RefreshChart();
+        if(shownGraph != null)
+            shownGraph.RefreshChart();
     }
 }
 
@@ -207,8 +204,8 @@ public class GraphConfigEditor : Editor
         {
             actGraphConf.graph_X = EditorGUILayout.IntSlider("X Pos", actGraphConf.graph_X, 0, Screen.currentResolution.width);
             actGraphConf.graph_Y = EditorGUILayout.IntSlider("Y Pos", actGraphConf.graph_Y, 0, Screen.currentResolution.height);
-            actGraphConf.scale = EditorGUILayout.Slider("Scale", actGraphConf.scale, 0.01f, 1.0f);
         }
+        actGraphConf.scale = EditorGUILayout.Slider("Scale", actGraphConf.scale, 0.01f, 2.0f);
 
         actGraphConf.x_segments = EditorGUILayout.IntField("X segments", actGraphConf.x_segments);
         if (actGraphConf.x_segments < 2)
@@ -224,9 +221,6 @@ public class GraphConfigEditor : Editor
 
         EditorGUILayout.Space(20);
         graphPersistence.data = actGraphConf;
-
-        EditorGUILayout.Space();
-        graphPersistence.graphObject = EditorGUILayout.ObjectField("Graph Object", graphPersistence.graphObject, typeof(GameObject), false) as GameObject;
 
         //Si ha habido cambios utilizamos setDirty para que unity no cambie los valores de editor y se mantengan para ejecucion
         if (EditorGUI.EndChangeCheck())
