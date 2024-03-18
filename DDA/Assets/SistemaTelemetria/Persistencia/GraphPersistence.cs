@@ -43,7 +43,7 @@ public class GraphPersistence : IPersistence
                 // Si muestra un nuevo punto lo escribe en archivo para guardarlo
                 Vector2 pos = graphs[i].shownGraph.getLatestPoint();
                 // Formato: X (de los dos puntos), Y (del punto de la grafica del jugador), Y (del punto de la grafica del disenador)
-                graphWriters[graphs[i].name].WriteLine(pos.x + "," + pos.y + "," + graphs[i].shownGraph.getLatestObjectivePoint());
+                graphWriters[graphs[i].data.name].WriteLine(pos.x + "," + pos.y + "," + graphs[i].shownGraph.getLatestObjectivePoint());    
             }
         }
     }

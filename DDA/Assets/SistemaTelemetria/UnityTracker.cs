@@ -11,7 +11,6 @@ public class UnityTracker : MonoBehaviour
 {
     [HideInInspector]
     public Resolution resolution;
-    public Vector2 dimension;
     public Constraints constraintsGraphs;
     public float preset_Scale = 1f;
     public int max_charts_per_row = 4;
@@ -54,8 +53,6 @@ public class UnityTracker : MonoBehaviour
         cScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         resolution = Screen.currentResolution;
         cScaler.referenceResolution = new Vector2(resolution.width, resolution.height);
-        //Tamano
-        dimension = new Vector2(Screen.width, Screen.height);
 
         Tracker.Instance.InitGraphs(GetComponents<GraphConfig>());
     }
@@ -66,11 +63,19 @@ public class UnityTracker : MonoBehaviour
         // Eventos correspondientes al juego
         Tracker.Instance.AddTrackableEvent<InicioNivelEvent>(true);
         Tracker.Instance.AddTrackableEvent<FinNivelEvent>(true);
+
+        Tracker.Instance.AddEvent(new FinEvent());
+        Tracker.Instance.AddEvent(new InicioEvent());
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyUp(KeyCode.Space))
+        {
+            Tracker.Instance.AddEvent(new FinEvent());
+            Tracker.Instance.AddEvent(new InicioEvent());
+        }
         Tracker.Instance.Update();
     }
 
@@ -109,11 +114,11 @@ public class UnityTracker : MonoBehaviour
                 //rectChart.rect.height* rectChart.localScale.y;
                 for (int i=0; i<col; i++)
                 {
-                    offsetX += offset[row * max_charts_per_row + i].Item1;
+                    offsetX += offset[row * max_charts_per_row + i].Item1 * preset_Scale;
                 }
                 for (int i = 0; i < row; i++)
                 {
-                    offsetY += offset[col + max_charts_per_row*i].Item2;
+                    offsetY += offset[col + max_charts_per_row*i].Item2 * preset_Scale;
                 }
 
                 rectChart.anchoredPosition = new Vector2(offsetX, offsetY);
@@ -125,11 +130,11 @@ public class UnityTracker : MonoBehaviour
 
                 for (int i = 0; i < col; i++)
                 {
-                    offsetX += offset[row * max_charts_per_row + i].Item1;
+                    offsetX += offset[row * max_charts_per_row + i].Item1 * preset_Scale;
                 }
                 for (int i = 0; i < row; i++)
                 {
-                    offsetY += offset[col + max_charts_per_row * i].Item2;
+                    offsetY += offset[col + max_charts_per_row * i].Item2 * preset_Scale;
                 }
 
                 rectChart.anchoredPosition = new Vector2(offsetX, resolution.height - actDimY - offsetY);
@@ -141,11 +146,11 @@ public class UnityTracker : MonoBehaviour
 
                 for (int i = 0; i < col; i++)
                 {
-                    offsetX += offset[row + max_charts_per_col * i].Item1;
+                    offsetX += offset[row + max_charts_per_col * i].Item1 * preset_Scale;
                 }
                 for (int i = 0; i < row; i++)
                 {
-                    offsetY += offset[col * max_charts_per_col + i].Item2;
+                    offsetY += offset[col * max_charts_per_col + i].Item2 * preset_Scale;
                 }
 
                 rectChart.anchoredPosition = new Vector2(offsetX, resolution.height - actDimY - offsetY);
@@ -157,11 +162,11 @@ public class UnityTracker : MonoBehaviour
 
                 for (int i = 0; i < col; i++)
                 {
-                    offsetX += offset[row + max_charts_per_col * i].Item1;
+                    offsetX += offset[row + max_charts_per_col * i].Item1 * preset_Scale;
                 }
                 for (int i = 0; i < row; i++)
                 {
-                    offsetY += offset[col * max_charts_per_col + i].Item2;
+                    offsetY += offset[col * max_charts_per_col + i].Item2 * preset_Scale;
                 }
 
                 rectChart.anchoredPosition = new Vector2(offsetX, offsetY);
@@ -173,11 +178,11 @@ public class UnityTracker : MonoBehaviour
 
                 for (int i = 0; i < col; i++)
                 {
-                    offsetX += offset[row + max_charts_per_col * i].Item1;
+                    offsetX += offset[row + max_charts_per_col * i].Item1 * preset_Scale;
                 }
                 for (int i = 0; i < row; i++)
                 {
-                    offsetY += offset[col * max_charts_per_col + i].Item2;
+                    offsetY += offset[col * max_charts_per_col + i].Item2 * preset_Scale;
                 }
 
                 rectChart.anchoredPosition = new Vector2(resolution.width - actDimX - offsetX, resolution.height - actDimY - offsetY);
@@ -189,14 +194,17 @@ public class UnityTracker : MonoBehaviour
 
                 for (int i = 0; i < col; i++)
                 {
-                    offsetX += offset[row + max_charts_per_col * i].Item1;
+                    offsetX += offset[row + max_charts_per_col * i].Item1 * preset_Scale;
                 }
                 for (int i = 0; i < row; i++)
                 {
-                    offsetY += offset[col * max_charts_per_col + i].Item2;
+                    offsetY += offset[col * max_charts_per_col + i].Item2 * preset_Scale;
                 }
 
                 rectChart.anchoredPosition = new Vector2(resolution.width - actDimX - offsetX, offsetY);
+                break;
+            case Constraints.FREE_CONFIG:
+                rectChart.anchoredPosition = new Vector2(config.graph_X, config.graph_Y);
                 break;
         }
     }
