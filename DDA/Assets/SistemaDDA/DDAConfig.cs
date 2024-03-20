@@ -5,6 +5,13 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
+/*
+* El diseñador añadirá los Eventos que determinan la dificultad,
+* y los rangos que usará el DDA para determinar la destreza del jugador.
+*
+* El DDA usará y mezclará todas estas DDAVariableData para calcular una puntuación final,
+* que luego categorizará al jugador dentro de los 3 rangos que tenemos.
+*/
 public struct DDAVariableData
 {
     [HideInInspector]
