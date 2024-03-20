@@ -4,13 +4,24 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
-
+public struct DDAVariableData
+{
+    [HideInInspector]
+    public string eventName;
+    [HideInInspector]
+    public Tuple<float> easyRange;
+    [HideInInspector]
+    public Tuple<float> midRange;
+    [HideInInspector]
+    public Tuple<float> hardRange;
+}
 
 [Serializable]
 public struct DDAData
 {
+    [HideInInspector]
+    public List<DDAVariableData> variables;
     [HideInInspector]
     public string triggerEvent;
     [HideInInspector]
