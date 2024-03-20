@@ -103,6 +103,7 @@ public class Tracker
     public void AddEvent(TrackerEvent e)
     {
         if (graphPers && graphPersistence != null) graphPersistence.Send(e);
+        DDA.Instance.Send(e);
 #if !UNITY_EDITOR
         if (eventsTracked[e.GetType().Name])
         {
