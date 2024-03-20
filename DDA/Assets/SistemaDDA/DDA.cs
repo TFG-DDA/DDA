@@ -5,8 +5,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+/* TODO: INSTRUMENTALIZACIÓN DEL CÓDIGO
+ * 
+ * Para instrumentalizar el código se deberán cambiar las variables que quiera modificar el jugador,
+ * sustituyéndolas por la información que dará el DDA, ejemplo:
+ * 
+ * (Antes)
+ *      enemyHealth = salasPasadas * 10;
+ * 
+ * (Despúes)
+ *      if(DDA.Instance.modifierType.HasFlag(DifficultyModifierTypes.ENEMIES))
+ *          enemyHealth = DDA.Instance.variableModificableDDA;
+ *      else
+ *          enemyHealth = salasPasadas * 10;
+ *          
+ * !!! ESTO ES UNA IDEA !!!
+ *          
+ */
+
+
+
 /*
-* DifficultyModifierTypes define las diferentes formas de modificar la dificultad en el DDA
+* DifficultyModifierTypes define las diferentes formas de modificar la dificultad en el DDA,
+* se pueden utilizar varias a la vez
 * 
 * ENEMIES: Modifica las características de los enemigos
 * 
@@ -24,7 +46,9 @@ public class DDA
 
     DDAData config;
     PlayerDifficulty currentPlayerDifficulty;
-    DifficultyModifierTypes modifierType;
+
+    // Variable usada para implementar el DDA en el código del juego
+    public DifficultyModifierTypes modifierType;
 
     public static DDA Instance
     {
@@ -42,6 +66,7 @@ public class DDA
     {
         config = c.data;
 
+        // modifierType se utiliza como FLAGS
         if (config.EnemiesModifierType) modifierType = modifierType | DifficultyModifierTypes.ENEMIES;
         if (config.PlayerModifierType) modifierType = modifierType | DifficultyModifierTypes.PLAYER;
         if (config.EnviromentModifierType) modifierType = modifierType | DifficultyModifierTypes.ENVIROMENT;
@@ -71,6 +96,7 @@ public class DDA
 
     private void UpdateDifficulty()
     {
+        // Se actualizan tantas variables como flags estén activas en el modifierType
         if(modifierType.HasFlag(DifficultyModifierTypes.ENEMIES))
         {
             UpdateEnemiesDifficulty();
