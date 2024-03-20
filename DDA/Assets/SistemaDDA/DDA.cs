@@ -39,13 +39,15 @@ using System.Threading.Tasks;
 */
 [Flags]
 public enum DifficultyModifierTypes { ENEMIES = 1, PLAYER = 2, ENVIROMENT = 4 }
-enum PlayerDifficulty { EASY, MID, HARD }
+public enum PlayerDifficulty { EASY, MID, HARD }
 public class DDA
 {
     private static DDA instance = null;
 
     DDAData config;
     PlayerDifficulty currentPlayerDifficulty;
+    Dictionary<string, DDAVariableData> eventVariables;
+    Dictionary<DDAVariableData, PlayerDifficulty> currentDifficultyValues;
 
     // Variable usada para implementar el DDA en el código del juego
     public DifficultyModifierTypes modifierType;
@@ -66,6 +68,14 @@ public class DDA
     {
         config = c.data;
 
+        // Creamos un mapa para comprobar rápidamente si un evento influye en el DDA
+        eventVariables = new Dictionary<string, DDAVariableData>();
+        for(int i = 0; i < config.variables.Length; i++)
+        {
+            eventVariables.Add(config.variables[i].eventName, config.variables[i]);
+            currentDifficultyValues.Add(config.variables[i], config.defaultDifficulty);
+        }
+
         // modifierType se utiliza como FLAGS
         if (config.EnemiesModifierType) modifierType = modifierType | DifficultyModifierTypes.ENEMIES;
         if (config.PlayerModifierType) modifierType = modifierType | DifficultyModifierTypes.PLAYER;
@@ -82,15 +92,30 @@ public class DDA
     // Recibe todos los eventos del Tracker
     public void Send(TrackerEvent e)
     {
+        string eventType = e.GetEventType();
         // Se lanza la atualización de dificultad cuando llega el evento de trigger dado por el diseñador
-        if (e.GetEventType() == config.triggerEvent)
+        if (eventType == config.triggerEvent)
         {
             UpdateDifficulty();
         }
         // Se reciben el resto de eventos y se calcula la destreza del jugador
-        else
+        else if(eventVariables.ContainsKey(eventType))
         {
-            currentPlayerDifficulty = PlayerDifficulty.MID;
+            DDAVariableData aux = eventVariables[eventType];
+            /* TODO: igual hay que hacer un evento específico para el DDA que contenga un valor obligatoriamente
+            if ()
+            {
+               //Cambio a fácil
+            }
+            else if ()
+            {
+               //Cambio a medio
+            }
+            else if ()
+            {
+                //Cambio a díficil
+            }
+            */
         }
     }
 

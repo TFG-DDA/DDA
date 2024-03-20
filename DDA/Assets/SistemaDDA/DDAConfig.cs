@@ -15,7 +15,6 @@ using UnityEngine;
 [Serializable]
 public struct DDAVariableData
 {
-
     public string eventName;
 
     public Vector2 easyRange;
@@ -28,7 +27,6 @@ public struct DDAVariableData
 [Serializable]
 public struct DDAData
 {
-
     public DDAVariableData[] variables;
 
     public string triggerEvent;
@@ -38,6 +36,8 @@ public struct DDAData
     public bool PlayerModifierType;
 
     public bool EnviromentModifierType;
+
+    public PlayerDifficulty defaultDifficulty;
 }
 
 public class DDAConfig : MonoBehaviour

@@ -71,11 +71,11 @@ public class UnityTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Space))
-        {
-            Tracker.Instance.AddEvent(new FinEvent());
-            Tracker.Instance.AddEvent(new InicioEvent());
-        }
+        //if(Input.GetKeyUp(KeyCode.Space))
+        //{
+        //    Tracker.Instance.AddEvent(new FinEvent());
+        //    Tracker.Instance.AddEvent(new InicioEvent());
+        //}
         Tracker.Instance.Update();
     }
 
