@@ -4,27 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-
-/* TODO: INSTRUMENTALIZACIÓN DEL CÓDIGO
- * 
- * Para instrumentalizar el código se deberán cambiar las variables que quiera modificar el jugador,
- * sustituyéndolas por la información que dará el DDA, ejemplo:
- * 
- * (Antes)
- *      enemyHealth = salasPasadas * 10;
- * 
- * (Despúes)
- *      if(DDA.Instance.modifierType.HasFlag(DifficultyModifierTypes.ENEMIES))
- *          enemyHealth = DDA.Instance.variableModificableDDA;
- *      else
- *          enemyHealth = salasPasadas * 10;
- *          
- * !!! ESTO ES UNA IDEA !!!
- *          
- */
-
-
+using Unity.VisualScripting;
 
 /*
 * DifficultyModifierTypes define las diferentes formas de modificar la dificultad en el DDA,
@@ -46,8 +26,13 @@ public class DDA
 
     DDAData config;
     PlayerDifficulty currentPlayerDifficulty;
-    Dictionary<string, DDAVariableData> eventVariables;
-    Dictionary<DDAVariableData, PlayerDifficulty> currentDifficultyValues;
+
+    // Diccionario utilizado por el diseñador para instrumentalizar su código
+    public Dictionary<string, float> instVariables;
+    public Dictionary<string, DDAInstVariables> instPrivateVariables;
+
+    private Dictionary<string, DDAVariableData> eventVariables;
+    private Dictionary<DDAVariableData, PlayerDifficulty> currentDifficultyValues;
 
     // Variable usada para implementar el DDA en el código del juego
     public DifficultyModifierTypes modifierType;
@@ -68,7 +53,7 @@ public class DDA
         }
     }
 
-    public void Init(DDAConfig c)
+    public void Init(DDAConfig c, DDAInstrumentalization ins)
     {
         config = c.data;
 
@@ -92,6 +77,15 @@ public class DDA
         if (config.EnemiesModifierType) modifierType = modifierType | DifficultyModifierTypes.ENEMIES;
         if (config.PlayerModifierType) modifierType = modifierType | DifficultyModifierTypes.PLAYER;
         if (config.EnviromentModifierType) modifierType = modifierType | DifficultyModifierTypes.ENVIROMENT;
+
+
+        // Añadimos las variables de instrumentalización que contengan las flags al diccionario que se usará desde las distintas partes del código
+        for (int i = 0; i < ins.instVariables.Length; i++)
+        {
+            if(modifierType.HasFlag(ins.instVariables[i].modifierType))
+                instVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i]);
+        }
+        
     }
     public void Update()
     {

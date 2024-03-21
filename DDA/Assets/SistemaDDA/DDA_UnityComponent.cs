@@ -13,7 +13,7 @@ public class DDA_UnityComponent : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DDA.Instance.Init(GetComponent<DDAConfig>());
+            DDA.Instance.Init(GetComponent<DDAConfig>(), GetComponent<DDAInstrumentalization>());
             DontDestroyOnLoad(gameObject);
         }
         else
