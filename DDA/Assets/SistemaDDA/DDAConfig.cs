@@ -17,11 +17,17 @@ public struct DDAVariableData
 {
     public string eventName;
 
-    public Vector2 easyRange;
+    [Header("Ranges of the event")]
+    [Tooltip("Max value until it changes it's difficulty to Mid")]
+    public float easyMax;
+    [Tooltip("Max value until it changes it's difficulty to Hard")]
+    public float midMax;
+    [Tooltip("True if the event should not be restarted when the difficulty updates")]
+    public bool persistent;
 
-    public Vector2 midRange;
-
-    public Vector2 hardRange;
+    [Tooltip("Weight of this variable to change the difficulty")]
+    [Range(0.0f,1.0f)]
+    public float weight;
 }
 
 [Serializable]

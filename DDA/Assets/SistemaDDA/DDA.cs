@@ -52,6 +52,10 @@ public class DDA
     // Variable usada para implementar el DDA en el código del juego
     public DifficultyModifierTypes modifierType;
 
+    private float totalWeight = 0;
+    // Rango entre 0 y 2 que determinará la dificultad
+    private float difficultyRange = 0;
+
     public static DDA Instance
     {
         get
@@ -68,12 +72,20 @@ public class DDA
     {
         config = c.data;
 
-        // Creamos un mapa para comprobar rápidamente si un evento influye en el DDA
         eventVariables = new Dictionary<string, DDAVariableData>();
-        for(int i = 0; i < config.variables.Length; i++)
+        totalWeight = 0;
+
+        // Creamos un mapa para comprobar rápidamente si un evento influye en el DDA
+        for (int i = 0; i < config.variables.Length; i++)
         {
-            eventVariables.Add(config.variables[i].eventName, config.variables[i]);
-            currentDifficultyValues.Add(config.variables[i], config.defaultDifficulty);
+            // El totalweight se utilizará para determinar cuanto influye cada variable en el resultado final
+            if (config.variables[i].weight > 0)
+            {
+                // TODO: Avisar si ha dejado un weight a 0, ya que no se va a usar para calcular la dificultad
+                totalWeight += config.variables[i].weight;
+                eventVariables.Add(config.variables[i].eventName, config.variables[i]);
+                currentDifficultyValues.Add(config.variables[i], config.defaultDifficulty);
+            }
         }
 
         // modifierType se utiliza como FLAGS
@@ -102,6 +114,8 @@ public class DDA
         else if(eventVariables.ContainsKey(eventType))
         {
             DDAVariableData aux = eventVariables[eventType];
+
+
             /* TODO: igual hay que hacer un evento específico para el DDA que contenga un valor obligatoriamente
             if ()
             {
