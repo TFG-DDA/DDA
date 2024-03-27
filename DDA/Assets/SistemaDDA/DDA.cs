@@ -19,6 +19,8 @@ using Unity.VisualScripting;
 */
 [Flags]
 public enum DifficultyModifierTypes { ENEMIES = 1, PLAYER = 2, ENVIROMENT = 4 }
+
+//TODO: Que lo pueda cambiar el diseñador
 public enum PlayerDifficulty { EASY, MID, HARD }
 public class DDA
 {
