@@ -82,8 +82,22 @@ public class DDA
         // Añadimos las variables de instrumentalización que contengan las flags al diccionario que se usará desde las distintas partes del código
         for (int i = 0; i < ins.instVariables.Length; i++)
         {
-            if(modifierType.HasFlag(ins.instVariables[i].modifierType))
-                instVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i]);
+            if (modifierType.HasFlag(ins.instVariables[i].modifierType))
+            {
+                instPrivateVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i]);
+                switch (config.defaultDifficulty)
+                {
+                    case PlayerDifficulty.EASY:
+                        instVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i].easyValue);
+                        break;
+                    case PlayerDifficulty.MID:
+                        instVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i].midValue);
+                        break;
+                    case PlayerDifficulty.HARD:
+                        instVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i].hardValue);
+                        break;
+                }
+            }
         }
         
     }
@@ -125,6 +139,14 @@ public class DDA
             }
             */
         }
+    }
+
+    public float getInstVariable(string s)
+    {
+        if(instVariables.ContainsKey(s))
+            return instVariables[s];
+        // Printear error de que no se ha encontrado la variable de instrumentalización y devuelve -1
+        return -1.0f;
     }
 
     private void UpdateDifficulty()
