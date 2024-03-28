@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
+using UnityEngine;
 
 /*
 * DifficultyModifierTypes define las diferentes formas de modificar la dificultad en el DDA,
@@ -22,11 +22,11 @@ public enum DifficultyModifierTypes { ENEMIES = 1, PLAYER = 2, ENVIROMENT = 4 }
 
 //TODO: Que lo pueda cambiar el diseñador
 public enum PlayerDifficulty { EASY, MID, HARD }
-public class DDA
+public class DDA : MonoBehaviour
 {
     private static DDA instance = null;
 
-    DDAData config;
+    DDAData configData;
     PlayerDifficulty currentPlayerDifficulty;
 
     // Diccionario utilizado por el diseñador para instrumentalizar su código
@@ -55,30 +55,49 @@ public class DDA
         }
     }
 
-    public void Init(DDAConfig c, DDAInstrumentalization ins)
+    void Awake()
     {
-        config = c.data;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void Start()
+    {
+        DDAConfig c = GetComponent<DDAConfig>();
+        DDAInstrumentalization ins = GetComponent<DDAInstrumentalization>();
+        if(c == null || ins == null)
+        {
+            Debug.LogError("El objeto que contiene el DDA no tiene DDAConfig o DDAInstrumentalization");
+        }
+        configData = c.data;
 
         eventVariables = new Dictionary<string, DDAVariableData>();
         totalWeight = 0;
 
         // Creamos un mapa para comprobar rápidamente si un evento influye en el DDA
-        for (int i = 0; i < config.variables.Length; i++)
+        for (int i = 0; i < configData.variables.Length; i++)
         {
             // El totalweight se utilizará para determinar cuanto influye cada variable en el resultado final
-            if (config.variables[i].weight > 0)
+            if (configData.variables[i].weight > 0)
             {
                 // TODO: Avisar si ha dejado un weight a 0, ya que no se va a usar para calcular la dificultad
-                totalWeight += config.variables[i].weight;
-                eventVariables.Add(config.variables[i].eventName, config.variables[i]);
-                currentDifficultyValues.Add(config.variables[i], config.defaultDifficulty);
+                totalWeight += configData.variables[i].weight;
+                eventVariables.Add(configData.variables[i].eventName, configData.variables[i]);
+                currentDifficultyValues.Add(configData.variables[i], configData.defaultDifficulty);
             }
         }
 
         // modifierType se utiliza como FLAGS
-        if (config.EnemiesModifierType) modifierType = modifierType | DifficultyModifierTypes.ENEMIES;
-        if (config.PlayerModifierType) modifierType = modifierType | DifficultyModifierTypes.PLAYER;
-        if (config.EnviromentModifierType) modifierType = modifierType | DifficultyModifierTypes.ENVIROMENT;
+        if (configData.EnemiesModifierType) modifierType = modifierType | DifficultyModifierTypes.ENEMIES;
+        if (configData.PlayerModifierType) modifierType = modifierType | DifficultyModifierTypes.PLAYER;
+        if (configData.EnviromentModifierType) modifierType = modifierType | DifficultyModifierTypes.ENVIROMENT;
 
 
         // Añadimos las variables de instrumentalización que contengan las flags al diccionario que se usará desde las distintas partes del código
@@ -87,7 +106,7 @@ public class DDA
             if (modifierType.HasFlag(ins.instVariables[i].modifierType))
             {
                 instPrivateVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i]);
-                switch (config.defaultDifficulty)
+                switch (configData.defaultDifficulty)
                 {
                     case PlayerDifficulty.EASY:
                         instVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i].easyValue);
@@ -112,11 +131,11 @@ public class DDA
 
     }
     // Recibe todos los eventos del Tracker
-    public void Send(TrackerEvent e)
+    public void Send(DDAEvent e)
     {
         string eventType = e.GetEventType();
         // Se lanza la atualización de dificultad cuando llega el evento de trigger dado por el diseñador
-        if (eventType == config.triggerEvent)
+        if (eventType == configData.triggerEvent)
         {
             UpdateDifficulty();
         }
@@ -125,8 +144,8 @@ public class DDA
         {
             DDAVariableData aux = eventVariables[eventType];
 
-
-            /* TODO: igual hay que hacer un evento específico para el DDA que contenga un valor obligatoriamente
+            float eventValue = e.value;
+            /* 
             if ()
             {
                //Cambio a fácil
