@@ -43,7 +43,9 @@ public struct DDAData
 
     public bool EnviromentModifierType;
 
-    public PlayerDifficulty defaultDifficulty;
+    public List<PlayerDifficulty> difficultiesConfig;
+    
+    public int defaultDifficultyLevel;
 }
 
 public class DDAConfig : MonoBehaviour

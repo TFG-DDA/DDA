@@ -17,11 +17,22 @@ using UnityEngine;
 * ENVIROMENT: Elige entre las escenas que van a aparecer
 * 
 */
+
+
 [Flags]
 public enum DifficultyModifierTypes { ENEMIES = 1, PLAYER = 2, ENVIROMENT = 4 }
 
 //TODO: Que lo pueda cambiar el diseñador
-public enum PlayerDifficulty { EASY, MID, HARD }
+[Serializable]
+public struct PlayerDifficulty
+{
+    // Nombre de la dificultad para diferenciarla
+    public string difficultyName;
+    // Posición de la dificultad (la idea es que cuanto más pequeño más facil)
+    public uint difficultyLevel;
+}
+
+//public enum PlayerDifficulty { EASY, MID, HARD }
 public class DDA : MonoBehaviour
 {
     private static DDA instance = null;
@@ -80,7 +91,7 @@ public class DDA : MonoBehaviour
 
         eventVariables = new Dictionary<string, DDAVariableData>();
         totalWeight = 0;
-
+        currentPlayerDifficulty = configData.difficultiesConfig[configData.defaultDifficultyLevel];
         // Creamos un mapa para comprobar rápidamente si un evento influye en el DDA
         for (int i = 0; i < configData.variables.Length; i++)
         {
@@ -90,7 +101,7 @@ public class DDA : MonoBehaviour
                 // TODO: Avisar si ha dejado un weight a 0, ya que no se va a usar para calcular la dificultad
                 totalWeight += configData.variables[i].weight;
                 eventVariables.Add(configData.variables[i].eventName, configData.variables[i]);
-                currentDifficultyValues.Add(configData.variables[i], configData.defaultDifficulty);
+                //currentDifficultyValues.Add(configData.variables[i], configData.defaultDifficulty);
             }
         }
 
@@ -106,18 +117,18 @@ public class DDA : MonoBehaviour
             if (modifierType.HasFlag(ins.instVariables[i].modifierType))
             {
                 instPrivateVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i]);
-                switch (configData.defaultDifficulty)
-                {
-                    case PlayerDifficulty.EASY:
-                        instVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i].easyValue);
-                        break;
-                    case PlayerDifficulty.MID:
-                        instVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i].midValue);
-                        break;
-                    case PlayerDifficulty.HARD:
-                        instVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i].hardValue);
-                        break;
-                }
+                //switch (configData.defaultDifficulty)
+                //{
+                //    case PlayerDifficulty.EASY:
+                //        instVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i].easyValue);
+                //        break;
+                //    case PlayerDifficulty.MID:
+                //        instVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i].midValue);
+                //        break;
+                //    case PlayerDifficulty.HARD:
+                //        instVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i].hardValue);
+                //        break;
+                //}
             }
         }
         
@@ -190,45 +201,45 @@ public class DDA : MonoBehaviour
     {
         switch (currentPlayerDifficulty)
         {
-            case PlayerDifficulty.EASY:
+            //case PlayerDifficulty.EASY:
 
-                break;
-            case PlayerDifficulty.MID:
+            //    break;
+            //case PlayerDifficulty.MID:
 
-                break;
-            case PlayerDifficulty.HARD:
+            //    break;
+            //case PlayerDifficulty.HARD:
 
-                break;
+            //    break;
         }
     }
     private void UpdatePlayerDifficulty()
     {
         switch (currentPlayerDifficulty)
         {
-            case PlayerDifficulty.EASY:
+            //case PlayerDifficulty.EASY:
 
-                break;
-            case PlayerDifficulty.MID:
+            //    break;
+            //case PlayerDifficulty.MID:
 
-                break;
-            case PlayerDifficulty.HARD:
+            //    break;
+            //case PlayerDifficulty.HARD:
 
-                break;
+            //    break;
         }
     }
     private void UpdateEnviromentDifficulty()
     {
         switch (currentPlayerDifficulty)
         {
-            case PlayerDifficulty.EASY:
+            //case PlayerDifficulty.EASY:
 
-                break;
-            case PlayerDifficulty.MID:
+            //    break;
+            //case PlayerDifficulty.MID:
 
-                break;
-            case PlayerDifficulty.HARD:
+            //    break;
+            //case PlayerDifficulty.HARD:
 
-                break;
+            //    break;
         }
     }
 }
