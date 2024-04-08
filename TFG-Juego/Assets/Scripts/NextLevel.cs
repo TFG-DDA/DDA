@@ -10,6 +10,8 @@ public class NextLevel : MonoBehaviour
         PlayerMovement pm;
         if (other.TryGetComponent<PlayerMovement>(out pm))
         {
+            Tracker.Instance.AddEvent(new LostHealthEvent(GameManager.instance.lostHealth));
+            GameManager.instance.lostHealth = 0;
             Tracker.Instance.AddEvent(new FinNivelEvent(GameManager.instance.GetPlayedLevels(), SceneManager.GetActiveScene().name));
             GameManager.instance.SetTransitionTime(.5f);
             GameManager.instance.StartTransition(TransitionTypes.TOCARDS);

@@ -23,7 +23,7 @@ public class DetectPlayer : MonoBehaviour
         EnemyAttribs eAt = transform.parent.GetComponent<EnemyAttribs>();
         timeKeepSearching = eAt.timeKeepSearch * (diff / 100);
         FireWeapon fW = transform.parent.GetChild(1).GetChild(0).GetComponent<FireWeapon>();
-        cadenceShoot = Mathf.Max(eAt.cadence / (diff / 100), 0.5f) * fW.GetScriptable().cadence;
+        cadenceShoot = Mathf.Max(eAt.cadence / (diff / 100), 0.5f) * fW.GetScriptable().cadence * DDA.Instance.config.enemyCadence;
     }
 
     private void FixedUpdate()

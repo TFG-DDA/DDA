@@ -128,6 +128,9 @@ public class GameManager : MonoBehaviour
     bool HARD_LEVELS = false;
     bool sendhard = false;
 
+    // Vida perdida en el nivel
+    public int lostHealth = 0;
+
     // Start is called before the first frame update
     void Awake()
     {

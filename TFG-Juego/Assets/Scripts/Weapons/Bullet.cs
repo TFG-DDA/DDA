@@ -1,4 +1,5 @@
 using FMODUnity;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,7 +58,7 @@ public class Bullet : MonoBehaviour
                     RuntimeManager.PlayOneShot(GameManager.instance.GetSoundResources().IMPACT_PLAYER);
                     playerAnim.anim_hit();
                 }
-                
+                damage = (int)(damage * DDA.Instance.config.enemyDamage); 
             }
             else
                 RuntimeManager.PlayOneShot(GameManager.instance.GetSoundResources().IMPACT_ROCK, transform.position);
