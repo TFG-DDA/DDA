@@ -18,10 +18,14 @@ public struct DDAVariableData
     public string eventName;
 
     [Header("Ranges of the event")]
+    [Tooltip("Minimum value of the event")]
+    public float minimum;
     [Tooltip("Max value until it changes it's difficulty to Mid")]
     public float easyMax;
     [Tooltip("Max value until it changes it's difficulty to Hard")]
     public float midMax;
+    [Tooltip("MAximum value of the event")]
+    public float maximum;
     [Tooltip("True if the event should not be restarted when the difficulty updates")]
     public bool persistent;
 

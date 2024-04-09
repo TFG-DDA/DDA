@@ -247,6 +247,38 @@ PrefabInstance:
       propertyPath: data.triggerEvent
       value: FinNivelEvent
       objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.data[0].midMax
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.data[0].weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.data[0].easyMax
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.data[0].maximum
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.data[0].minimum
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.data[0].eventName
+      value: LostHealthEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184440428344117839, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: modifierType
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 5970377965610702331, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: m_Name
       value: DDA

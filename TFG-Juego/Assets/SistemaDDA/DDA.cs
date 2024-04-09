@@ -41,19 +41,21 @@ public class DDA : MonoBehaviour
     [HideInInspector]
     public DDAData configData;
     public PlayerDifficulty currentPlayerDifficulty;
-    private PlayerDifficulty nextDifficulty;
     // Diccionario utilizado por el diseñador para instrumentalizar su código
     public Dictionary<string, float> instVariables;
     public Dictionary<string, DDAInstVariables> instPrivateVariables;
 
     private Dictionary<string, DDAVariableData> eventVariables;
-    private Dictionary<DDAVariableData, PlayerDifficulty> currentDifficultyValues;
+
+    float easyMaxRange = 0;
+    float mediumMinRange = 0;
+    float mediumMaxRange = 0;
+    float hardMinRange = 0;
 
     // Variable usada para implementar el DDA en el código del juego
     public DifficultyModifierTypes modifierType;
 
     private float totalWeight = 0;
-    // Rango entre 0 y 2 que determinará la dificultad
     private float difficultyRange = 0;
 
     public static DDA Instance
@@ -94,7 +96,6 @@ public class DDA : MonoBehaviour
         eventVariables = new Dictionary<string, DDAVariableData>();
         totalWeight = 0;
         currentPlayerDifficulty = configData.startDifficulty;
-        nextDifficulty = currentPlayerDifficulty;
         //currentPlayerDifficulty = configData.difficultiesConfig[configData.defaultDifficultyLevel];
         // Creamos un mapa para comprobar rápidamente si un evento influye en el DDA
         for (int i = 0; i < configData.variables.Length; i++)
@@ -113,29 +114,33 @@ public class DDA : MonoBehaviour
         if (configData.EnemiesModifierType) modifierType = modifierType | DifficultyModifierTypes.ENEMIES;
         if (configData.PlayerModifierType) modifierType = modifierType | DifficultyModifierTypes.PLAYER;
         if (configData.EnviromentModifierType) modifierType = modifierType | DifficultyModifierTypes.ENVIROMENT;
+
+        // Crea los rangos de dificultades
+        InitializeRanges();
+        // Aplica la dificultad por defecto
         UpdateDifficulty();
 
 
-        // Añadimos las variables de instrumentalización que contengan las flags al diccionario que se usará desde las distintas partes del código
-        for (int i = 0; i < ins.instVariables.Length; i++)
-        {
-            if (modifierType.HasFlag(ins.instVariables[i].modifierType))
-            {
-                //instPrivateVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i]);
-                //switch (configData.defaultDifficulty)
-                //{
-                //    case PlayerDifficulty.EASY:
-                //        instVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i].easyValue);
-                //        break;
-                //    case PlayerDifficulty.MID:
-                //        instVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i].midValue);
-                //        break;
-                //    case PlayerDifficulty.HARD:
-                //        instVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i].hardValue);
-                //        break;
-                //}
-            }
-        }
+        //// Añadimos las variables de instrumentalización que contengan las flags al diccionario que se usará desde las distintas partes del código
+        //for (int i = 0; i < ins.instVariables.Length; i++)
+        //{
+        //    if (modifierType.HasFlag(ins.instVariables[i].modifierType))
+        //    {
+        //        //instPrivateVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i]);
+        //        //switch (configData.defaultDifficulty)
+        //        //{
+        //        //    case PlayerDifficulty.EASY:
+        //        //        instVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i].easyValue);
+        //        //        break;
+        //        //    case PlayerDifficulty.MID:
+        //        //        instVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i].midValue);
+        //        //        break;
+        //        //    case PlayerDifficulty.HARD:
+        //        //        instVariables.Add(ins.instVariables[i].variableName, ins.instVariables[i].hardValue);
+        //        //        break;
+        //        //}
+        //    }
+        //}
 
     }
     public void Update()
@@ -158,24 +163,28 @@ public class DDA : MonoBehaviour
 
             float eventValue = e.value;
 
-            if ()
-            {
-                nextDifficulty = PlayerDifficulty.EASY;
-            }
-            else if ()
-            {
-                nextDifficulty = PlayerDifficulty.MID;
-                //Cambio a medio
-            }
-            else if ()
-            {
-                nextDifficulty = PlayerDifficulty.HARD;
-                //Cambio a díficil
-            }
+            float finalValue = (eventValue - aux.minimum) / (aux.maximum - aux.minimum);
+            // Se guardan los valores de todos los eventos para luego decdir la dificultad
+            difficultyRange += finalValue;
         }
+
         // Se lanza la atualización de dificultad cuando llega el evento de trigger dado por el diseñador
         if (eventType == configData.triggerEvent)
         {
+            switch (currentPlayerDifficulty)
+            {
+                case PlayerDifficulty.EASY:
+                    if (difficultyRange > easyMaxRange) currentPlayerDifficulty = PlayerDifficulty.MID;
+                    break;
+                case PlayerDifficulty.MID:
+                    if (difficultyRange > mediumMaxRange) currentPlayerDifficulty = PlayerDifficulty.HARD;
+                    else if (difficultyRange < mediumMinRange) currentPlayerDifficulty = PlayerDifficulty.EASY;
+                    break;
+                case PlayerDifficulty.HARD:
+                    if (difficultyRange < hardMinRange) currentPlayerDifficulty = PlayerDifficulty.MID;
+                    break;
+            }
+            difficultyRange = 0;
             UpdateDifficulty();
         }
     }
@@ -190,7 +199,6 @@ public class DDA : MonoBehaviour
 
     private void UpdateDifficulty()
     {
-        currentPlayerDifficulty = nextDifficulty;
         // Se actualizan tantas variables como flags estén activas en el modifierType
         if (modifierType.HasFlag(DifficultyModifierTypes.ENEMIES))
         {
@@ -260,6 +268,31 @@ public class DDA : MonoBehaviour
             //case PlayerDifficulty.HARD:
 
             //    break;
+        }
+    }
+
+    private void InitializeRanges()
+    {
+        foreach(DDAVariableData a in eventVariables.Values)
+        {
+            //if(a.minimum > a.maximum)
+            //{
+            //    easyMaxRange += 1.0f;
+            //    mediumMinRange += (a.midMax - a.minimum) / (a.maximum - a.minimum);
+            //    mediumMaxRange += (a.easyMax - a.minimum) / (a.maximum - a.minimum);
+            //    hardMinRange += 0.0f;
+            //}
+            //else
+            //{
+            //    easyMaxRange += (a.easyMax - a.minimum) / (a.maximum - a.minimum);
+            //    mediumMinRange += (a.easyMax - a.minimum) / (a.maximum - a.minimum);
+            //    mediumMaxRange += (a.midMax - a.minimum) / (a.maximum - a.minimum);
+            //    hardMinRange += (a.midMax - a.minimum) / (a.maximum - a.minimum);
+            //}
+            easyMaxRange += (a.easyMax - a.minimum) / (a.maximum - a.minimum);
+            mediumMinRange += (a.easyMax - a.minimum) / (a.maximum - a.minimum);
+            mediumMaxRange += (a.midMax - a.minimum) / (a.maximum - a.minimum);
+            hardMinRange += (a.midMax - a.minimum) / (a.maximum - a.minimum);
         }
     }
 }
