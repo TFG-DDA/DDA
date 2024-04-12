@@ -244,12 +244,32 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.startDiff
+      value: Easy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.triggerEvent
       value: FinNivelEvent
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.EnemiesModifierType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.variables.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variableRanges.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.difficultiesConfig.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.variables.Array.data[0].midMax
@@ -272,8 +292,152 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.difficultiesConfig.Array.data[0]
+      value: Easy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.difficultiesConfig.Array.data[1]
+      value: Medium
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.difficultiesConfig.Array.data[2]
+      value: Hard
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.variables.Array.data[0].eventName
       value: LostHealthEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.data[0].persistent
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variableRanges.Array.data[0].enemyDrops
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variableRanges.Array.data[0].enemySpeed
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variableRanges.Array.data[1].enemyDrops
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variableRanges.Array.data[1].enemySpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variableRanges.Array.data[2].enemySpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variableRanges.Array.data[0].enemyDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variableRanges.Array.data[0].enemyHealth
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variableRanges.Array.data[1].enemyDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variableRanges.Array.data[1].enemyHealth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variableRanges.Array.data[2].enemyDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variableRanges.Array.data[2].enemyHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[0].enemyDrops
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[0].enemySpeed
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[1].enemyDrops
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[1].enemySpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[2].enemyDrops
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[2].enemySpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variableRanges.Array.data[0].enemyCadence
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variableRanges.Array.data[1].enemyCadence
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variableRanges.Array.data[2].enemyCadence
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[0].enemyDamage
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[0].enemyHealth
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[1].enemyDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[1].enemyHealth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[2].enemyDamage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[2].enemyHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[0].enemyCadence
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[1].enemyCadence
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[2].enemyCadence
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.data[0].limits.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.data[0].limits.Array.data[0]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.data[0].limits.Array.data[1]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4184440428344117839, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: modifierType

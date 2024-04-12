@@ -35,7 +35,7 @@ public class HealthManager : MonoBehaviour
         {
             sprite = GetComponent<SpriteLibrary>().spriteLibraryAsset;
             health = GetComponent<EnemyAttribs>().health + GameManager.instance.GetPlayedLevels() / 2;
-            health = (int)(health * DDA.Instance.config.enemyHealth);
+            health = (int)(health * DDA.Instance.config.actVariables.enemyHealth);
         }
         else
         {
