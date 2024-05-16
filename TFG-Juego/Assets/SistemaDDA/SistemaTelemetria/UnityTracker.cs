@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Analytics;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static GraphConfig;
 
@@ -30,6 +31,7 @@ public class UnityTracker : MonoBehaviour
             Tracker.Instance.Init(AnalyticsSessionInfo.sessionId);
             if(GetComponent<GraphConfig>() != null)
                 InitGraphs();
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -218,5 +220,10 @@ public class UnityTracker : MonoBehaviour
     public void SetCanvasCamera(Camera c)
     {
         canvasObject.GetComponent<Canvas>().worldCamera = c;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SetCanvasCamera(Camera.main);
     }
 }
