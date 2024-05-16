@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Analytics;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static GraphConfig;
 
@@ -28,8 +29,9 @@ public class UnityTracker : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             Tracker.Instance.Init(AnalyticsSessionInfo.sessionId);
-            if(GetComponent<GraphConfig>() != null)
+            if (GetComponent<GraphConfig>() != null)
                 InitGraphs();
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -61,11 +63,12 @@ public class UnityTracker : MonoBehaviour
     void Start()
     {
         // Eventos correspondientes al juego
-        Tracker.Instance.AddTrackableEvent<InicioEvent>(true);
-        Tracker.Instance.AddTrackableEvent<FinEvent>(true);
+        Tracker.Instance.AddTrackableEvent<InicioNivelEvent>(true);
+        Tracker.Instance.AddTrackableEvent<FinNivelEvent>(true);
+        Tracker.Instance.AddTrackableEvent<LostHealthEvent>(true);
 
-        Tracker.Instance.AddEvent(new InicioEvent());
         Tracker.Instance.AddEvent(new FinEvent());
+        Tracker.Instance.AddEvent(new InicioEvent());
     }
 
     // Update is called once per frame
@@ -81,14 +84,14 @@ public class UnityTracker : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(instance == this)
+        if (instance == this)
             Tracker.Instance.Release();
     }
 
     // Ajusta la posicion y escala de la Grafica
     public void SetGraphInWindow(ref GameObject chart, int index, GraphData config, Tuple<int, int>[] offset)
     {
-        if(index > max_charts_per_col * max_charts_per_row - 1)
+        if (index > max_charts_per_col * max_charts_per_row - 1)
         {
             Debug.LogError("Numero de graficas superior al limite");
             Destroy(chart);
@@ -112,13 +115,13 @@ public class UnityTracker : MonoBehaviour
                 row = index / max_charts_per_row;
                 col = index % max_charts_per_row;
                 //rectChart.rect.height* rectChart.localScale.y;
-                for (int i=0; i<col; i++)
+                for (int i = 0; i < col; i++)
                 {
                     offsetX += offset[row * max_charts_per_row + i].Item1 * preset_Scale;
                 }
                 for (int i = 0; i < row; i++)
                 {
-                    offsetY += offset[col + max_charts_per_row*i].Item2 * preset_Scale;
+                    offsetY += offset[col + max_charts_per_row * i].Item2 * preset_Scale;
                 }
 
                 rectChart.anchoredPosition = new Vector2(offsetX, offsetY);
@@ -217,5 +220,10 @@ public class UnityTracker : MonoBehaviour
     public void SetCanvasCamera(Camera c)
     {
         canvasObject.GetComponent<Canvas>().worldCamera = c;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SetCanvasCamera(Camera.main);
     }
 }
