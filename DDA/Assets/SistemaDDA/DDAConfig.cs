@@ -18,16 +18,19 @@ public struct DDAVariableData
     public string eventName;
 
     [Header("Ranges of the event")]
-    [Tooltip("Max value until it changes it's difficulty to Mid")]
-    public float easyMax;
-    [Tooltip("Max value until it changes it's difficulty to Hard")]
-    public float midMax;
-    [Tooltip("True if the event should not be restarted when the difficulty updates")]
-    public bool persistent;
-
+    [Tooltip("Minimum value of the event")]
+    public float minimum;
+    //[Tooltip("Max value until it changes it's difficulty to Mid")]
+    //public float easyMax;
+    //[Tooltip("Max value until it changes it's difficulty to Hard")]
+    //public float midMax;
+    public float[] limits;
+    [Tooltip("MAximum value of the event")]
+    public float maximum;
     [Tooltip("Weight of this variable to change the difficulty")]
     [Range(0.0f,1.0f)]
     public float weight;
+
 }
 
 [Serializable]
@@ -43,23 +46,42 @@ public struct DDAData
 
     public bool EnviromentModifierType;
 
-    public List<PlayerDifficulty> difficultiesConfig;
-    
-    public int defaultDifficultyLevel;
+    public List<string> difficultiesConfig;
+
+    [HideInInspector]
+    public uint defaultDifficultyLevel;
+    public string startDiff; 
 }
+
+[Serializable]
+public struct DDAVariableModificables
+{
+    public float enemyDamage;
+    public float enemyHealth;
+    public float enemySpeed;
+    public float enemyCadence;
+    public float enemyDrops;
+} 
 
 public class DDAConfig : MonoBehaviour
 {
+    
+    public DDAVariableModificables[] variablesModify;
+    [HideInInspector]
+    public DDAVariableModificables actVariables;
+
     public DDAData data;
-    // Update is called once per frame
-    void Update()
+
+    private void Awake()
     {
-
-    }
-
-    private void FixedUpdate()
-    {
-
+        for(int i=0; i<data.difficultiesConfig.Count; i++)
+        {
+            if (data.difficultiesConfig[i] == data.startDiff)
+            {
+                data.defaultDifficultyLevel = (uint)i;
+                return;
+            }
+        }
     }
 }
 

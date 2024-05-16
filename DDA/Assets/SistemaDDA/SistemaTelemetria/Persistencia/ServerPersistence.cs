@@ -50,15 +50,8 @@ public class ServerPersistence : IPersistence
         formPath = "SessionIDs/" + id /* + ruta específica del juego (opcional)*/;
         foreach (TrackerEvent e in events)
         {
-            if (e.GetEventType() == (typeof(FormDataEvent).Name))
-            {
-                FirebaseDatabase.UpdateJSON(formPath, serializerServerJSON.Serialize(e), "GameManager", "postJSONcallback", "postJSONfallback");
-            }
-            else
-            {
-                FirebaseDatabase.UpdateJSON(path + counterEvents.ToString(), serializerServerJSON.Serialize(e), "GameManager", "postJSONcallback", "postJSONfallback");
-                counterEvents++;
-            }
+            FirebaseDatabase.UpdateJSON(path + counterEvents.ToString(), serializerServerJSON.Serialize(e), "GameManager", "postJSONcallback", "postJSONfallback");
+            counterEvents++;
         }
     }
 }

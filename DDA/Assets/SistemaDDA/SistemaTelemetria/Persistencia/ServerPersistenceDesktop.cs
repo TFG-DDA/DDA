@@ -66,14 +66,8 @@ public class ServerPersistenceDesktop : IPersistence
         formPath = "SessionIDs/" + id /* + ruta específica del juego (opcional)*/;
         foreach (TrackerEvent e in events)
         {
-            if (e.GetEventType() == (typeof(FormDataEvent).Name)){
-                dbRef.Child(formPath).SetRawJsonValueAsync(serializerServerJSON.Serialize(e));
-            }
-            else
-            {
-                dbRef.Child(path + counterEvents.ToString()).SetRawJsonValueAsync(serializerServerJSON.Serialize(e));
-                counterEvents++;
-            }
+            dbRef.Child(path + counterEvents.ToString()).SetRawJsonValueAsync(serializerServerJSON.Serialize(e));
+            counterEvents++;
         }
     }
 }

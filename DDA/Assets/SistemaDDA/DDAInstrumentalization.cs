@@ -45,6 +45,6 @@ public class DDAInstrumentalization : MonoBehaviour
     private void Start()
     {
         // TODO: Ejemplo de instrumentalización
-        float health = DDA.Instance.getInstVariable("EnemyHealth") >= 0 ? DDA.Instance.getInstVariable("EnemyHealth") : 10;
+        //float health = DDA.Instance.getInstVariable("EnemyHealth") >= 0 ? DDA.Instance.getInstVariable("EnemyHealth") : 10;
     }
 }
