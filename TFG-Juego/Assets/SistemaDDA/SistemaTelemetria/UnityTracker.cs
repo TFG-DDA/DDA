@@ -63,6 +63,7 @@ public class UnityTracker : MonoBehaviour
         // Eventos correspondientes al juego
         Tracker.Instance.AddTrackableEvent<InicioNivelEvent>(true);
         Tracker.Instance.AddTrackableEvent<FinNivelEvent>(true);
+        Tracker.Instance.AddTrackableEvent<LostHealthEvent>(true);
 
         Tracker.Instance.AddEvent(new FinEvent());
         Tracker.Instance.AddEvent(new InicioEvent());
@@ -212,5 +213,10 @@ public class UnityTracker : MonoBehaviour
     public GameObject GetGraphCanvas()
     {
         return canvasObject;
+    }
+
+    public void SetCanvasCamera(Camera c)
+    {
+        canvasObject.GetComponent<Canvas>().worldCamera = c;
     }
 }

@@ -245,7 +245,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.startDiff
-      value: Easy
+      value: Medium
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.triggerEvent
@@ -277,7 +277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.variables.Array.data[0].weight
-      value: 1
+      value: 0.34
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.variables.Array.data[0].easyMax
@@ -7442,7 +7442,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -9176,9 +9176,65 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.scale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.eventX
+      value: LostHealthEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.eventY
+      value: FinNivelEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.line_Width
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.point_Size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3067396912352002542, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
       propertyPath: m_Name
       value: Tracker
+      objectReference: {fileID: 0}
+    - target: {fileID: 8758682636726464748, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.eventX
+      value: FinNivelEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 8758682636726464748, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.eventY
+      value: LostHealthEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 8758682636726464748, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.line_Width
+      value: 0.103
+      objectReference: {fileID: 0}
+    - target: {fileID: 8758682636726464748, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.actualGraphCol.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8758682636726464748, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.actualGraphCol.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8758682636726464748, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.actualGraphCol.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8758682636726464748, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.designerGraphCol.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8758682636726464748, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.designerGraphCol.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8758682636726464748, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.designerGraphCol.r
+      value: 0.12834764
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}

@@ -233,6 +233,8 @@ public class GameManager : MonoBehaviour
                 checkTimeForArrow = false;
             }
         }
+        if (Input.GetKeyDown(KeyCode.I)) Tracker.Instance.AddEvent(new LostHealthEvent(1));
+        if (Input.GetKeyDown(KeyCode.J)) Tracker.Instance.AddEvent(new FinNivelEvent(10,"hols"));
     }
 
     public void changeScene(string sc)

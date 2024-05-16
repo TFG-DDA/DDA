@@ -52,7 +52,7 @@ public class GraphPersistence : IPersistence
     {
         for (int i = 0; i < graphs.Length; ++i)
         {
-            graphWriters[graphs[i].name].Flush();
+            graphWriters[graphs[i].data.name].Flush();
         }
     }
 

@@ -61,11 +61,11 @@ public class UnityTracker : MonoBehaviour
     void Start()
     {
         // Eventos correspondientes al juego
-        Tracker.Instance.AddTrackableEvent<InicioNivelEvent>(true);
-        Tracker.Instance.AddTrackableEvent<FinNivelEvent>(true);
+        Tracker.Instance.AddTrackableEvent<InicioEvent>(true);
+        Tracker.Instance.AddTrackableEvent<FinEvent>(true);
 
-        Tracker.Instance.AddEvent(new FinEvent());
         Tracker.Instance.AddEvent(new InicioEvent());
+        Tracker.Instance.AddEvent(new FinEvent());
     }
 
     // Update is called once per frame
@@ -212,5 +212,10 @@ public class UnityTracker : MonoBehaviour
     public GameObject GetGraphCanvas()
     {
         return canvasObject;
+    }
+
+    public void SetCanvasCamera(Camera c)
+    {
+        canvasObject.GetComponent<Canvas>().worldCamera = c;
     }
 }

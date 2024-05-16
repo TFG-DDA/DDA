@@ -78,6 +78,7 @@ public class Tracker
         long time = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
         if (tSinceLastPost > timeBetweenPosts)
         {
+            Flush();
             //if (filePers) filePersistence.Flush();
             //if (serverPers) serverPersistence.Flush();
             tSinceLastPost = 0;
@@ -102,11 +103,12 @@ public class Tracker
 
     public void AddEvent(TrackerEvent e)
     {
-        if (graphPers && graphPersistence != null) graphPersistence.Send(e);
+        //if (graphPers && graphPersistence != null) graphPersistence.Send(e);
         Type t = e.GetType();
-        if (t == typeof(DDAEvent))
+        if (t.IsSubclassOf(typeof(DDAEvent)) /*== typeof(DDAEvent)*/)
         {
             DDA.Instance.Send((DDAEvent)e);
+            if(graphPers) graphPersistence.Send(e);
         }
 #if !UNITY_EDITOR
         if (eventsTracked[e.GetType().Name])
