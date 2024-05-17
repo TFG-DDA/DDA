@@ -104,9 +104,9 @@ public class DDA : MonoBehaviour
         }
 
         // modifierType se utiliza como FLAGS
-        if (configData.EnemiesModifierType) modifierType = modifierType | DifficultyModifierTypes.ENEMIES;
-        if (configData.PlayerModifierType) modifierType = modifierType | DifficultyModifierTypes.PLAYER;
-        if (configData.EnviromentModifierType) modifierType = modifierType | DifficultyModifierTypes.ENVIROMENT;
+        if (configData.enemiesModifierType) modifierType = modifierType | DifficultyModifierTypes.ENEMIES;
+        if (configData.playerModifierType) modifierType = modifierType | DifficultyModifierTypes.PLAYER;
+        if (configData.enviromentModifierType) modifierType = modifierType | DifficultyModifierTypes.ENVIROMENT;
 
         // Crea los rangos de dificultades
         InitializeRanges();

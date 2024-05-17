@@ -284,16 +284,76 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.EnviromentModifierType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.difficultiesConfig.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.variables.Array.data[0].weight
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.data[0].limits.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5970377965610702331, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: m_Name
       value: DDA
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.triggerEvent
+      value: FinEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.playerModifierType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.enemiesModifierType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.enviromentModifierType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.difficultiesConfig.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.difficultiesConfig.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.data[0].limits.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.data[1].limits.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.data[0].limits.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.data[0].limits.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.data[0].limits.Array.data[2]
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7815467958274958476, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: m_RootOrder
@@ -339,5 +399,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}

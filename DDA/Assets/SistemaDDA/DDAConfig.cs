@@ -20,15 +20,11 @@ public struct DDAVariableData
     [Header("Ranges of the event")]
     [Tooltip("Minimum value of the event")]
     public float minimum;
-    //[Tooltip("Max value until it changes it's difficulty to Mid")]
-    //public float easyMax;
-    //[Tooltip("Max value until it changes it's difficulty to Hard")]
-    //public float midMax;
     public float[] limits;
     [Tooltip("MAximum value of the event")]
     public float maximum;
     [Tooltip("Weight of this variable to change the difficulty")]
-    [Range(0.0f,1.0f)]
+    [Range(0.0f, 1.0f)]
     public float weight;
 
 }
@@ -36,36 +32,32 @@ public struct DDAVariableData
 [Serializable]
 public struct DDAData
 {
-    public DDAVariableData[] variables;
+    public DDAVariableData[] variables;//
 
-    public string triggerEvent;
+    public string triggerEvent;//
 
-    public bool EnemiesModifierType;
+    public bool enemiesModifierType;//
 
-    public bool PlayerModifierType;
+    public bool playerModifierType;//
 
-    public bool EnviromentModifierType;
+    public bool enviromentModifierType;//
 
-    public List<string> difficultiesConfig;
+    public List<string> difficultiesConfig;//
 
     [HideInInspector]
     public uint defaultDifficultyLevel;
-    public string startDiff; 
+    public string startDiff;
 }
 
 [Serializable]
 public struct DDAVariableModificables
 {
-    public float enemyDamage;
-    public float enemyHealth;
-    public float enemySpeed;
-    public float enemyCadence;
-    public float enemyDrops;
-} 
+
+}
 
 public class DDAConfig : MonoBehaviour
 {
-    
+
     public DDAVariableModificables[] variablesModify;
     [HideInInspector]
     public DDAVariableModificables actVariables;
@@ -74,7 +66,7 @@ public class DDAConfig : MonoBehaviour
 
     private void Awake()
     {
-        for(int i=0; i<data.difficultiesConfig.Count; i++)
+        for (int i = 0; i < data.difficultiesConfig.Count; i++)
         {
             if (data.difficultiesConfig[i] == data.startDiff)
             {
@@ -85,50 +77,62 @@ public class DDAConfig : MonoBehaviour
     }
 }
 
-//[CustomEditor(typeof(DDAConfig))]
-//public class DDAConfigEditor : Editor
-//{
-//    SerializedProperty ddaPers;
-//    bool show;
+#if UNITY_EDITOR
+[CustomEditor(typeof(DDAConfig))]
+public class DDAConfigEditor : Editor
+{
+    void OnEnable()
+    {
 
-//    void OnEnable()
-//    {
-//        ddaPers = serializedObject.FindProperty("data");
-//    }
+    }
 
-//    void OnValidate()
-//    {
+    public override void OnInspectorGUI()
+    {
+        serializedObject.Update();
+        SerializedProperty data = serializedObject.FindProperty("data");
+        SerializedProperty diffConfig = data.FindPropertyRelative("difficultiesConfig");
+        //EditorGUILayout.PropertyField(data);
+        EditorGUILayout.PropertyField(diffConfig);
 
-//    }
-//    public override void OnInspectorGUI()
-//    {
-//        serializedObject.Update();
-//        EditorGUILayout.PropertyField(ddaPers);
+        SerializedProperty startDiff = data.FindPropertyRelative("startDiff");
+        EditorGUILayout.PropertyField(startDiff);
 
-//        DDAConfig ddaPersistence = (DDAConfig)target;
-//        DDAData data = ddaPersistence.data;
-//        data.triggerEvent = EditorGUILayout.TextField("Trigger Event", data.triggerEvent);
+        EditorGUILayout.Space(5);
+        SerializedProperty variables = data.FindPropertyRelative("variables");
+        EditorGUILayout.PropertyField(variables);
+        SerializedProperty limits;
+        for (int i = 0; i < variables.arraySize; i++)
+        {
+            limits = variables.GetArrayElementAtIndex(i).FindPropertyRelative("limits");
+            if(limits.arraySize != diffConfig.arraySize)
+            {
+                while (limits.arraySize < diffConfig.arraySize)
+                    limits.InsertArrayElementAtIndex(limits.arraySize);
+                while(limits.arraySize > diffConfig.arraySize)
+                    limits.DeleteArrayElementAtIndex(limits.arraySize - 1);
+            }
+        }
+        SerializedProperty triggerEvent = data.FindPropertyRelative("triggerEvent");
+        EditorGUILayout.PropertyField(triggerEvent);
 
-//        // Agrupa las variables en un foldout
-//        show = EditorGUILayout.Foldout(show, "Select Modifiers");
-//        if (show)
-//        {
-//            data.EnemiesModifierType = EditorGUILayout.Toggle("Enemies", data.EnemiesModifierType);
-//            data.PlayerModifierType = EditorGUILayout.Toggle("Player", data.PlayerModifierType);
-//            data.EnviromentModifierType = EditorGUILayout.Toggle("Enviroment", data.EnviromentModifierType);
-//        }
+        EditorGUILayout.Space(5);
+        EditorGUILayout.LabelField("Modifier types");
+        SerializedProperty enemiesModifierType = data.FindPropertyRelative("enemiesModifierType");
+        EditorGUILayout.PropertyField(enemiesModifierType);
+        SerializedProperty playerModifierType = data.FindPropertyRelative("playerModifierType");
+        EditorGUILayout.PropertyField(playerModifierType);
+        SerializedProperty enviromentModifierType = data.FindPropertyRelative("enviromentModifierType");
+        EditorGUILayout.PropertyField(enviromentModifierType);
 
-//        ddaPersistence.data = data;
+        //Metodo de checkeo de cambios en el editor
+        EditorGUI.BeginChangeCheck();
 
+        //Si ha habido cambios utilizamos setDirty para que unity no cambie los valores de editor y se mantengan para ejecucion
+        if (EditorGUI.EndChangeCheck())
+            EditorUtility.SetDirty(target);
 
-//        //Metodo de checkeo de cambios en el editor
-//        EditorGUI.BeginChangeCheck();
-
-//        //Si ha habido cambios utilizamos setDirty para que unity no cambie los valores de editor y se mantengan para ejecucion
-//        if (EditorGUI.EndChangeCheck())
-//            EditorUtility.SetDirty(target);
-
-//        // Guarda los cambios realizados en el editor
-//        serializedObject.ApplyModifiedProperties();
-//    }
-//}
+        // Guarda los cambios realizados en el editor
+        serializedObject.ApplyModifiedProperties();
+    }
+}
+#endif
