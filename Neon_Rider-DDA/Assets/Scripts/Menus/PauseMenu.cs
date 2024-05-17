@@ -25,7 +25,6 @@ public class PauseMenu : MonoBehaviour
             else
             {
                 timeScale = Time.timeScale; // Guarda en una variable la escala del tiempo (por si acaso es distinta de 1)
-                Debug.Log(timeScale);
                 Pause();                
             }
         }    

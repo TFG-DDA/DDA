@@ -4,7 +4,6 @@ public class Sword_Attack : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("he entrado");
         //Cacheamos que el GameObject que entre tenga el componente asociado
         //Guardamos el componente en enemy
         Enemy_Death enemy;
@@ -26,7 +25,6 @@ public class Sword_Attack : MonoBehaviour
             if (turret != null || ralen != null)
                 AudioManager.instance.Play(AudioManager.ESounds.RalenTurretDeath);
             enemy.OnAttack();
-            Debug.Log("verga");
         }
 
         //Si tiene el componente DestructibleWall, llama a su método

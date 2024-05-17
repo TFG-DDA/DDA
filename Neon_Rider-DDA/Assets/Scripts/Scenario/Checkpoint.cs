@@ -12,7 +12,10 @@ public class Checkpoint : MonoBehaviour
             // y se encarga de evitar que revivan los enemigos anteriores
             GameManager.instance.checkpoint = transform.position;
             if (deadVal > GameManager.instance.deadVal)
+            {
+                Tracker.Instance.AddEvent(new FinNivelEvent(deadVal, "Level: " + GameManager.instance.actualScene + ", Room: " + deadVal));
                 GameManager.instance.deadVal = deadVal;
+            }
         }
     }
 }

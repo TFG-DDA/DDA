@@ -29,11 +29,12 @@ public class EnemyAttack : MonoBehaviour
             animator = child.GetComponent<Animator>();
             animatorArm = child.GetChild(0).GetComponentInChildren<Animator>();
             rotator = child.GetChild(0);
-        }            
+        }
     }
 
     void Update()
     {
+        cadencia *= DDA.Instance.config.actVariables.enemyCadence;
         animState = animator.GetCurrentAnimatorStateInfo(0);
         if (flasher!=null)
             shooting = animState.IsName("FlasherBodyShot");

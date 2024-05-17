@@ -27,6 +27,7 @@ public class Death : MonoBehaviour
         {
             AudioManager.instance.StopAllSFX();
             Instantiate(muerto, transform.position, Quaternion.identity);
+            Tracker.Instance.AddEvent(new LostHealthEvent(1));
             Destroy(this.gameObject);  
         }
     }

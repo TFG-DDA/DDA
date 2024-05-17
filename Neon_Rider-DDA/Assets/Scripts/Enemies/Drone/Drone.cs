@@ -22,6 +22,7 @@ public class Drone : MonoBehaviour
 
     void Update()
     {
+        speed *= DDA.Instance.config.actVariables.enemySpeed;
         if (onRange) // La variable onRange controla si el dron tiene que preparase para explotar o no
         {
 

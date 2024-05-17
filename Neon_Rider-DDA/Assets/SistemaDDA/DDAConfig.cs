@@ -56,11 +56,8 @@ public struct DDAData
 [Serializable]
 public struct DDAVariableModificables
 {
-    public float enemyDamage;
-    public float enemyHealth;
     public float enemySpeed;
     public float enemyCadence;
-    public float enemyDrops;
 } 
 
 public class DDAConfig : MonoBehaviour

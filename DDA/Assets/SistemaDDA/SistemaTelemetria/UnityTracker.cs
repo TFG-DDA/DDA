@@ -63,12 +63,8 @@ public class UnityTracker : MonoBehaviour
     void Start()
     {
         // Eventos correspondientes al juego
-        Tracker.Instance.AddTrackableEvent<InicioNivelEvent>(true);
-        Tracker.Instance.AddTrackableEvent<FinNivelEvent>(true);
-        Tracker.Instance.AddTrackableEvent<LostHealthEvent>(true);
-
-        Tracker.Instance.AddEvent(new FinEvent());
-        Tracker.Instance.AddEvent(new InicioEvent());
+        Tracker.Instance.AddTrackableEvent<FinEvent>(true);
+        Tracker.Instance.AddTrackableEvent<InicioEvent>(true);
     }
 
     // Update is called once per frame

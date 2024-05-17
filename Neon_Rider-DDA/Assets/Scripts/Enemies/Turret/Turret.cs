@@ -50,6 +50,9 @@ public class Turret : MonoBehaviour
 
     void Update()
     {
+        speed *= DDA.Instance.config.actVariables.enemySpeed;
+        cadence *= DDA.Instance.config.actVariables.enemyCadence;
+
         transform.position = Vector2.MoveTowards(transform.position, children[nextPos].position, speed * Time.deltaTime); //Movimiento hacia el punto designado
 
         if (player != null)

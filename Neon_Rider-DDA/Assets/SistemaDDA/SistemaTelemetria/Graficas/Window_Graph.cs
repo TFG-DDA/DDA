@@ -374,7 +374,7 @@ public class Window_Graph : MonoBehaviour
 
     private float getMaxFromList()
     {
-        return objective_points.Max();
+        return Mathf.Max(objective_points.Max(), 1.0f);
     }
 
     // Re Escalamos los puntos para que se ajusten a los nuevos valores maximos del eje Y

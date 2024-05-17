@@ -66,18 +66,17 @@ public class UnityTracker : MonoBehaviour
         Tracker.Instance.AddTrackableEvent<FinNivelEvent>(true);
         Tracker.Instance.AddTrackableEvent<LostHealthEvent>(true);
 
-        Tracker.Instance.AddEvent(new FinEvent());
         Tracker.Instance.AddEvent(new InicioEvent());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            Tracker.Instance.AddEvent(new FinNivelEvent(2, "a"));
-            Tracker.Instance.AddEvent(new LostHealthEvent(1));
-        }
+        //if (Input.GetKeyUp(KeyCode.Space))
+        //{
+        //    Tracker.Instance.AddEvent(new FinNivelEvent(2, "a"));
+        //    Tracker.Instance.AddEvent(new LostHealthEvent(1));
+        //}
         Tracker.Instance.Update();
     }
 

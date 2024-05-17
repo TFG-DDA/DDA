@@ -21,7 +21,6 @@ public class DialogueTrigger : MonoBehaviour
         // Comienza el diálogo si no ha pasado todavía por el checkpoint que lo contiene
         if (collision.GetComponent<PlayerController>() != null && GameManager.instance.deadVal != checkpointDeadVal)
         {
-            Debug.Log("entró");
             diaMan.StartDialogue();
             this.enabled = false;
             if (escalera) // Si es una escalera, envía lejos al player para que no interfiera con la escena final de cada nivel

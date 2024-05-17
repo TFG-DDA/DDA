@@ -171,6 +171,7 @@ public class DDA : MonoBehaviour
         {
             UpdateEnviromentDifficulty();
         }
+        Debug.Log(currentPlayerDifficult);
     }
     private void UpdateEnemiesDifficulty()
     {

@@ -37,6 +37,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
+        speed *= DDA.Instance.config.actVariables.enemySpeed;
         time += Time.deltaTime;
         if (player != null)
         {
