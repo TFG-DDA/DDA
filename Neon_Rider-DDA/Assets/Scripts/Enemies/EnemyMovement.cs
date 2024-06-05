@@ -10,7 +10,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] Transform player = null;
+    public Transform player = null;
     [SerializeField] float speed = 0.5f;
     [SerializeField] float firstMove = 0, changeDir = 2.5f;
     bool clockwise;
@@ -33,11 +33,11 @@ public class EnemyMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         vision = GetComponent<EnemyVision>();
         clockwise = false;
+        speed *= DDA.Instance.config.actVariables.enemySpeed;
     }
 
     void Update()
     {
-        speed *= DDA.Instance.config.actVariables.enemySpeed;
         time += Time.deltaTime;
         if (player != null)
         {

@@ -13,7 +13,7 @@ public class BossCheckpoint : MonoBehaviour
         {
             // Transforma ésta en la posición de respawn del jugador
             // y se encarga de evitar que revivan los enemigos anteriores
-            GameManager.instance.checkpoint = pos;
+            //GameManager.instance.checkpoint = this;
             if (deadVal > GameManager.instance.deadVal)
                 GameManager.instance.deadVal = deadVal;
         }

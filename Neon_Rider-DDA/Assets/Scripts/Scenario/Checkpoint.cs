@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Linq;
+using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
     public int deadVal = 0;
+    public GameObject[] pos;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,8 +16,19 @@ public class Checkpoint : MonoBehaviour
             GameManager.instance.checkpoint = transform.position;
             if (deadVal > GameManager.instance.deadVal)
             {
-                Tracker.Instance.AddEvent(new FinNivelEvent(deadVal, "Level: " + GameManager.instance.actualScene + ", Room: " + deadVal));
+                if(deadVal > 0)
+                {
+                    Debug.Log("Actualizacion");
+                    Tracker.Instance.AddEvent(new FinNivelEvent(deadVal, "Level: " + GameManager.instance.actualScene + ", Room: " + deadVal));
+                }
                 GameManager.instance.deadVal = deadVal;
+                Tuple<Vector2, SpawnEnemy.Type>[] posit = new Tuple<Vector2, SpawnEnemy.Type>[pos.Length];
+                for (int i = 0; i < pos.Length; i++)
+                {
+                    posit[i] = Tuple.Create((Vector2)pos[i].transform.position, pos[i].GetComponent<SpawnEnemy>().enemyToSpawn);
+                }
+                GameManager.instance.posSpawn = posit;
+                GameManager.instance.SpawnEnemies(posit, collision.transform, deadVal);
             }
         }
     }

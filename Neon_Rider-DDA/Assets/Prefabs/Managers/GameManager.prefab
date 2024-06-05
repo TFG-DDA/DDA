@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 30.019043, y: 5.471824, z: -9.847656}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -44,11 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkpoint: {x: 84, y: -107.2}
-  gameIsPaused: 0
   deadVal: 0
   actualScene: 1
   fullScreenToggle: 1
   mando: 1
+  gameIsPaused: 0
   mainVolSlider: 0.2
   SFXVolSlider: 0.2
   musicVolSlider: 0.2
+  prefabsEnemies:
+  - {fileID: 175977613206059068, guid: 962328745058cf8488ba7ab153050ac0, type: 3}

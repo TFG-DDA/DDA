@@ -841,12 +841,12 @@ PrefabInstance:
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3,
         type: 3}
       propertyPath: data.variables.Array.data[0].maximum
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3,
         type: 3}
       propertyPath: data.variables.Array.data[0].minimum
-      value: 0
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3,
         type: 3}
@@ -861,7 +861,7 @@ PrefabInstance:
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3,
         type: 3}
       propertyPath: data.difficultiesConfig.Array.data[2]
-      value: Difficul
+      value: Hard
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3,
         type: 3}
@@ -871,7 +871,7 @@ PrefabInstance:
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3,
         type: 3}
       propertyPath: variablesModify.Array.data[0].enemySpeed
-      value: 0.7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3,
         type: 3}
@@ -881,7 +881,7 @@ PrefabInstance:
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3,
         type: 3}
       propertyPath: variablesModify.Array.data[2].enemySpeed
-      value: 1.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3,
         type: 3}
@@ -906,12 +906,12 @@ PrefabInstance:
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3,
         type: 3}
       propertyPath: data.variables.Array.data[0].limits.Array.data[0]
-      value: 4
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3,
         type: 3}
       propertyPath: data.variables.Array.data[0].limits.Array.data[1]
-      value: 9
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5970377965610702331, guid: 3f2117261154bed409b9e61dcc5006b3,
         type: 3}

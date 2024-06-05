@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -6,7 +7,8 @@ public class GameManager : MonoBehaviour
     //Creas un object GameManager vacio (prefab para que sobreviva escenas) con este script.
 
     public static GameManager instance;
-    public Vector2 checkpoint; 
+    public Vector2 checkpoint;
+    public Tuple<Vector2, SpawnEnemy.Type>[] posSpawn;
     public int deadVal = -1;
     public int actualScene = 1;
     public bool fullScreenToggle = true,
@@ -17,6 +19,7 @@ public class GameManager : MonoBehaviour
                  SFXVolSlider = 0.2f,
                  musicVolSlider = 0.2f;
 
+    [SerializeField] GameObject[] prefabsEnemies;
 
     // En el método Awake comprueba si hay otro GameManger
     // y si no lo hay se inicializa como GameManager. En el caso
@@ -64,6 +67,7 @@ public class GameManager : MonoBehaviour
 
     public void ChangeScene()
     {
+        posSpawn = null;
         checkpoint = new Vector2(0, 0);
         deadVal = -1;
         Time.timeScale = 1;
@@ -115,6 +119,22 @@ public class GameManager : MonoBehaviour
                 AudioManager.instance.Stop(AudioManager.ESounds.Menu);
                 AudioManager.instance.Play(AudioManager.ESounds.Credits);
                 break;
+        }
+    }
+
+    public void SpawnEnemies(Tuple<Vector2, SpawnEnemy.Type>[] pos, Transform player, int deadVal)
+    {
+        foreach (Tuple<Vector2, SpawnEnemy.Type> i in pos)
+        {
+            switch(i.Item2)
+            {
+                case SpawnEnemy.Type.MATON:
+                    GameObject enemy = Instantiate(prefabsEnemies[0], i.Item1, new Quaternion());
+                    enemy.GetComponent<EnemyAttack>().player = player;
+                    enemy.GetComponent<EnemyMovement>().player = player;
+                    enemy.GetComponent<Enemy_Death>().deadVal = deadVal + 1;
+                    break;
+            }
         }
     }
 }

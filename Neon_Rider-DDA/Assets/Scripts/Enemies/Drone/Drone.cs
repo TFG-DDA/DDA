@@ -18,11 +18,11 @@ public class Drone : MonoBehaviour
     {
         vision = GetComponent<EnemyVision>();
         rb = GetComponent<Rigidbody2D>();
+        speed *= DDA.Instance.config.actVariables.enemySpeed;
     }
 
     void Update()
     {
-        speed *= DDA.Instance.config.actVariables.enemySpeed;
         if (onRange) // La variable onRange controla si el dron tiene que preparase para explotar o no
         {
 

@@ -3,7 +3,7 @@
 public class Enemy_Death : MonoBehaviour
 {
     public int hitsToDeath; // Golpes que aguanta el enemigo
-    [SerializeField] int deadVal = 0;
+    public int deadVal = 0;
     Transform child;
     EnemyVision enemy;
     Drone drone;
