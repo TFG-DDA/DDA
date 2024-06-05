@@ -292,6 +292,42 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[0].Q1Prob
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[0].Q2Prob
+      value: 0.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[0].Q3Prob
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[1].Q1Prob
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[1].Q2Prob
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[1].Q3Prob
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[2].Q1Prob
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[2].Q2Prob
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[2].Q3Prob
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.difficultiesConfig.Array.data[0]
       value: Easy
       objectReference: {fileID: 0}
@@ -302,6 +338,10 @@ PrefabInstance:
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.difficultiesConfig.Array.data[2]
       value: Hard
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[2].hardMap
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.variables.Array.data[0].eventName
@@ -380,6 +420,14 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[3].enemyDrops
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[3].enemySpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: variableRanges.Array.data[0].enemyCadence
       value: 1
       objectReference: {fileID: 0}
@@ -416,6 +464,14 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[3].enemyDamage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[3].enemyHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: variablesModify.Array.data[0].enemyCadence
       value: 10
       objectReference: {fileID: 0}
@@ -425,6 +481,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: variablesModify.Array.data[2].enemyCadence
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[3].enemyCadence
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
