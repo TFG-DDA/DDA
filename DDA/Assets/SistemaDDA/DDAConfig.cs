@@ -86,7 +86,11 @@ public class DDAConfigEditor : Editor
 
     }
 
-    public override void OnInspectorGUI()
+    public override void OnInspectorGUI() {
+        EditorGUILayout.LabelField("Open Window/DDA Config to configurate");
+    }
+
+    public void Window()
     {
         serializedObject.Update();
         SerializedProperty data = serializedObject.FindProperty("data");

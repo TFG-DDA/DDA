@@ -329,7 +329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.difficultiesConfig.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.difficultiesConfig.Array.data[0]
@@ -337,7 +337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.variables.Array.data[0].limits.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.variables.Array.data[1].limits.Array.size
