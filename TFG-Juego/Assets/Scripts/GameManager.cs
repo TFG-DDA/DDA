@@ -376,7 +376,7 @@ public class GameManager : MonoBehaviour
 
         recentLevels.Enqueue(lvl);
 
-        if (HARD_LEVELS)
+        if (DDA.Instance.config.actVariables.hardMap)
         {
             Tracker.Instance.AddEvent(new InicioNivelEvent(playedLevels, "Level" + (lvl + 1) + "_Hard"));
             StartCoroutine(LoadLevelAsync("Level" + (lvl + 1) + "_Hard"));
@@ -498,9 +498,9 @@ public class GameManager : MonoBehaviour
             float percentage = Random.Range(0f, 1f);
 
             // 60% Q1 / 30% Q2 / 10% Q3
-            if (percentage < 0.6f)
+            if (percentage < DDA.Instance.config.actVariables.Q1Prob)
                 randomQuality = 1;
-            else if (percentage < 0.9f)
+            else if (percentage < DDA.Instance.config.actVariables.Q2Prob)
                 randomQuality = 2;
             else
                 randomQuality = 3;

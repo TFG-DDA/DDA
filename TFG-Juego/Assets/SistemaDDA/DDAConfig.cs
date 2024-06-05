@@ -61,6 +61,13 @@ public struct DDAVariableModificables
     public float enemySpeed;
     public float enemyCadence;
     public float enemyDrops;
+
+    // Probabilidades de Cartas
+    public float Q1Prob;
+    public float Q2Prob;
+
+    // Mapas
+    public bool hardMap;
 } 
 
 public class DDAConfig : MonoBehaviour
