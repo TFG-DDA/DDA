@@ -52,7 +52,7 @@ public struct DDAData
 [Serializable]
 public struct DDAVariableModificables
 {
-
+    public int prueba;
 }
 
 public class DDAConfig : MonoBehaviour
@@ -95,8 +95,17 @@ public class DDAConfigEditor : Editor
         serializedObject.Update();
         SerializedProperty data = serializedObject.FindProperty("data");
         SerializedProperty diffConfig = data.FindPropertyRelative("difficultiesConfig");
-        //EditorGUILayout.PropertyField(data);
         EditorGUILayout.PropertyField(diffConfig);
+
+        SerializedProperty variablesModify = serializedObject.FindProperty("variablesModify");
+        if (variablesModify.arraySize != diffConfig.arraySize)
+        {
+            while (variablesModify.arraySize < diffConfig.arraySize)
+                variablesModify.InsertArrayElementAtIndex(variablesModify.arraySize);
+            while (variablesModify.arraySize > diffConfig.arraySize)
+                variablesModify.DeleteArrayElementAtIndex(variablesModify.arraySize - 1);
+        }
+        EditorGUILayout.PropertyField(variablesModify);
 
         SerializedProperty startDiff = data.FindPropertyRelative("startDiff");
         EditorGUILayout.PropertyField(startDiff);

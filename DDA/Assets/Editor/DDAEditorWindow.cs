@@ -12,6 +12,8 @@ public class DDAEditorWindow : EditorWindow
     static void Init()
     {
         DDAEditorWindow window = (DDAEditorWindow)GetWindow(typeof(DDAEditorWindow));
+        window.titleContent.text = "DDA Config";
+
         var DDAobjects = FindObjectsOfType<DDAConfig>();
 
         if (DDAobjects.Length > 1)

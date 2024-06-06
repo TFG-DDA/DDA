@@ -445,7 +445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4184440428344117839, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: modifierType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5970377965610702331, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: m_Name
@@ -473,27 +473,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.difficultiesConfig.Array.size
-      value: 1
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.data[0].weight
+      value: 0.373
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.data[0].maximum
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.difficultiesConfig.Array.data[0]
-      value: 
+      value: adasd
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.difficultiesConfig.Array.data[1]
-      value: 1
+      value: babbsba
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.difficultiesConfig.Array.data[2]
-      value: 1
+      value: cacd
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.difficultiesConfig.Array.data[3]
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.variables.Array.data[0].eventName
+      value: FinEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.variables.Array.data[0].limits.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.variables.Array.data[0].limits.Array.data[0]
@@ -501,7 +513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.variables.Array.data[0].limits.Array.data[1]
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.variables.Array.data[0].limits.Array.data[2]
