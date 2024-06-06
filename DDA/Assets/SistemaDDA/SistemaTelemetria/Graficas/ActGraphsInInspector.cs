@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
 using static UnityEditor.AnimationUtility;
 
 [ExecuteInEditMode]
@@ -63,3 +64,4 @@ public class ActGraphsInInspector : MonoBehaviour
         }
     }
 }
+#endif

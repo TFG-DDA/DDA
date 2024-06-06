@@ -147,6 +147,7 @@ public class GraphConfig : MonoBehaviour
     }
 }
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(GraphConfig))]
 public class GraphConfigEditor : Editor
 {
@@ -251,3 +252,4 @@ public class GraphConfigEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+#endif
