@@ -17,7 +17,7 @@ public class Window_Graph : MonoBehaviour
     LineRenderer line_renderer;
 
     // Puntos del disenador
-    List<float> objective_points;
+    List<float> objective_points = new List<float>();
     [SerializeField]
     LineRenderer objective_line_renderer;
 
@@ -374,7 +374,8 @@ public class Window_Graph : MonoBehaviour
 
     private float getMaxFromList()
     {
-        return Mathf.Max(objective_points.Max(), 1.0f);
+        if(objective_points.Count == 0) return 0;
+        return objective_points.Max();
     }
 
     // Re Escalamos los puntos para que se ajusten a los nuevos valores maximos del eje Y

@@ -56,6 +56,8 @@ public struct GraphData
     [HideInInspector]
     public string name;
     [HideInInspector]
+    public bool ddaGraph;
+    [HideInInspector]
     public string eventX;
     [HideInInspector]
     public string eventY;
@@ -122,14 +124,25 @@ public class GraphConfig : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Start()
     {
+        if (data.ddaGraph && DDA.Instance == null) Debug.LogError("No puedes crear una gráfica de DDA sin una instancia de DDA");
 
+        if (data.ddaGraph)
+        {
+            data.myCurve = new AnimationCurve();
+            data.graphType = GraphTypes.NOTACCUMULATED;
+            data.scaling = Scaling.X_SCALING_OFFSET;
+            data.eventX = "DDA Difficulty";
+            data.eventY = "Actualitations";
+            data.x_segments = DDA.Instance.config.data.difficultiesConfig.Count;
+            data.y_segments = 6;
+        }
     }
 
     private void FixedUpdate()
     {
-        if(shownGraph != null)
+        if (shownGraph != null)
             shownGraph.RefreshChart();
     }
 }
@@ -171,30 +184,34 @@ public class GraphConfigEditor : Editor
         if (actGraphConf.name == "")
             actGraphConf.name = "NewGraph";
 
-        actGraphConf.pointsNumber = EditorGUILayout.IntField("NumberPoints", actGraphConf.pointsNumber);
-        if (actGraphConf.pointsNumber < 1)
-            actGraphConf.pointsNumber = 1;
+        actGraphConf.ddaGraph = EditorGUILayout.Toggle("Is DDA Graph", actGraphConf.ddaGraph);
 
-        actGraphConf.myCurve = EditorGUILayout.CurveField("Curve", actGraphConf.myCurve);
-        if (actGraphConf.myCurve == null)
+        if (!actGraphConf.ddaGraph)
         {
-            actGraphConf.myCurve = new AnimationCurve();
+            actGraphConf.pointsNumber = EditorGUILayout.IntField("NumberPoints", actGraphConf.pointsNumber);
+            if (actGraphConf.pointsNumber < 1)
+                actGraphConf.pointsNumber = 1;
+
+            actGraphConf.myCurve = EditorGUILayout.CurveField("Curve", actGraphConf.myCurve);
+            if (actGraphConf.myCurve == null)
+            {
+                actGraphConf.myCurve = new AnimationCurve();
+            }
+            EditorGUILayout.Space(5);
+
+            //Variables de escala
+            actGraphConf.graphType = (GraphTypes)EditorGUILayout.EnumPopup("GraphType", actGraphConf.graphType);
+            actGraphConf.scaling = (Scaling)EditorGUILayout.EnumPopup("Scaling", actGraphConf.scaling);
+
+            // Crea cuadros de texto para los nombres de los eventos
+            actGraphConf.eventX = EditorGUILayout.TextField("Event X", actGraphConf.eventX);
+            if (actGraphConf.eventX == "")
+                actGraphConf.eventX = "Inicio";
+
+            actGraphConf.eventY = EditorGUILayout.TextField("Event Y", actGraphConf.eventY);
+            if (actGraphConf.eventY == "")
+                actGraphConf.eventY = "Fin";
         }
-        EditorGUILayout.Space(5);
-
-        //Variables de escala
-        actGraphConf.graphType = (GraphTypes)EditorGUILayout.EnumPopup("GraphType", actGraphConf.graphType);
-        actGraphConf.scaling = (Scaling)EditorGUILayout.EnumPopup("Scaling", actGraphConf.scaling);
-
-        // Crea cuadros de texto para los nombres de los eventos
-        actGraphConf.eventX = EditorGUILayout.TextField("Event X", actGraphConf.eventX);
-        if (actGraphConf.eventX == "")
-            actGraphConf.eventX = "Inicio";
-
-        actGraphConf.eventY = EditorGUILayout.TextField("Event Y", actGraphConf.eventY);
-        if (actGraphConf.eventY == "")
-            actGraphConf.eventY = "Fin";
-
 
         //El resto de configuracion
         actGraphConf.line_Width = EditorGUILayout.Slider("Line Width", actGraphConf.line_Width, 0.01f, 0.2f);
@@ -207,15 +224,19 @@ public class GraphConfigEditor : Editor
         }
         actGraphConf.scale = EditorGUILayout.Slider("Scale", actGraphConf.scale, 0.01f, 2.0f);
 
-        actGraphConf.x_segments = EditorGUILayout.IntField("X segments", actGraphConf.x_segments);
-        if (actGraphConf.x_segments < 2)
-            actGraphConf.x_segments = 2;
-        actGraphConf.y_segments = EditorGUILayout.IntField("Y segments", actGraphConf.y_segments);
-        if (actGraphConf.y_segments < 2)
-            actGraphConf.y_segments = 2;
+        if (!actGraphConf.ddaGraph)
+        {
+            actGraphConf.x_segments = EditorGUILayout.IntField("X segments", actGraphConf.x_segments);
+            if (actGraphConf.x_segments < 2)
+                actGraphConf.x_segments = 2;
+            actGraphConf.y_segments = EditorGUILayout.IntField("Y segments", actGraphConf.y_segments);
+            if (actGraphConf.y_segments < 2)
+                actGraphConf.y_segments = 2;
 
-        actGraphConf.designerGraphCol = EditorGUILayout.ColorField("DesignerGraph", actGraphConf.designerGraphCol);
-        actGraphConf.designerGraphCol.a = 1;
+            actGraphConf.designerGraphCol = EditorGUILayout.ColorField("DesignerGraph", actGraphConf.designerGraphCol);
+            actGraphConf.designerGraphCol.a = 1;
+        }
+
         actGraphConf.actualGraphCol = EditorGUILayout.ColorField("ActualGraph", actGraphConf.actualGraphCol);
         actGraphConf.actualGraphCol.a = 1;
 

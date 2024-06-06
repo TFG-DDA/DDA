@@ -68,9 +68,9 @@ MonoBehaviour:
   configData:
     variables: []
     triggerEvent: 
-    EnemiesModifierType: 0
-    PlayerModifierType: 0
-    EnviromentModifierType: 0
+    enemiesModifierType: 0
+    playerModifierType: 0
+    enviromentModifierType: 0
     difficultiesConfig: []
     defaultDifficultyLevel: 0
     startDiff: 
@@ -91,10 +91,10 @@ MonoBehaviour:
   variablesModify: []
   data:
     variables: []
-    triggerEvent: 
-    EnemiesModifierType: 0
-    PlayerModifierType: 0
-    EnviromentModifierType: 0
+    triggerEvent: FinEvent
+    enemiesModifierType: 0
+    playerModifierType: 0
+    enviromentModifierType: 0
     difficultiesConfig: []
     defaultDifficultyLevel: 0
     startDiff: 
