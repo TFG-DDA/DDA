@@ -60,11 +60,11 @@ public class Tracker
 #if !UNITY_WEBGL
         if(serverPersDesktop) serverPersistenceDesktop = new ServerPersistenceDesktop();
 #endif
-
-        
-
+         
         AddTrackableEvent<InicioEvent>(true);
         AddTrackableEvent<FinEvent>(true);
+        AddTrackableEvent<DDAGraphActEvent>(true);
+        AddTrackableEvent<GraphDifficEvent>(true);
         AddEvent(new InicioEvent());
     }
 

@@ -133,8 +133,8 @@ public class GraphConfig : MonoBehaviour
             data.myCurve = new AnimationCurve();
             data.graphType = GraphTypes.NOTACCUMULATED;
             data.scaling = Scaling.X_SCALING_OFFSET;
-            data.eventX = "DDA Difficulty";
-            data.eventY = "Actualitations";
+            data.eventX = "DDAGraphActEvent";
+            data.eventY = "GraphDifficEvent";
             data.x_segments = DDA.Instance.config.data.difficultiesConfig.Count;
             data.y_segments = 6;
         }

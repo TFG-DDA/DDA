@@ -115,7 +115,7 @@ public class DDA : MonoBehaviour
     }
     public void Update()
     {
-
+        if(Input.GetKeyDown(KeyCode.Space)) { UpdateDifficulty(); }
     }
     public void Release()
     {
@@ -172,6 +172,7 @@ public class DDA : MonoBehaviour
         {
             UpdateEnviromentDifficulty();
         }
+        Tracker.Instance.AddEvent(new DDAGraphActEvent(currentPlayerDifficult));
     }
     private void UpdateEnemiesDifficulty()
     {

@@ -871,7 +871,7 @@ PrefabInstance:
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3,
         type: 3}
       propertyPath: variablesModify.Array.data[0].enemySpeed
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3,
         type: 3}
@@ -881,7 +881,7 @@ PrefabInstance:
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3,
         type: 3}
       propertyPath: variablesModify.Array.data[2].enemySpeed
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3,
         type: 3}
@@ -896,7 +896,7 @@ PrefabInstance:
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3,
         type: 3}
       propertyPath: variablesModify.Array.data[2].enemyCadence
-      value: 0.7
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 3698965494571419174, guid: 3f2117261154bed409b9e61dcc5006b3,
         type: 3}
@@ -1633,6 +1633,11 @@ PrefabInstance:
         type: 3}
       propertyPath: data.eventY
       value: LostHealthEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f,
+        type: 3}
+      propertyPath: data.scaling
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f,
         type: 3}
