@@ -90,7 +90,7 @@ public class DDAConfigEditor : Editor
         EditorGUILayout.LabelField("Open Window/DDA Config to configurate");
     }
 
-    public void Window()
+    public void Editor()
     {
         serializedObject.Update();
         SerializedProperty data = serializedObject.FindProperty("data");
@@ -137,6 +137,11 @@ public class DDAConfigEditor : Editor
 
         // Guarda los cambios realizados en el editor
         serializedObject.ApplyModifiedProperties();
+    }
+
+    public void Play()
+    {
+
     }
 }
 #endif
