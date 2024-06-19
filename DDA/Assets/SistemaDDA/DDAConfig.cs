@@ -18,11 +18,16 @@ public struct DDAVariableData
     public string eventName;
 
     [Header("Ranges of the event")]
+    // Valor minimo que debera tener la variable
     [Tooltip("Minimum value of the event")]
     public float minimum;
+    // Array que marca los limites de valor de la variable para cambiar de dificultad.
+    // Asumira un valor automatico segun el numero de dificultades
     public float[] limits;
+    // Valor maximo que podra tener la variable
     [Tooltip("MAximum value of the event")]
     public float maximum;
+    // El peso que tiene esta variable en el calculo de la dificultad
     [Tooltip("Weight of this variable to change the difficulty")]
     [Range(0.0f, 1.0f)]
     public float weight;
@@ -32,36 +37,46 @@ public struct DDAVariableData
 [Serializable]
 public struct DDAData
 {
-    public DDAVariableData[] variables;//
+    // Array con las distintas variables que afectan a la dificultad
+    public DDAVariableData[] variables;
 
-    public string triggerEvent;//
+    // Evento que provocara que se recalcule la dificultad
+    public string triggerEvent;
 
-    public bool enemiesModifierType;//
+    // Booleanos que marcan si se modifican las variables que modifican la dificultad que afectan a:
+    // Enemigos
+    public bool enemiesModifierType;
+    // Jugador
+    public bool playerModifierType;
+    // Entorno
+    public bool enviromentModifierType;
 
-    public bool playerModifierType;//
+    // Lista de dificultades
+    public List<string> difficultiesConfig;
 
-    public bool enviromentModifierType;//
-
-    public List<string> difficultiesConfig;//
-
+    // Dificultad inicial
     [HideInInspector]
     public uint defaultDifficultyLevel;
     public string startDiff;
 }
 
+// Variables que modifican la dificultad
 [Serializable]
 public struct DDAVariableModificables
 {
     public int prueba;
+    // Rellenar con variables especificas al juego
 }
 
 public class DDAConfig : MonoBehaviour
 {
-
+    // Array con los valores de cada variable que modifica la dificultad para las distintas dificultades
+    // Asumira un valor automatico segun el numero de dificultades
     public DDAVariableModificables[] variablesModify;
     [HideInInspector]
     public DDAVariableModificables actVariables;
 
+    // Estrucutura con la configuracion del DDA
     public DDAData data;
 
     private void Awake()
@@ -81,15 +96,12 @@ public class DDAConfig : MonoBehaviour
 [CustomEditor(typeof(DDAConfig))]
 public class DDAConfigEditor : Editor
 {
-    void OnEnable()
-    {
-
-    }
-
+    // En editor normal, se indica que se debe abrir la ventana par configurar el DDA
     public override void OnInspectorGUI() {
         EditorGUILayout.LabelField("Open Window/DDA Config to configurate");
     }
 
+    // Editor para la ventana
     public void Editor()
     {
         serializedObject.Update();
@@ -98,6 +110,7 @@ public class DDAConfigEditor : Editor
         EditorGUILayout.PropertyField(diffConfig);
 
         SerializedProperty variablesModify = serializedObject.FindProperty("variablesModify");
+        // Igualar el tamaño del array de valores de variables al de el array de dificultades
         if (variablesModify.arraySize != diffConfig.arraySize)
         {
             while (variablesModify.arraySize < diffConfig.arraySize)
@@ -114,6 +127,7 @@ public class DDAConfigEditor : Editor
         SerializedProperty variables = data.FindPropertyRelative("variables");
         EditorGUILayout.PropertyField(variables);
         SerializedProperty limits;
+        // Igualar el tamaño del array de valores de limites al de el array de dificultades
         for (int i = 0; i < variables.arraySize; i++)
         {
             limits = variables.GetArrayElementAtIndex(i).FindPropertyRelative("limits");

@@ -9,7 +9,7 @@ public class DDAEditorWindow : EditorWindow
     private static DDAConfigEditor editor;
 
     [MenuItem("Window/DDA Config")]
-    static void Init()
+    public static void Init()
     {
         DDAEditorWindow window = (DDAEditorWindow)GetWindow(typeof(DDAEditorWindow));
         window.titleContent.text = "DDA Config";
