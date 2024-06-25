@@ -10,17 +10,11 @@ using UnityEngine;
 * DifficultyModifierTypes define las diferentes formas de modificar la dificultad en el DDA,
 * se pueden utilizar varias a la vez
 * 
-* ENEMIES: Modifica las características de los enemigos
-* 
-* PLAYER: Modifica las características del player
-* 
-* ENVIROMENT: Elige entre las escenas que van a aparecer
-* 
 */
 
 
 [Flags]
-public enum DifficultyModifierTypes { ENEMIES = 1, PLAYER = 2, ENVIROMENT = 4 }
+public enum DifficultyModifierTypes { DEFAULT = 0 }
 
 //TODO: Que lo pueda cambiar el diseñador
 //[Serializable]
@@ -113,14 +107,7 @@ public class DDA : MonoBehaviour
         // Aplica la dificultad por defecto
         UpdateDifficulty();
     }
-    public void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space)) { UpdateDifficulty(); }
-    }
-    public void Release()
-    {
-
-    }
+    
     // Recibe todos los eventos del Tracker
     public void Send(DDAEvent e)
     {
@@ -154,61 +141,25 @@ public class DDA : MonoBehaviour
         if (instVariables.ContainsKey(s))
             return instVariables[s];
         // Printear error de que no se ha encontrado la variable de instrumentalización y devuelve -1
+        Debug.LogError("Variable " + s + " no encontrada en lista de variables instrumentalizadas.");
         return -1.0f;
     }
 
+    //Método que aplica los cambios a la dificultad.
+    //Añadir los distintos métodos según las flags que defina el diseñador.
     private void UpdateDifficulty()
     {
         // Se actualizan tantas variables como flags estén activas en el modifierType
-        if (modifierType.HasFlag(DifficultyModifierTypes.ENEMIES))
+        if (modifierType.HasFlag(DifficultyModifierTypes.DEFAULT))
         {
-            UpdateEnemiesDifficulty();
+            UpdateDefaultDifficulty();
         }
-        if (modifierType.HasFlag(DifficultyModifierTypes.PLAYER))
-        {
-            UpdatePlayerDifficulty();
-        }
-        if (modifierType.HasFlag(DifficultyModifierTypes.ENVIROMENT))
-        {
-            UpdateEnviromentDifficulty();
-        }
+
         Tracker.Instance.AddEvent(new DDAGraphActEvent(currentPlayerDifficult));
     }
-    private void UpdateEnemiesDifficulty()
+    private void UpdateDefaultDifficulty()
     {
         config.actVariables = config.variablesModify[currentPlayerDifficult];
-        //switch (currentPlayerDifficulty)
-        //{
-        //    case PlayerDifficulty.EASY:
-        //        config.enemyDamage = 0.1f;
-        //        config.enemyHealth = 0.5f;
-        //        config.enemySpeed = 0.25f;
-        //        config.enemyCadence = 10.0f;
-        //        config.enemyDrops = 10.0f;
-        //        break;
-        //    case PlayerDifficulty.MID:
-        //        config.enemyDamage = 1.0f;
-        //        config.enemyHealth = 1.0f;
-        //        config.enemySpeed = 1.0f;
-        //        config.enemyCadence = 1.0f;
-        //        config.enemyDrops = 1.0f;
-        //        break;
-        //    case PlayerDifficulty.HARD:
-        //        config.enemyDamage = 5.0f;
-        //        config.enemyHealth = 5.0f;
-        //        config.enemySpeed = 5.0f;
-        //        config.enemyCadence = 0.1f;
-        //        config.enemyDrops = 0f;
-        //        break;
-        //}
-    }
-    private void UpdatePlayerDifficulty()
-    {
-        
-    }
-    private void UpdateEnviromentDifficulty()
-    {
-        
     }
 
     private void InitializeRanges()
@@ -227,10 +178,6 @@ public class DDA : MonoBehaviour
             {
                 rangeLimits[i] += (a.limits[i] - a.minimum) / (a.maximum - a.minimum) * a.weight;
             }
-            //easyMaxRange += (a.easyMax - a.minimum) / (a.maximum - a.minimum) * a.weight;
-            //mediumMinRange += (a.easyMax - a.minimum) / (a.maximum - a.minimum) * a.weight;
-            //mediumMaxRange += (a.midMax - a.minimum) / (a.maximum - a.minimum) * a.weight;
-            //hardMinRange += (a.midMax - a.minimum) / (a.maximum - a.minimum) * a.weight;
         }
     }
 }
