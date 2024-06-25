@@ -14,7 +14,7 @@ using UnityEngine;
 
 
 [Flags]
-public enum DifficultyModifierTypes { DEFAULT = 0 }
+public enum DifficultyModifierTypes { DEFAULT = 1 }
 
 //TODO: Que lo pueda cambiar el diseñador
 //[Serializable]
@@ -98,9 +98,7 @@ public class DDA : MonoBehaviour
         }
 
         // modifierType se utiliza como FLAGS
-        if (configData.enemiesModifierType) modifierType = modifierType | DifficultyModifierTypes.ENEMIES;
-        if (configData.playerModifierType) modifierType = modifierType | DifficultyModifierTypes.PLAYER;
-        if (configData.enviromentModifierType) modifierType = modifierType | DifficultyModifierTypes.ENVIROMENT;
+        if (configData.defaultModifier) modifierType = modifierType | DifficultyModifierTypes.DEFAULT;
 
         // Crea los rangos de dificultades
         InitializeRanges();

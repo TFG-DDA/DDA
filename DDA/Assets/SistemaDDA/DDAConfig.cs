@@ -44,12 +44,8 @@ public struct DDAData
     public string triggerEvent;
 
     // Booleanos que marcan si se modifican las variables que modifican la dificultad que afectan a:
-    // Enemigos
-    public bool enemiesModifierType;
-    // Jugador
-    public bool playerModifierType;
-    // Entorno
-    public bool enviromentModifierType;
+    // Default
+    public bool defaultModifier;
 
     // Lista de dificultades
     public List<string> difficultiesConfig;
