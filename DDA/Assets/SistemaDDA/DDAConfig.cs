@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 
 /*
@@ -17,7 +18,6 @@ public struct DDAVariableData
 {
     public string eventName;
 
-    [Header("Ranges of the event")]
     // Valor minimo que debera tener la variable
     [Tooltip("Minimum value of the event")]
     public float minimum;
@@ -25,7 +25,7 @@ public struct DDAVariableData
     // Asumira un valor automatico segun el numero de dificultades
     public float[] limits;
     // Valor maximo que podra tener la variable
-    [Tooltip("MAximum value of the event")]
+    [Tooltip("Maximum value of the event")]
     public float maximum;
     // El peso que tiene esta variable en el calculo de la dificultad
     [Tooltip("Weight of this variable to change the difficulty")]
@@ -37,8 +37,8 @@ public struct DDAVariableData
 [Serializable]
 public struct DDAData
 {
-    // Array con las distintas variables que afectan a la dificultad
-    public DDAVariableData[] variables;
+    // Array con las distintas variables que marcan a la dificultad
+    public DDAVariableData[] eventVariables;
 
     // Evento que provocara que se recalcule la dificultad
     public string triggerEvent;
@@ -60,7 +60,7 @@ public struct DDAData
 [Serializable]
 public struct DDAVariableModificables
 {
-    public int prueba;
+    public int example;
     // Rellenar con variables especificas al juego
 }
 
@@ -92,8 +92,12 @@ public class DDAConfig : MonoBehaviour
 [CustomEditor(typeof(DDAConfig))]
 public class DDAConfigEditor : Editor
 {
+    private List<bool> variablesFoldouts = new();
+    private int deleteIndex;
+
     // En editor normal, se indica que se debe abrir la ventana par configurar el DDA
-    public override void OnInspectorGUI() {
+    public override void OnInspectorGUI()
+    {
         EditorGUILayout.LabelField("Open Window/DDA Config to configurate");
     }
 
@@ -114,38 +118,79 @@ public class DDAConfigEditor : Editor
             while (variablesModify.arraySize > diffConfig.arraySize)
                 variablesModify.DeleteArrayElementAtIndex(variablesModify.arraySize - 1);
         }
-        EditorGUILayout.PropertyField(variablesModify);
+        EditorGUILayout.LabelField("Variables modify");
+        //Entradas para los valores de las variables en cada dificultad
+        for (int i = 0; i < variablesModify.arraySize; i++)
+        {
+            EditorGUILayout.PropertyField(variablesModify.GetArrayElementAtIndex(i), new GUIContent(diffConfig.GetArrayElementAtIndex(i).stringValue));
+        }
+        EditorGUILayout.Space();
 
         SerializedProperty startDiff = data.FindPropertyRelative("startDiff");
         EditorGUILayout.PropertyField(startDiff);
 
-        EditorGUILayout.Space(5);
-        SerializedProperty variables = data.FindPropertyRelative("variables");
-        EditorGUILayout.PropertyField(variables);
-        SerializedProperty limits;
-        // Igualar el tamaño del array de valores de limites al de el array de dificultades
-        for (int i = 0; i < variables.arraySize; i++)
+        EditorGUILayout.Space();
+        SerializedProperty eventVariables = data.FindPropertyRelative("eventVariables");
+        EditorGUILayout.LabelField("Event variables");
+        SerializedProperty limits, name;
+        if (eventVariables.arraySize != variablesFoldouts.Count)
         {
-            limits = variables.GetArrayElementAtIndex(i).FindPropertyRelative("limits");
-            if(limits.arraySize != diffConfig.arraySize)
+            while (variablesFoldouts.Count < eventVariables.arraySize)
+                variablesFoldouts.Add(false);
+            while (variablesFoldouts.Count > eventVariables.arraySize)
+                variablesFoldouts.RemoveAt(variablesFoldouts.Count - 1);
+        }
+        // Igualar el tamaño del array de valores de limites al de el array de dificultades
+        for (int i = 0; i < eventVariables.arraySize; i++)
+        {
+            name = eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("eventName");
+            variablesFoldouts[i] = EditorGUILayout.Foldout(variablesFoldouts[i], name.stringValue, true);
+            if (variablesFoldouts[i])
             {
-                while (limits.arraySize < diffConfig.arraySize)
-                    limits.InsertArrayElementAtIndex(limits.arraySize);
-                while(limits.arraySize > diffConfig.arraySize)
-                    limits.DeleteArrayElementAtIndex(limits.arraySize - 1);
+                EditorGUI.indentLevel++;
+                EditorGUILayout.PropertyField(name);
+                limits = eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("limits");
+                if (limits.arraySize != diffConfig.arraySize)
+                {
+                    while (limits.arraySize < diffConfig.arraySize - 1)
+                        limits.InsertArrayElementAtIndex(limits.arraySize);
+                    while (limits.arraySize > diffConfig.arraySize)
+                        limits.DeleteArrayElementAtIndex(limits.arraySize - 1);
+                }
+                EditorGUI.indentLevel++;
+                EditorGUILayout.LabelField("Limits");
+                for (int j = 0; j < limits.arraySize; j++)
+                    EditorGUILayout.PropertyField(limits.GetArrayElementAtIndex(j), new GUIContent(diffConfig.GetArrayElementAtIndex(j).stringValue));
+
+                EditorGUILayout.LabelField("Variable values");
+                EditorGUILayout.PropertyField(eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("minimum"));
+                EditorGUILayout.PropertyField(eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("maximum"));
+                EditorGUI.indentLevel--;
+
+                EditorGUILayout.Space(1);
+                EditorGUILayout.PropertyField(eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("weight"));
+                EditorGUI.indentLevel--;
             }
         }
+        EditorGUILayout.BeginHorizontal();
+        if (GUILayout.Button("Add variable", GUILayout.Width(150)))
+            eventVariables.InsertArrayElementAtIndex(eventVariables.arraySize);
+
+        if (GUILayout.Button("Remove variable at:", GUILayout.Width(150)) && deleteIndex >= 0 && deleteIndex < eventVariables.arraySize)
+            eventVariables.DeleteArrayElementAtIndex(deleteIndex);
+
+        deleteIndex = EditorGUILayout.IntField(deleteIndex, GUILayout.Width(15));
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.Space();
         SerializedProperty triggerEvent = data.FindPropertyRelative("triggerEvent");
         EditorGUILayout.PropertyField(triggerEvent);
 
-        EditorGUILayout.Space(5);
+        EditorGUILayout.Space();
         EditorGUILayout.LabelField("Modifier types");
-        SerializedProperty enemiesModifierType = data.FindPropertyRelative("enemiesModifierType");
-        EditorGUILayout.PropertyField(enemiesModifierType);
-        SerializedProperty playerModifierType = data.FindPropertyRelative("playerModifierType");
-        EditorGUILayout.PropertyField(playerModifierType);
-        SerializedProperty enviromentModifierType = data.FindPropertyRelative("enviromentModifierType");
-        EditorGUILayout.PropertyField(enviromentModifierType);
+        SerializedProperty defaultModifierType = data.FindPropertyRelative("defaultModifier");
+        EditorGUILayout.PropertyField(defaultModifierType);
+        // Añadir aqui las entradas para el resto de modificadores especificos al juego
 
         //Metodo de checkeo de cambios en el editor
         EditorGUI.BeginChangeCheck();

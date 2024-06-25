@@ -86,13 +86,13 @@ public class DDA : MonoBehaviour
         currentPlayerDifficult = configData.defaultDifficultyLevel;
 
         // Creamos un mapa para comprobar rápidamente si un evento influye en el DDA
-        for (int i = 0; i < configData.variables.Length; i++)
+        for (int i = 0; i < configData.eventVariables.Length; i++)
         {
             // El totalweight se utilizará para determinar cuanto influye cada variable en el resultado final
-            if (configData.variables[i].weight > 0)
+            if (configData.eventVariables[i].weight > 0)
             {
                 // TODO: Avisar si ha dejado un weight a 0, ya que no se va a usar para calcular la dificultad
-                eventVariables.Add(configData.variables[i].eventName, configData.variables[i]);
+                eventVariables.Add(configData.eventVariables[i].eventName, configData.eventVariables[i]);
                 //currentDifficultyValues.Add(configData.variables[i], configData.defaultDifficulty);
             }
         }
