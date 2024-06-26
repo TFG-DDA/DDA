@@ -92,7 +92,9 @@ public class DDAConfig : MonoBehaviour
 [CustomEditor(typeof(DDAConfig))]
 public class DDAConfigEditor : Editor
 {
+    // Lista de booleanos para controlar si están desplegada o no cada entrada de event variable
     private List<bool> variablesFoldouts = new();
+    // Indice para eliminar entradas de event variables
     private int deleteIndex;
 
     // En editor normal, se indica que se debe abrir la ventana par configurar el DDA
@@ -105,10 +107,19 @@ public class DDAConfigEditor : Editor
     public void Editor()
     {
         serializedObject.Update();
+        // Estructura principal que contiene las distintas variables de configuración
         SerializedProperty data = serializedObject.FindProperty("data");
+
+        // Array de dificultades
         SerializedProperty diffConfig = data.FindPropertyRelative("difficultiesConfig");
         EditorGUILayout.PropertyField(diffConfig);
 
+        // Dificultad por defecto (igual habria que mirar que sea un dropdown segun las entradas de difficultiesConfig)
+        SerializedProperty startDiff = data.FindPropertyRelative("startDiff");
+        EditorGUILayout.PropertyField(startDiff);
+
+        // Variables que cambian según la dificultad
+        EditorGUILayout.Space();
         SerializedProperty variablesModify = serializedObject.FindProperty("variablesModify");
         // Igualar el tamaño del array de valores de variables al de el array de dificultades
         if (variablesModify.arraySize != diffConfig.arraySize)
@@ -118,21 +129,18 @@ public class DDAConfigEditor : Editor
             while (variablesModify.arraySize > diffConfig.arraySize)
                 variablesModify.DeleteArrayElementAtIndex(variablesModify.arraySize - 1);
         }
-        EditorGUILayout.LabelField("Variables modify");
+        EditorGUILayout.LabelField("Modifiable variables", EditorStyles.boldLabel);
         //Entradas para los valores de las variables en cada dificultad
         for (int i = 0; i < variablesModify.arraySize; i++)
-        {
             EditorGUILayout.PropertyField(variablesModify.GetArrayElementAtIndex(i), new GUIContent(diffConfig.GetArrayElementAtIndex(i).stringValue));
-        }
+        
+        // Variables de eventos que determinan la dificultad
         EditorGUILayout.Space();
-
-        SerializedProperty startDiff = data.FindPropertyRelative("startDiff");
-        EditorGUILayout.PropertyField(startDiff);
-
-        EditorGUILayout.Space();
+        // Cogemos el array de variables
         SerializedProperty eventVariables = data.FindPropertyRelative("eventVariables");
-        EditorGUILayout.LabelField("Event variables");
+        EditorGUILayout.LabelField("Event variables", EditorStyles.boldLabel);
         SerializedProperty limits, name;
+        // Igualar el tamaño del array del array de variables al de foldouts
         if (eventVariables.arraySize != variablesFoldouts.Count)
         {
             while (variablesFoldouts.Count < eventVariables.arraySize)
@@ -140,16 +148,24 @@ public class DDAConfigEditor : Editor
             while (variablesFoldouts.Count > eventVariables.arraySize)
                 variablesFoldouts.RemoveAt(variablesFoldouts.Count - 1);
         }
-        // Igualar el tamaño del array de valores de limites al de el array de dificultades
+        // Para cada entrada del array de variables, un foldout
         for (int i = 0; i < eventVariables.arraySize; i++)
         {
+            // Nombre del evento
             name = eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("eventName");
+            // Comprobacion de si el foldout está abierto, para mostrar o no el resto de la infos
             variablesFoldouts[i] = EditorGUILayout.Foldout(variablesFoldouts[i], name.stringValue, true);
             if (variablesFoldouts[i])
             {
+                // Indentamos para que quede legible
                 EditorGUI.indentLevel++;
+                // Campo para el nombre del evento
                 EditorGUILayout.PropertyField(name);
+                // Campo para el peso de la variable en el calculo
+                EditorGUILayout.PropertyField(eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("weight"));
+                // Limites de la variable para cambiar a la siguiente dificultad
                 limits = eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("limits");
+                // Igualamos el tamaño del array de limites al del de dificultades - 1 (el limite en la mas dificil es el maximo)
                 if (limits.arraySize != diffConfig.arraySize)
                 {
                     while (limits.arraySize < diffConfig.arraySize - 1)
@@ -157,36 +173,44 @@ public class DDAConfigEditor : Editor
                     while (limits.arraySize > diffConfig.arraySize)
                         limits.DeleteArrayElementAtIndex(limits.arraySize - 1);
                 }
-                EditorGUI.indentLevel++;
                 EditorGUILayout.LabelField("Limits");
+                EditorGUI.indentLevel++;
+                // Campo para el valor de cada limite
                 for (int j = 0; j < limits.arraySize; j++)
                     EditorGUILayout.PropertyField(limits.GetArrayElementAtIndex(j), new GUIContent(diffConfig.GetArrayElementAtIndex(j).stringValue));
 
-                EditorGUILayout.LabelField("Variable values");
+                EditorGUI.indentLevel--;
+                EditorGUILayout.LabelField("Minimum & maximum values");
+                EditorGUI.indentLevel++;
+                // Campos para los valores minimo y maximo de la variable
                 EditorGUILayout.PropertyField(eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("minimum"));
                 EditorGUILayout.PropertyField(eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("maximum"));
-                EditorGUI.indentLevel--;
-
-                EditorGUILayout.Space(1);
-                EditorGUILayout.PropertyField(eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("weight"));
-                EditorGUI.indentLevel--;
+                EditorGUI.indentLevel -= 2;
             }
         }
+
+        EditorGUILayout.Space();
         EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("Add variable", GUILayout.Width(150)))
+        // Lo anterior se carga los botones mas y menos del array para gestionar las entradas, asi que toca hacer botones personalizados
+        // Añadir (al final, el orden da igual)
+        if (GUILayout.Button("Add event variable", GUILayout.Width(200)))
             eventVariables.InsertArrayElementAtIndex(eventVariables.arraySize);
 
-        if (GUILayout.Button("Remove variable at:", GUILayout.Width(150)) && deleteIndex >= 0 && deleteIndex < eventVariables.arraySize)
+        // Eliminar (tiene en cuenta el valor del intField que hay despues para poder elegir que entrada eliminar)
+        if (GUILayout.Button("Remove event variable at:", GUILayout.Width(200)) && deleteIndex >= 0 && deleteIndex < eventVariables.arraySize)
             eventVariables.DeleteArrayElementAtIndex(deleteIndex);
-
+        // El intField en cuestion
         deleteIndex = EditorGUILayout.IntField(deleteIndex, GUILayout.Width(15));
         EditorGUILayout.EndHorizontal();
 
+
         EditorGUILayout.Space();
+        // Campo para el evento que provoca el cambio de dificultad (igual habria que mirar que sea un dropdown segun las entradas de eventVariables)
         SerializedProperty triggerEvent = data.FindPropertyRelative("triggerEvent");
         EditorGUILayout.PropertyField(triggerEvent);
 
         EditorGUILayout.Space();
+        // Tipos de modificadores de dificultad
         EditorGUILayout.LabelField("Modifier types");
         SerializedProperty defaultModifierType = data.FindPropertyRelative("defaultModifier");
         EditorGUILayout.PropertyField(defaultModifierType);
@@ -201,11 +225,6 @@ public class DDAConfigEditor : Editor
 
         // Guarda los cambios realizados en el editor
         serializedObject.ApplyModifiedProperties();
-    }
-
-    public void Play()
-    {
-
     }
 }
 #endif
