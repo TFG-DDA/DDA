@@ -96,6 +96,8 @@ public class DDAConfigEditor : Editor
     private List<bool> variablesFoldouts = new();
     // Indice para eliminar entradas de event variables
     private int deleteIndex;
+    private int startDiffIndex;
+    private List<string> startDiffOptions = new();
 
     // En editor normal, se indica que se debe abrir la ventana par configurar el DDA
     public override void OnInspectorGUI()
@@ -114,9 +116,15 @@ public class DDAConfigEditor : Editor
         SerializedProperty diffConfig = data.FindPropertyRelative("difficultiesConfig");
         EditorGUILayout.PropertyField(diffConfig);
 
-        // Dificultad por defecto (igual habria que mirar que sea un dropdown segun las entradas de difficultiesConfig)
+        // Dificultad por defecto (se elige con popup)
         SerializedProperty startDiff = data.FindPropertyRelative("startDiff");
-        EditorGUILayout.PropertyField(startDiff);
+        // Elementos para el popup
+        startDiffOptions.Clear();
+        for (int i = 0; i < diffConfig.arraySize; i++)
+            startDiffOptions.Add(diffConfig.GetArrayElementAtIndex(i).stringValue);
+        // Popup para elegir dificultad inicial
+        startDiffIndex = EditorGUILayout.Popup("Start difficulty", startDiffIndex, startDiffOptions.ToArray());
+        startDiff.stringValue = startDiffOptions[startDiffIndex];
 
         // Variables que cambian según la dificultad
         EditorGUILayout.Space();
@@ -205,7 +213,7 @@ public class DDAConfigEditor : Editor
 
 
         EditorGUILayout.Space();
-        // Campo para el evento que provoca el cambio de dificultad (igual habria que mirar que sea un dropdown segun las entradas de eventVariables)
+        // Campo para el evento que provoca el cambio de dificultad
         SerializedProperty triggerEvent = data.FindPropertyRelative("triggerEvent");
         EditorGUILayout.PropertyField(triggerEvent);
 

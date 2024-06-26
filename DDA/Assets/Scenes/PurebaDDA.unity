@@ -453,7 +453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.startDiff
-      value: Medium
+      value: Easy
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.playerModifierType
