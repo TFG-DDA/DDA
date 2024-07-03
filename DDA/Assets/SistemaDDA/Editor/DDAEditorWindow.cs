@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class DDAEditorWindow : EditorWindow
 {
     private static DDAConfigEditor editor;
-
+    Vector2 scrollPosition = Vector2.zero;
     [MenuItem("Window/DDA Config")]
     public static void Init()
     {
@@ -33,6 +33,8 @@ public class DDAEditorWindow : EditorWindow
 
     public void OnGUI()
     {
+        scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, true);
+
         var DDAobjects = FindObjectsOfType<DDAConfig>();
         if (DDAobjects.Length > 1)
         {
@@ -47,5 +49,7 @@ public class DDAEditorWindow : EditorWindow
 
         if (editor != null)
             editor.Editor();
+
+        GUILayout.EndScrollView();
     }
 }
