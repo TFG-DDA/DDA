@@ -11,20 +11,9 @@ using UnityEngine;
 * se pueden utilizar varias a la vez
 * 
 */
-
-
 [Flags]
-public enum DifficultyModifierTypes { DEFAULT = 1 }
+public enum DifficultyModifierTypes { DEFAULT = 1 << 0, ENEMIES = 1 << 1, ENVIROMENT = 1 << 2, ALL = ~0 }
 
-//TODO: Que lo pueda cambiar el diseñador
-//[Serializable]
-//public struct PlayerDifficulty
-//{
-//    // Nombre de la dificultad para diferenciarla
-//    public string difficultyName;
-//    // Posición de la dificultad (la idea es que cuanto más pequeño más facil)
-//    public uint difficultyLevel;
-//}
 public class DDA : MonoBehaviour
 {
     private static DDA instance = null;
@@ -35,7 +24,6 @@ public class DDA : MonoBehaviour
     public uint currentPlayerDifficult;
     // Diccionario utilizado por el diseñador para instrumentalizar su código
     public Dictionary<string, float> instVariables;
-    public Dictionary<string, DDAInstVariables> instPrivateVariables;
 
     private Dictionary<string, DDAVariableData> eventVariables;
 
@@ -74,15 +62,13 @@ public class DDA : MonoBehaviour
     public void Start()
     {
         config = GetComponent<DDAConfig>();
-        DDAInstrumentalization ins = GetComponent<DDAInstrumentalization>();
-        if (config == null || ins == null)
+        if (config == null)
         {
-            Debug.LogError("El objeto que contiene el DDA no tiene DDAConfig o DDAInstrumentalization");
+            Debug.LogError("El objeto que contiene el DDA no tiene DDAConfig");
         }
         configData = config.data;
 
         eventVariables = new Dictionary<string, DDAVariableData>();
-        //currentPlayerDifficulty = configData.startDifficulty;
         currentPlayerDifficult = configData.defaultDifficultyLevel;
 
         // Creamos un mapa para comprobar rápidamente si un evento influye en el DDA
@@ -93,7 +79,6 @@ public class DDA : MonoBehaviour
             {
                 // TODO: Avisar si ha dejado un weight a 0, ya que no se va a usar para calcular la dificultad
                 eventVariables.Add(configData.eventVariables[i].eventName, configData.eventVariables[i]);
-                //currentDifficultyValues.Add(configData.variables[i], configData.defaultDifficulty);
             }
         }
 
@@ -145,20 +130,20 @@ public class DDA : MonoBehaviour
 
     //Método que aplica los cambios a la dificultad.
     //Añadir los distintos métodos según las flags que defina el diseñador.
-    private void UpdateDifficulty()
+    public virtual void UpdateDifficulty()
     {
         // Se actualizan tantas variables como flags estén activas en el modifierType
-        if (modifierType.HasFlag(DifficultyModifierTypes.DEFAULT))
-        {
-            UpdateDefaultDifficulty();
-        }
+        //if (modifierType.HasFlag(DifficultyModifierTypes.DEFAULT))
+        //{
+        //    UpdateDefaultDifficulty();
+        //}
 
         Tracker.Instance.AddEvent(new DDAGraphActEvent(currentPlayerDifficult));
     }
-    private void UpdateDefaultDifficulty()
-    {
-        config.actVariables = config.variablesModify[currentPlayerDifficult];
-    }
+    //private void UpdateDefaultDifficulty()
+    //{
+    //    config.actVariables = config.variablesModify[currentPlayerDifficult];
+    //}
 
     private void InitializeRanges()
     {
