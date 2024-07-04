@@ -109,11 +109,11 @@ public class DDAConfigEditor : Editor
                 // Limites de la variable para cambiar a la siguiente dificultad
                 limits = eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("limits");
                 // Igualamos el tamaño del array de limites al del de dificultades - 1 (el limite en la mas dificil es el maximo)
-                if (limits.arraySize != diffConfig.arraySize)
+                if (limits.arraySize != diffConfig.arraySize - 1)
                 {
                     while (limits.arraySize < diffConfig.arraySize - 1)
                         limits.InsertArrayElementAtIndex(limits.arraySize);
-                    while (limits.arraySize > diffConfig.arraySize)
+                    while (limits.arraySize > diffConfig.arraySize - 1)
                         limits.DeleteArrayElementAtIndex(limits.arraySize - 1);
                 }
                 EditorGUILayout.LabelField("Limits");

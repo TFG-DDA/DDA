@@ -52,23 +52,11 @@ public struct DDAData
     public string startDiff;
 }
 
-// Variables que modifican la dificultad
-[Serializable]
-public class DDAVariableModificables : MonoBehaviour
-{
-    public struct var
-    {
-        public int example;
-    }
-}
-
 public class DDAConfig : MonoBehaviour
 {
     // Array con los valores de cada variable que modifica la dificultad para las distintas dificultades
     // Asumira un valor automatico segun el numero de dificultades
-    public DDAVariableModificables[] variablesModify;
-    [HideInInspector]
-    public DDAVariableModificables actVariables;
+    public DDAVariables[] variablesModify;
 
     // Estrucutura con la configuracion del DDA
     public DDAData data;
