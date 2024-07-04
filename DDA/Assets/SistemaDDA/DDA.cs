@@ -6,13 +6,6 @@ using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 
-/*
-* DifficultyModifierTypes define las diferentes formas de modificar la dificultad en el DDA,
-* se pueden utilizar varias a la vez
-* 
-*/
-[Flags]
-public enum DifficultyModifierTypes { DEFAULT = 1 << 0, ENEMIES = 1 << 1, ENVIROMENT = 1 << 2, ALL = ~0 }
 
 public class DDA : MonoBehaviour
 {
@@ -28,9 +21,6 @@ public class DDA : MonoBehaviour
     private Dictionary<string, DDAVariableData> eventVariables;
 
     float[] rangeLimits;
-
-    // Variable usada para implementar el DDA en el código del juego
-    public DifficultyModifierTypes modifierType;
 
     private float difficultyRange = 0;
 
@@ -81,9 +71,6 @@ public class DDA : MonoBehaviour
                 eventVariables.Add(configData.eventVariables[i].eventName, configData.eventVariables[i]);
             }
         }
-
-        // modifierType se utiliza como FLAGS
-        if (configData.defaultModifier) modifierType = modifierType | DifficultyModifierTypes.DEFAULT;
 
         // Crea los rangos de dificultades
         InitializeRanges();

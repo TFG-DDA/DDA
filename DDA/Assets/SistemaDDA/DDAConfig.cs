@@ -43,10 +43,6 @@ public struct DDAData
     // Evento que provocara que se recalcule la dificultad
     public string triggerEvent;
 
-    // Booleanos que marcan si se modifican las variables que modifican la dificultad que afectan a:
-    // Default
-    public bool defaultModifier;
-
     // Lista de dificultades
     public List<string> difficultiesConfig;
 

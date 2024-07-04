@@ -135,13 +135,6 @@ public class DDAConfigEditor : Editor
         SerializedProperty triggerEvent = data.FindPropertyRelative("triggerEvent");
         EditorGUILayout.PropertyField(triggerEvent, GUIContent.none);
 
-        EditorGUILayout.Space();
-        // Tipos de modificadores de dificultad
-        EditorGUILayout.LabelField("Difficulty modifier types", EditorStyles.boldLabel);
-        SerializedProperty defaultModifierType = data.FindPropertyRelative("defaultModifier");
-        EditorGUILayout.PropertyField(defaultModifierType);
-        // Añadir aqui las entradas para el resto de modificadores especificos al juego
-
         //Metodo de checkeo de cambios en el editor
         EditorGUI.BeginChangeCheck();
 
