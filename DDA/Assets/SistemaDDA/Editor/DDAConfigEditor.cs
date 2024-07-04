@@ -15,8 +15,9 @@ public class DDAConfigEditor : Editor
     // Indice para eliminar entradas de event variables
     private int deleteIndex;
     private int startDiffIndex;
-    private List<string> startDiffOptions = new();
-    private GUIContent diffcultiesLabel = new GUIContent("Difficulties");
+    // Listas para asegurarnos de que cada dificultad solo esta una vez e identificar las repetidas
+    private HashSet<string> uniqueDificulties = new();
+    private HashSet<string> duplicateDifficulties = new();
     float buttonWidth;
     // En editor normal, se indica que se debe abrir la ventana par configurar el DDA
     public override void OnInspectorGUI()
@@ -31,51 +32,91 @@ public class DDAConfigEditor : Editor
         
         // Estructura principal que contiene las distintas variables de configuración
         SerializedProperty data = serializedObject.FindProperty("data");
-
+        EditorGUILayout.LabelField("Difficulties", EditorStyles.boldLabel);
         // Array de dificultades
         SerializedProperty diffConfig = data.FindPropertyRelative("difficultiesConfig");
+        EditorGUIUtility.labelWidth = 50; 
+        buttonWidth = EditorWindow.GetWindow(typeof(DDAEditorWindow)).position.width / 5;
+        uniqueDificulties.Clear();
+        duplicateDifficulties.Clear();
+        string diff;
+        for (int i = 0; i < diffConfig.arraySize; i++)
+        {
+            // Comprobamos que no este repetida
+            diff = diffConfig.GetArrayElementAtIndex(i).stringValue;
+            if (!uniqueDificulties.Contains(diff))
+                uniqueDificulties.Add(diff);
+            else
+            {
+                // Si lo esta la marcamos en rojo
+                GUI.color = Color.red;
+                duplicateDifficulties.Add(diff);
+            }
+            EditorGUILayout.BeginHorizontal();
+            // Entrada del nombre de la dificultad
+            EditorGUILayout.PropertyField(diffConfig.GetArrayElementAtIndex(i), new GUIContent(i.ToString()));
+            // Boton de eliminar
+            if (GUILayout.Button("Remove", GUILayout.Width(buttonWidth)))
+                diffConfig.DeleteArrayElementAtIndex(i);
+            // Boton de subir
+            if (i > 0 && GUILayout.Button("^", GUILayout.Width(buttonWidth / 4)))
+            {
+                diffConfig.GetArrayElementAtIndex(i).stringValue = diffConfig.GetArrayElementAtIndex(i - 1).stringValue;
+                diffConfig.GetArrayElementAtIndex(i - 1).stringValue = diff;
+            }
+            // Boton de bajar
+            if (i < diffConfig.arraySize - 1 && GUILayout.Button("v", GUILayout.Width(buttonWidth / 4)))
+            {
+                diffConfig.GetArrayElementAtIndex(i).stringValue = diffConfig.GetArrayElementAtIndex(i + 1).stringValue;
+                diffConfig.GetArrayElementAtIndex(i + 1).stringValue = diff;
+            }
+            EditorGUILayout.EndHorizontal();
+            GUI.color = Color.white;
+        }
+        EditorGUIUtility.labelWidth = 100;
+        
+        // Si hay alguna dificultad duplicada se avisa
+        if(duplicateDifficulties.Count > 0)
+        {
+            string labelStart = duplicateDifficulties.Count > 1 ? "The difficulties " : "The difficulty ";
+            string labelDiffs = "";
+            for (int i = 0; i < duplicateDifficulties.Count; i++)
+            {
+                labelDiffs += duplicateDifficulties.ElementAt(i);
+                if (i < duplicateDifficulties.Count - 2)
+                    labelDiffs += ", ";
+                else if(duplicateDifficulties.Count != 1 && i < duplicateDifficulties.Count - 1)
+                    labelDiffs += " and ";
+            }
+            string labelEnd = duplicateDifficulties.Count > 1 ? " are duplicate, remove the duplicates " : " is duplicate, remove the duplicate ";
+            EditorGUILayout.LabelField(labelStart + labelDiffs + labelEnd + "to avoid implementation issues.");
+        }
 
-        List<string> diff = new List<string>();
-        for (int x = 0; x < diffConfig.arraySize; x++)
-        {
-            SerializedProperty property = diffConfig.GetArrayElementAtIndex(x); // get array element at x
-            diff.Add(property.stringValue); // Edit this element's value, in this case limit the float's value to a positive value.
-        }
-        if (diff.Count != diff.Distinct().Count())
-        {
-            // Duplicates exist
-            GUI.color = Color.red;
-        }
-        EditorGUILayout.PropertyField(diffConfig, diffcultiesLabel);
-        GUI.color = Color.white;
+        // Boton para añadir dificultad
+        if (GUILayout.Button("Add difficulty", GUILayout.Width(buttonWidth)))
+            diffConfig.InsertArrayElementAtIndex(diffConfig.arraySize);
 
         // Dificultad por defecto (se elige con popup)
         SerializedProperty startDiff = data.FindPropertyRelative("startDiff");
-        // Elementos para el popup
-        startDiffOptions.Clear();
-        for (int i = 0; i < diffConfig.arraySize; i++)
-        {
-            startDiffOptions.Add(diffConfig.GetArrayElementAtIndex(i).stringValue);
-        }
         // Popup para elegir dificultad inicial
-        startDiffIndex = EditorGUILayout.Popup("Initial difficulty", startDiffIndex, startDiffOptions.ToArray());
-        startDiff.stringValue = startDiffOptions[startDiffIndex];
+        startDiffIndex = EditorGUILayout.Popup("Initial difficulty", startDiffIndex, uniqueDificulties.ToArray());
+        startDiff.stringValue = uniqueDificulties.ElementAt(startDiffIndex);
 
         // Variables que cambian según la dificultad
         EditorGUILayout.Space();
         SerializedProperty variablesModify = serializedObject.FindProperty("variablesModify");
         // Igualar el tamaño del array de valores de variables al de el array de dificultades
-        if (variablesModify.arraySize != diffConfig.arraySize)
+        if (variablesModify.arraySize != uniqueDificulties.Count)
         {
-            while (variablesModify.arraySize < diffConfig.arraySize)
+            while (variablesModify.arraySize < uniqueDificulties.Count)
                 variablesModify.InsertArrayElementAtIndex(variablesModify.arraySize);
-            while (variablesModify.arraySize > diffConfig.arraySize)
+            while (variablesModify.arraySize > uniqueDificulties.Count)
                 variablesModify.DeleteArrayElementAtIndex(variablesModify.arraySize - 1);
         }
         EditorGUILayout.LabelField("Variable values for each difficulty", EditorStyles.boldLabel);
         //Entradas para los valores de las variables en cada dificultad
         for (int i = 0; i < variablesModify.arraySize; i++)
-            EditorGUILayout.PropertyField(variablesModify.GetArrayElementAtIndex(i), new GUIContent(diffConfig.GetArrayElementAtIndex(i).stringValue));
+            EditorGUILayout.PropertyField(variablesModify.GetArrayElementAtIndex(i), new GUIContent(uniqueDificulties.ElementAt(i)));
 
         // Variables de eventos que determinan la dificultad
         EditorGUILayout.Space();
@@ -96,8 +137,15 @@ public class DDAConfigEditor : Editor
         {
             // Nombre del evento
             name = eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("eventName");
-            // Comprobacion de si el foldout está abierto, para mostrar o no el resto de la infos
+
+            // Foldout
+            EditorGUILayout.BeginHorizontal();
             variablesFoldouts[i] = EditorGUILayout.Foldout(variablesFoldouts[i], name.stringValue, true);
+            // Boton de eliminar
+            if (GUILayout.Button("Remove", GUILayout.Width(buttonWidth)))
+                eventVariables.DeleteArrayElementAtIndex(i);
+            EditorGUILayout.EndHorizontal();
+            // Comprobacion de si el foldout está abierto, para mostrar o no el resto de la infos
             if (variablesFoldouts[i])
             {
                 // Indentamos para que quede legible
@@ -109,11 +157,11 @@ public class DDAConfigEditor : Editor
                 // Limites de la variable para cambiar a la siguiente dificultad
                 limits = eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("limits");
                 // Igualamos el tamaño del array de limites al del de dificultades - 1 (el limite en la mas dificil es el maximo)
-                if (limits.arraySize != diffConfig.arraySize - 1)
+                if (limits.arraySize != uniqueDificulties.Count - 1)
                 {
-                    while (limits.arraySize < diffConfig.arraySize - 1)
+                    while (limits.arraySize < uniqueDificulties.Count - 1)
                         limits.InsertArrayElementAtIndex(limits.arraySize);
-                    while (limits.arraySize > diffConfig.arraySize - 1)
+                    while (limits.arraySize > uniqueDificulties.Count - 1)
                         limits.DeleteArrayElementAtIndex(limits.arraySize - 1);
                 }
                 EditorGUILayout.LabelField("Limits");
@@ -122,10 +170,10 @@ public class DDAConfigEditor : Editor
                 // Campo para el valor de cada limite
                 for (int j = 0; j < limits.arraySize; j++)
                 {
-                    EditorGUILayout.LabelField(diffConfig.GetArrayElementAtIndex(j).stringValue);
+                    EditorGUILayout.LabelField(uniqueDificulties.ElementAt(j));
                     EditorGUILayout.PropertyField(limits.GetArrayElementAtIndex(j), GUIContent.none);
                 }
-                EditorGUILayout.LabelField(diffConfig.GetArrayElementAtIndex(limits.arraySize).stringValue);
+                EditorGUILayout.LabelField(uniqueDificulties.ElementAt(limits.arraySize));
                 EditorGUILayout.PropertyField(eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("maximum"));
                 // Campos para los valores minimo y maximo de la variable
                 EditorGUI.indentLevel -= 2;
@@ -133,26 +181,18 @@ public class DDAConfigEditor : Editor
         }
 
         EditorGUILayout.Space();
-        EditorGUILayout.BeginHorizontal();
         // Lo anterior se carga los botones mas y menos del array para gestionar las entradas, asi que toca hacer botones personalizados
         // Añadir (al final, el orden da igual)
-        buttonWidth = EditorWindow.GetWindow(typeof(DDAEditorWindow)).position.width / 5;
         if (GUILayout.Button("Add event", GUILayout.Width(buttonWidth)))
             eventVariables.InsertArrayElementAtIndex(eventVariables.arraySize);
 
-        // Eliminar (tiene en cuenta el valor del intField que hay despues para poder elegir que entrada eliminar)
-        if (GUILayout.Button("Remove event at:", GUILayout.Width(buttonWidth)) && deleteIndex >= 0 && deleteIndex < eventVariables.arraySize)
-            eventVariables.DeleteArrayElementAtIndex(deleteIndex);
-        // El intField en cuestion
-        deleteIndex = EditorGUILayout.IntField(deleteIndex, GUILayout.Width(15));
-        EditorGUILayout.EndHorizontal();
-
         EditorGUILayout.Space();
         // Campo para el evento que provoca el cambio de dificultad
+        EditorGUILayout.BeginHorizontal();
         EditorGUILayout.LabelField("Event that triggers difficulty change:", EditorStyles.boldLabel);
         SerializedProperty triggerEvent = data.FindPropertyRelative("triggerEvent");
         EditorGUILayout.PropertyField(triggerEvent, GUIContent.none);
-
+        EditorGUILayout.EndHorizontal();
         //Metodo de checkeo de cambios en el editor
         EditorGUI.BeginChangeCheck();
 

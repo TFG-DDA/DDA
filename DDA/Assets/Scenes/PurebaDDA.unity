@@ -516,6 +516,26 @@ PrefabInstance:
       value: Demon
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.difficultiesConfig.Array.data[5]
+      value: Hard
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.difficultiesConfig.Array.data[6]
+      value: Easy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[2].example
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[3].example
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[4].example
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.variables.Array.data[0].eventName
       value: FinEvent
       objectReference: {fileID: 0}
@@ -605,7 +625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.eventVariables.Array.data[1].limits.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.eventVariables.Array.data[2].limits.Array.size
@@ -641,6 +661,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.eventVariables.Array.data[1].limits.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: data.eventVariables.Array.data[1].limits.Array.data[2]
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
