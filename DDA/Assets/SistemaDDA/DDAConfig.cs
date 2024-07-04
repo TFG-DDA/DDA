@@ -58,10 +58,12 @@ public struct DDAData
 
 // Variables que modifican la dificultad
 [Serializable]
-public struct DDAVariableModificables
+public class DDAVariableModificables : MonoBehaviour
 {
-    public int example;
-    // Rellenar con variables especificas al juego
+    public struct var
+    {
+        public int example;
+    }
 }
 
 public class DDAConfig : MonoBehaviour

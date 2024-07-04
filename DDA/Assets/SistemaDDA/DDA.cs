@@ -132,18 +132,8 @@ public class DDA : MonoBehaviour
     //Añadir los distintos métodos según las flags que defina el diseñador.
     public virtual void UpdateDifficulty()
     {
-        // Se actualizan tantas variables como flags estén activas en el modifierType
-        //if (modifierType.HasFlag(DifficultyModifierTypes.DEFAULT))
-        //{
-        //    UpdateDefaultDifficulty();
-        //}
-
         Tracker.Instance.AddEvent(new DDAGraphActEvent(currentPlayerDifficult));
     }
-    //private void UpdateDefaultDifficulty()
-    //{
-    //    config.actVariables = config.variablesModify[currentPlayerDifficult];
-    //}
 
     private void InitializeRanges()
     {
