@@ -1,5 +1,7 @@
+using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -26,19 +28,35 @@ public class DDAConfigEditor : Editor
     public void Editor()
     {
         serializedObject.Update();
+        
         // Estructura principal que contiene las distintas variables de configuración
         SerializedProperty data = serializedObject.FindProperty("data");
 
         // Array de dificultades
         SerializedProperty diffConfig = data.FindPropertyRelative("difficultiesConfig");
+
+        List<string> diff = new List<string>();
+        for (int x = 0; x < diffConfig.arraySize; x++)
+        {
+            SerializedProperty property = diffConfig.GetArrayElementAtIndex(x); // get array element at x
+            diff.Add(property.stringValue); // Edit this element's value, in this case limit the float's value to a positive value.
+        }
+        if (diff.Count != diff.Distinct().Count())
+        {
+            // Duplicates exist
+            GUI.color = Color.red;
+        }
         EditorGUILayout.PropertyField(diffConfig, diffcultiesLabel);
+        GUI.color = Color.white;
 
         // Dificultad por defecto (se elige con popup)
         SerializedProperty startDiff = data.FindPropertyRelative("startDiff");
         // Elementos para el popup
         startDiffOptions.Clear();
         for (int i = 0; i < diffConfig.arraySize; i++)
+        {
             startDiffOptions.Add(diffConfig.GetArrayElementAtIndex(i).stringValue);
+        }
         // Popup para elegir dificultad inicial
         startDiffIndex = EditorGUILayout.Popup("Initial difficulty", startDiffIndex, startDiffOptions.ToArray());
         startDiff.stringValue = startDiffOptions[startDiffIndex];
