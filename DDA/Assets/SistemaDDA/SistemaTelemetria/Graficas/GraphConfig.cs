@@ -111,6 +111,20 @@ public class GraphConfig : MonoBehaviour
 
     public void Init(int index, Tuple<int, int>[] offset)
     {
+        if (data.ddaGraph)
+        {
+            if (DDA.Instance == null) Debug.LogError("No puedes crear una gráfica de DDA sin una instancia de DDA");
+
+            data.myCurve = new AnimationCurve();
+            data.pointsNumber = 1;
+            data.graphType = GraphTypes.NOTACCUMULATED;
+            data.scaling = Scaling.X_SCALING_OFFSET;
+            data.eventX = "DDAGraphActEvent";
+            data.eventY = "GraphDifficEvent";
+            data.x_segments = DDA.Instance.config.data.difficultiesConfig.Count;
+            data.y_segments = 6;
+        }
+
         // Creamos el objeto grafica
         graphObject = transform.GetComponent<UnityTracker>().graphObject;
         GameObject aux = Instantiate(graphObject, parent: UnityTracker.instance.GetGraphCanvas().transform);
@@ -120,25 +134,9 @@ public class GraphConfig : MonoBehaviour
         shownGraph.name = data.name;
         shownGraph.SetConfig(ref data);
         UnityTracker.instance.SetGraphInWindow(ref aux, index, data, offset);
-        if (aux == null) shownGraph = null;
+        if (aux == null) shownGraph = null;        
     }
 
-    // Update is called once per frame
-    void Start()
-    {
-        if (data.ddaGraph && DDA.Instance == null) Debug.LogError("No puedes crear una gráfica de DDA sin una instancia de DDA");
-
-        if (data.ddaGraph)
-        {
-            data.myCurve = new AnimationCurve();
-            data.graphType = GraphTypes.NOTACCUMULATED;
-            data.scaling = Scaling.X_SCALING_OFFSET;
-            data.eventX = "DDAGraphActEvent";
-            data.eventY = "GraphDifficEvent";
-            data.x_segments = DDA.Instance.config.data.difficultiesConfig.Count;
-            data.y_segments = 6;
-        }
-    }
 
     private void FixedUpdate()
     {
@@ -168,14 +166,6 @@ public class GraphConfigEditor : Editor
         EditorGUILayout.PropertyField(grPers);
 
         GraphConfig graphPersistence = (GraphConfig)target;
-
-        ////Obten los nombres de los eventos del script TrackerConfig
-        //TrackerConfig trackerConfig = graphPersistence.gameObject.GetComponent<TrackerConfig>();
-        //List<string> eventNames = new List<string>();
-        //foreach (TrackerConfig.EventConfig config in trackerConfig.eventConfig)
-        //{
-        //    eventNames.Add(config.eventName);
-        //}
 
         //Metodo de checkeo de cambios en el editor
         EditorGUI.BeginChangeCheck();

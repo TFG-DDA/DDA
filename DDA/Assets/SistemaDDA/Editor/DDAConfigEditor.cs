@@ -29,13 +29,13 @@ public class DDAConfigEditor : Editor
     public void Editor()
     {
         serializedObject.Update();
-        
+
         // Estructura principal que contiene las distintas variables de configuración
         SerializedProperty data = serializedObject.FindProperty("data");
         EditorGUILayout.LabelField("Difficulties", EditorStyles.boldLabel);
         // Array de dificultades
         SerializedProperty diffConfig = data.FindPropertyRelative("difficultiesConfig");
-        EditorGUIUtility.labelWidth = 50; 
+        EditorGUIUtility.labelWidth = 50;
         buttonWidth = EditorWindow.GetWindow(typeof(DDAEditorWindow)).position.width / 5;
         uniqueDificulties.Clear();
         duplicateDifficulties.Clear();
@@ -74,9 +74,9 @@ public class DDAConfigEditor : Editor
             GUI.color = Color.white;
         }
         EditorGUIUtility.labelWidth = 100;
-        
+
         // Si hay alguna dificultad duplicada se avisa
-        if(duplicateDifficulties.Count > 0)
+        if (duplicateDifficulties.Count > 0)
         {
             string labelStart = duplicateDifficulties.Count > 1 ? "The difficulties " : "The difficulty ";
             string labelDiffs = "";
@@ -85,7 +85,7 @@ public class DDAConfigEditor : Editor
                 labelDiffs += duplicateDifficulties.ElementAt(i);
                 if (i < duplicateDifficulties.Count - 2)
                     labelDiffs += ", ";
-                else if(duplicateDifficulties.Count != 1 && i < duplicateDifficulties.Count - 1)
+                else if (duplicateDifficulties.Count != 1 && i < duplicateDifficulties.Count - 1)
                     labelDiffs += " and ";
             }
             string labelEnd = duplicateDifficulties.Count > 1 ? " are duplicate, remove the duplicates " : " is duplicate, remove the duplicate ";
@@ -166,17 +166,44 @@ public class DDAConfigEditor : Editor
                 }
                 EditorGUILayout.LabelField("Limits");
                 EditorGUI.indentLevel++;
+
+                float min = eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("minimum").floatValue;
+                float max = eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("maximum").floatValue;
+                float dir = max - min;
+                if (dir == 0)
+                {
+                    GUI.color = Color.red;
+                    EditorGUILayout.LabelField("Size between minimun an maximum not valid.");
+                }
                 EditorGUILayout.PropertyField(eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("minimum"));
                 // Campo para el valor de cada limite
                 for (int j = 0; j < limits.arraySize; j++)
                 {
                     EditorGUILayout.LabelField(uniqueDificulties.ElementAt(j));
+                    float val = limits.GetArrayElementAtIndex(j).floatValue;
+                    float bef, after;
+                    if (j == 0)
+                        bef = min;
+                    else
+                        bef = limits.GetArrayElementAtIndex(j - 1).floatValue;
+                    if (j == limits.arraySize - 1)
+                        after = max;
+                    else
+                        after = limits.GetArrayElementAtIndex(j + 1).floatValue;
+
+                    if ((dir > 0 && (val <= bef || val >= after)) || (dir < 0 && (val >= bef || val <= after)))
+                    {
+                        EditorGUILayout.LabelField("Limit not valid. Check the value of the range and the limits next to this.");
+                        GUI.color = Color.red;
+                    }
                     EditorGUILayout.PropertyField(limits.GetArrayElementAtIndex(j), GUIContent.none);
+                    GUI.color = Color.white;
                 }
                 EditorGUILayout.LabelField(uniqueDificulties.ElementAt(limits.arraySize));
                 EditorGUILayout.PropertyField(eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("maximum"));
                 // Campos para los valores minimo y maximo de la variable
                 EditorGUI.indentLevel -= 2;
+                GUI.color = Color.white;
             }
         }
 

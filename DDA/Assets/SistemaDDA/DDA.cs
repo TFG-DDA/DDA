@@ -42,6 +42,7 @@ public class DDA : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            Init();
         }
         else
         {
@@ -49,7 +50,7 @@ public class DDA : MonoBehaviour
         }
     }
 
-    public void Start()
+    void Init()
     {
         config = GetComponent<DDAConfig>();
         if (config == null)
@@ -57,7 +58,10 @@ public class DDA : MonoBehaviour
             Debug.LogError("El objeto que contiene el DDA no tiene DDAConfig");
         }
         configData = config.data;
+    }
 
+    public void Start()
+    {
         eventVariables = new Dictionary<string, DDAVariableData>();
         currentPlayerDifficult = configData.defaultDifficultyLevel;
 
