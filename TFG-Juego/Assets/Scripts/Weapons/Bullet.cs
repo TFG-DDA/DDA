@@ -58,7 +58,7 @@ public class Bullet : MonoBehaviour
                     RuntimeManager.PlayOneShot(GameManager.instance.GetSoundResources().IMPACT_PLAYER);
                     playerAnim.anim_hit();
                 }
-                damage = (int)(damage * DDA.Instance.config.actVariables.enemyDamage); 
+                damage = (int)(damage * DDA.instance.config.actVariables.enemyDamage); 
             }
             else
                 RuntimeManager.PlayOneShot(GameManager.instance.GetSoundResources().IMPACT_ROCK, transform.position);

@@ -35,7 +35,7 @@ public class HealthManager : MonoBehaviour
         {
             sprite = GetComponent<SpriteLibrary>().spriteLibraryAsset;
             health = GetComponent<EnemyAttribs>().health + GameManager.instance.GetPlayedLevels() / 2;
-            health = (int)(health * DDA.Instance.config.actVariables.enemyHealth);
+            health = (int)(health * DDA.instance.config.actVariables.enemyHealth);
         }
         else
         {
@@ -56,7 +56,7 @@ public class HealthManager : MonoBehaviour
                 Camera.main.GetComponent<CameraShake>().StartShake();
                 GameManager.instance.slowTime();
                 GameManager.instance.lostHealth += damage;
-                Tracker.Instance.AddEvent(new RecibirDanoEvent(health));
+                Tracker.Instance.AddEvent(new RecieveDamageEvent(health));
             }
         }
         else
@@ -123,14 +123,14 @@ public class HealthManager : MonoBehaviour
         if (isEnemy)
         {
             // Destruir al enemigo
-            Tracker.Instance.AddEvent(new MuerteEnemigoEvent(transform.position));
+            Tracker.Instance.AddEvent(new EnemyDeath(transform.position));
             Destroy(gameObject);
         }
         else
         {
             GameManager.instance.SetTransitionTime(2.0f);
             GameManager.instance.StartTransition(TransitionTypes.TOMENU);
-            Tracker.Instance.AddEvent(new MuerteJugadorEvent(transform.position));
+            Tracker.Instance.AddEvent(new PlayerDeathEvent(transform.position));
             Tracker.Instance.Flush();
             gameObject.SetActive(false);
         }

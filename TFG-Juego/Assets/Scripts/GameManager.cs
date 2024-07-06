@@ -1,4 +1,3 @@
-using FirebaseWebGL.Scripts.FirebaseBridge;
 using FMOD.Studio;
 using FMODUnity;
 using System.Collections;
@@ -169,7 +168,7 @@ public class GameManager : MonoBehaviour
 
         soundResources = new SoundResources();
         recentLevels = new Queue();
-        musicEmitter = GetComponent<FMODUnity.StudioEventEmitter>();
+        musicEmitter = GetComponent<StudioEventEmitter>();
         //DynamicGameplayMusic();
         //deathCanvas = transform.GetChild(0);
         //GetComponent<FMODUnity.StudioEventEmitter>().Play();
@@ -234,7 +233,7 @@ public class GameManager : MonoBehaviour
             }
         }
         if (Input.GetKeyDown(KeyCode.I)) Tracker.Instance.AddEvent(new LostHealthEvent(1));
-        if (Input.GetKeyDown(KeyCode.J)) Tracker.Instance.AddEvent(new FinNivelEvent(10,"hols"));
+        if (Input.GetKeyDown(KeyCode.J)) Tracker.Instance.AddEvent(new EndLevelEvent(10,"hols"));
     }
 
     public void changeScene(string sc)
@@ -376,14 +375,14 @@ public class GameManager : MonoBehaviour
 
         recentLevels.Enqueue(lvl);
 
-        if (DDA.Instance.config.actVariables.hardMap)
+        if (DDA.instance.config.actVariables.hardMap)
         {
-            Tracker.Instance.AddEvent(new InicioNivelEvent(playedLevels, "Level" + (lvl + 1) + "_Hard"));
+            Tracker.Instance.AddEvent(new StartLevelEvent(playedLevels, "Level" + (lvl + 1) + "_Hard"));
             StartCoroutine(LoadLevelAsync("Level" + (lvl + 1) + "_Hard"));
         }
         else
         {
-            Tracker.Instance.AddEvent(new InicioNivelEvent(playedLevels, "Level" + (lvl + 1)));
+            Tracker.Instance.AddEvent(new StartLevelEvent(playedLevels, "Level" + (lvl + 1)));
             StartCoroutine(LoadLevelAsync("Level" + (lvl + 1)));
         }
             
@@ -439,12 +438,12 @@ public class GameManager : MonoBehaviour
         {
             PlayerInstance.instance.GetFireWeapon().EndAttack();
             Time.timeScale = 0;
-            Tracker.Instance.AddEvent(new InicioPausaEvent());
+            Tracker.Instance.AddEvent(new StartPauseEvent());
         }
         else
         {
             Time.timeScale = 1;
-            Tracker.Instance.AddEvent(new FinPausaEvent());
+            Tracker.Instance.AddEvent(new EndPauseEvent());
         }
     }
 
@@ -498,9 +497,9 @@ public class GameManager : MonoBehaviour
             float percentage = Random.Range(0f, 1f);
 
             // 60% Q1 / 30% Q2 / 10% Q3
-            if (percentage < DDA.Instance.config.actVariables.Q1Prob)
+            if (percentage < DDA.instance.config.actVariables.Q1Prob)
                 randomQuality = 1;
-            else if (percentage < DDA.Instance.config.actVariables.Q2Prob)
+            else if (percentage < DDA.instance.config.actVariables.Q2Prob)
                 randomQuality = 2;
             else
                 randomQuality = 3;
@@ -701,9 +700,7 @@ public class GameManager : MonoBehaviour
     {
         // Vuelve al menu porque ha muerto
         if (PLAYER_LIFE <= 0)
-            showForm = true;
-        else
-            showForm = false;
+           Tracker.Instance.AddEvent(new EndLevelEvent(playedLevels, SceneManager.GetActiveScene().name));
 
         checkTimeForArrow = false;
 
@@ -712,8 +709,8 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-        Tracker.Instance.AddEvent(new DisparoEvent(PlayerInstance.instance.GetWeaponName(), shotCounter, hitCounter));
-        Tracker.Instance.AddEvent(new DisparoEvent("Infite", infiniteShotCounter, infiniteHitCounter));
+        Tracker.Instance.AddEvent(new ShotEvent(PlayerInstance.instance.GetWeaponName(), shotCounter, hitCounter));
+        Tracker.Instance.AddEvent(new ShotEvent("Infite", infiniteShotCounter, infiniteHitCounter));
         playedRuns++;
         ResetPlayer();
         transitionTime = -1;
@@ -738,8 +735,8 @@ public class GameManager : MonoBehaviour
         }
         transitionTime = -1;
 
-        Tracker.Instance.AddEvent(new DisparoEvent(PlayerInstance.instance.GetWeaponName(), shotCounter, hitCounter));
-        Tracker.Instance.AddEvent(new DisparoEvent("Infite", infiniteShotCounter, infiniteHitCounter));
+        Tracker.Instance.AddEvent(new ShotEvent(PlayerInstance.instance.GetWeaponName(), shotCounter, hitCounter));
+        Tracker.Instance.AddEvent(new ShotEvent("Infite", infiniteShotCounter, infiniteHitCounter));
         shotCounter = 0;
         infiniteShotCounter = 0;
         hitCounter = 0;

@@ -21,7 +21,7 @@ public class Atack : MonoBehaviour
             diff += Mathf.Pow(2.0f, s);
 
         EnemyAttribs eAt = GetComponent<EnemyAttribs>();
-        followVel = (Mathf.Min(eAt.fVel * (diff / 100), eAt.fVel*2f) + Random.Range(-eAt.fVelVar, eAt.fVelVar)) * DDA.Instance.config.actVariables.enemySpeed;
+        followVel = (Mathf.Min(eAt.fVel * (diff / 100), eAt.fVel*2f) + Random.Range(-eAt.fVelVar, eAt.fVelVar)) * DDA.instance.config.actVariables.enemySpeed;
         objectiveDistance = eAt.fRange + Random.Range(-eAt.fRangeVar, eAt.fRangeVar);
 
         int jugaos = GameManager.instance.GetPlayedLevels();
