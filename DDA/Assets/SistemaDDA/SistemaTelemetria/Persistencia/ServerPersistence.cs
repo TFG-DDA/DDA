@@ -1,4 +1,4 @@
-using FirebaseWebGL.Scripts.FirebaseBridge;
+//using FirebaseWebGL.Scripts.FirebaseBridge;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -15,8 +15,6 @@ public class ServerPersistence : IPersistence
     string id;
 
     private int counterEvents = 0;
-    private int counterLevels = 0;
-    private int counterRuns = 0;
 
 
     public ServerPersistence()
@@ -50,7 +48,7 @@ public class ServerPersistence : IPersistence
         formPath = "SessionIDs/" + id /* + ruta específica del juego (opcional)*/;
         foreach (TrackerEvent e in events)
         {
-            FirebaseDatabase.UpdateJSON(path + counterEvents.ToString(), serializerServerJSON.Serialize(e), "GameManager", "postJSONcallback", "postJSONfallback");
+            //FirebaseDatabase.UpdateJSON(path + counterEvents.ToString(), serializerServerJSON.Serialize(e), "GameManager", "postJSONcallback", "postJSONfallback");
             counterEvents++;
         }
     }

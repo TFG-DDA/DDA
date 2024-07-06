@@ -5,8 +5,8 @@ using System.IO;
 using System.Xml;
 using UnityEngine;
 
-using Firebase;
-using Firebase.Database;
+//using Firebase;
+//using Firebase.Database;
 
 public class ServerPersistenceDesktop : IPersistence
 {
@@ -19,28 +19,28 @@ public class ServerPersistenceDesktop : IPersistence
 
     private int counterEvents = 0;
 
-    DatabaseReference dbRef;
+    //DatabaseReference dbRef;
 
 
     public ServerPersistenceDesktop()
     {
-        eventsBuff = new();
-        id = Tracker.Instance.GetSessionId().ToString();
+        //eventsBuff = new();
+        //id = Tracker.Instance.GetSessionId().ToString();
 
-        serializerServerJSON = new ServerSerializer();
+        //serializerServerJSON = new ServerSerializer();
 
-        AppOptions options = new AppOptions
-        {
-            // Rellenar con información del servidor de firebase
-            ApiKey = "ApiKey",
-            AppId = "AppId",
-            DatabaseUrl = new System.Uri("DatabaseUrl"),
-            MessageSenderId = "MessageSenderId",
-            ProjectId = "ProjectId",
-            StorageBucket = "StorageBucket"
-        };
-        FirebaseApp app = FirebaseApp.Create(options);
-        dbRef = FirebaseDatabase.DefaultInstance.RootReference;
+        //AppOptions options = new AppOptions
+        //{
+        //    // Rellenar con información del servidor de firebase
+        //    ApiKey = "ApiKey",
+        //    AppId = "AppId",
+        //    DatabaseUrl = new System.Uri("DatabaseUrl"),
+        //    MessageSenderId = "MessageSenderId",
+        //    ProjectId = "ProjectId",
+        //    StorageBucket = "StorageBucket"
+        //};
+        //FirebaseApp app = FirebaseApp.Create(options);
+        //dbRef = FirebaseDatabase.DefaultInstance.RootReference;
     }
 
     public override void Release()
@@ -66,7 +66,7 @@ public class ServerPersistenceDesktop : IPersistence
         formPath = "SessionIDs/" + id /* + ruta específica del juego (opcional)*/;
         foreach (TrackerEvent e in events)
         {
-            dbRef.Child(path + counterEvents.ToString()).SetRawJsonValueAsync(serializerServerJSON.Serialize(e));
+            //dbRef.Child(path + counterEvents.ToString()).SetRawJsonValueAsync(serializerServerJSON.Serialize(e));
             counterEvents++;
         }
     }
