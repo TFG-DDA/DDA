@@ -47,9 +47,7 @@ public struct DDAData
     public List<string> difficultiesConfig;
 
     // Dificultad inicial
-    [HideInInspector]
-    public uint defaultDifficultyLevel;
-    public string startDiff;
+    public uint startDiff;
 }
 
 public class DDAConfig : MonoBehaviour
@@ -61,16 +59,4 @@ public class DDAConfig : MonoBehaviour
 
     // Estrucutura con la configuracion del DDA
     public DDAData data;
-
-    private void Awake()
-    {
-        for (int i = 0; i < data.difficultiesConfig.Count; i++)
-        {
-            if (data.difficultiesConfig[i] == data.startDiff)
-            {
-                data.defaultDifficultyLevel = (uint)i;
-                return;
-            }
-        }
-    }
 }

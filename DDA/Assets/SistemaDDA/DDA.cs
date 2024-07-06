@@ -60,7 +60,7 @@ public class DDA : MonoBehaviour
     public void Start()
     {
         eventVariables = new Dictionary<string, DDAVariableData>();
-        currentPlayerDifficult = configData.defaultDifficultyLevel;
+        currentPlayerDifficult = configData.startDiff;
         config.actVariables = config.variablesModify[currentPlayerDifficult];
 
         // Creamos un mapa para comprobar rápidamente si un evento influye en el DDA

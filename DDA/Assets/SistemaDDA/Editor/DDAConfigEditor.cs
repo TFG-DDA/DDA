@@ -99,8 +99,9 @@ public class DDAConfigEditor : Editor
         // Dificultad por defecto (se elige con popup)
         SerializedProperty startDiff = data.FindPropertyRelative("startDiff");
         // Popup para elegir dificultad inicial
+        startDiffIndex = startDiff.intValue;
         startDiffIndex = EditorGUILayout.Popup("Initial difficulty", startDiffIndex, uniqueDificulties.ToArray());
-        startDiff.stringValue = uniqueDificulties.ElementAt(startDiffIndex);
+        startDiff.intValue = startDiffIndex;
 
         // Variables que cambian según la dificultad
         EditorGUILayout.Space();

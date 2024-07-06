@@ -426,6 +426,18 @@ PrefabInstance:
       propertyPath: data.y_segments
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8758682636726464748, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.pointsNumber
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8758682636726464748, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.myCurve.m_Curve.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8758682636726464748, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.myCurve.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
 --- !u!1001 &1820590088144549709
@@ -481,7 +493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.startDiff
-      value: Easy
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.playerModifierType

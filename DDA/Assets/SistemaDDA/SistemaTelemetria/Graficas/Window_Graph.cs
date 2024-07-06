@@ -487,6 +487,7 @@ public class Window_Graph : MonoBehaviour
 
     public float getLatestObjectivePoint()
     {
+        if(objective_index == 0) return 0;
         return objective_points[objective_index - 1];
     }
 }
