@@ -15,8 +15,6 @@ public class DDA : MonoBehaviour
     [HideInInspector]
     public DDAData configData;
     public uint currentPlayerDifficult;
-    // Diccionario utilizado por el diseñador para instrumentalizar su código
-    public Dictionary<string, float> instVariables;
 
     private Dictionary<string, DDAVariableData> eventVariables;
 
@@ -52,10 +50,9 @@ public class DDA : MonoBehaviour
 
     void Init()
     {
-        config = GetComponent<DDAConfig>();
-        if (config == null)
+        if (!TryGetComponent(out config))
         {
-            Debug.LogError("El objeto que contiene el DDA no tiene DDAConfig");
+            Debug.LogError("The DDA object does not have a DDAConfig component.");
         }
         configData = config.data;
     }
@@ -64,6 +61,7 @@ public class DDA : MonoBehaviour
     {
         eventVariables = new Dictionary<string, DDAVariableData>();
         currentPlayerDifficult = configData.defaultDifficultyLevel;
+        config.actVariables = config.variablesModify[currentPlayerDifficult];
 
         // Creamos un mapa para comprobar rápidamente si un evento influye en el DDA
         for (int i = 0; i < configData.eventVariables.Length; i++)
@@ -71,7 +69,6 @@ public class DDA : MonoBehaviour
             // El totalweight se utilizará para determinar cuanto influye cada variable en el resultado final
             if (configData.eventVariables[i].weight > 0)
             {
-                // TODO: Avisar si ha dejado un weight a 0, ya que no se va a usar para calcular la dificultad
                 eventVariables.Add(configData.eventVariables[i].eventName, configData.eventVariables[i]);
             }
         }
@@ -110,15 +107,6 @@ public class DDA : MonoBehaviour
         }
     }
 
-    public float getInstVariable(string s)
-    {
-        if (instVariables.ContainsKey(s))
-            return instVariables[s];
-        // Printear error de que no se ha encontrado la variable de instrumentalización y devuelve -1
-        Debug.LogError("Variable " + s + " no encontrada en lista de variables instrumentalizadas.");
-        return -1.0f;
-    }
-
     //Método que aplica los cambios a la dificultad.
     //Añadir los distintos métodos según las flags que defina el diseñador.
     public virtual void UpdateDifficulty()
@@ -131,7 +119,7 @@ public class DDA : MonoBehaviour
         // Suma de los límites de los tramos de cada dificultad
         if (eventVariables.Values.Count <= 0)
         {
-            Debug.LogError("Mapa sin ningún evento de control de dificultad.");
+            Debug.LogError("There's no event to determine the difficulty in config.");
             return;
         }
         rangeLimits = new float[eventVariables.ElementAt(0).Value.limits.Length];

@@ -57,6 +57,7 @@ public class DDAConfig : MonoBehaviour
     // Array con los valores de cada variable que modifica la dificultad para las distintas dificultades
     // Asumira un valor automatico segun el numero de dificultades
     public DDAVariables[] variablesModify;
+    public DDAVariables actVariables;
 
     // Estrucutura con la configuracion del DDA
     public DDAData data;

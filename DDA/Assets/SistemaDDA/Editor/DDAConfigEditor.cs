@@ -7,13 +7,13 @@ using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
 #if UNITY_EDITOR
+[System.Serializable]
 [CustomEditor(typeof(DDAConfig))]
 public class DDAConfigEditor : Editor
 {
     // Lista de booleanos para controlar si están desplegada o no cada entrada de event variable
     private List<bool> variablesFoldouts = new();
     // Indice para eliminar entradas de event variables
-    private int deleteIndex;
     private int startDiffIndex;
     // Listas para asegurarnos de que cada dificultad solo esta una vez e identificar las repetidas
     private HashSet<string> uniqueDificulties = new();
@@ -153,7 +153,11 @@ public class DDAConfigEditor : Editor
                 // Campo para el nombre del evento
                 EditorGUILayout.PropertyField(name);
                 // Campo para el peso de la variable en el calculo
-                EditorGUILayout.PropertyField(eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("weight"));
+                SerializedProperty weight = eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("weight");
+                EditorGUILayout.PropertyField(weight);
+                if(weight.floatValue <= 0f)
+                    EditorGUILayout.LabelField("This variable has a weight of 0 and won't be used for difficulty estimation.");
+                    
                 // Limites de la variable para cambiar a la siguiente dificultad
                 limits = eventVariables.GetArrayElementAtIndex(i).FindPropertyRelative("limits");
                 // Igualamos el tamaño del array de limites al del de dificultades - 1 (el limite en la mas dificil es el maximo)

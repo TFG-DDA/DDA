@@ -469,7 +469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4184440428344117839, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4184440428344117839, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: modifierType
@@ -505,7 +505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.eventVariables.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.difficultiesConfig.Array.size
@@ -573,7 +573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.eventVariables.Array.data[0].weight
-      value: 0.5
+      value: 0.435
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.eventVariables.Array.data[1].weight
@@ -777,29 +777,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
---- !u!1 &1820590088144549710 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5970377965610702331, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
-  m_PrefabInstance: {fileID: 1820590088144549709}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1820590088144549711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1820590088144549710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 561a9b4b6b241104499a867f505f8a06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  config: {fileID: 0}
-  configData:
-    eventVariables: []
-    triggerEvent: 
-    difficultiesConfig: []
-    defaultDifficultyLevel: 0
-    startDiff: 
-  currentPlayerDifficult: 0
-  modifier: 0
