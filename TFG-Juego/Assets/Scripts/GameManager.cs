@@ -333,8 +333,11 @@ public class GameManager : MonoBehaviour
                 enemyWeapons[1].probability = 0 + DDA.instance.config.actVariables.akProb;
                 enemyWeapons[2].probability = 100 + DDA.instance.config.actVariables.shotgunProb;
                 break;
-
-
+        }
+        for(int i = 0; i < enemyWeapons.Length; i++)
+        {
+            enemyWeapons[i].probability = Mathf.Max(enemyWeapons[i].probability, 0);
+            enemyWeapons[i].probability = Mathf.Min(enemyWeapons[i].probability, 100);
         }
     }
 
