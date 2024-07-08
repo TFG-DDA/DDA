@@ -233,7 +233,7 @@ public class GameManager : MonoBehaviour
             }
         }
         if (Input.GetKeyDown(KeyCode.I)) Tracker.Instance.AddEvent(new LostHealthEvent(1));
-        if (Input.GetKeyDown(KeyCode.J)) Tracker.Instance.AddEvent(new EndLevelEvent(10,"hols"));
+        if (Input.GetKeyDown(KeyCode.J)) Tracker.Instance.AddEvent(new EndLevelEvent(10, "hols"));
     }
 
     public void changeScene(string sc)
@@ -244,94 +244,94 @@ public class GameManager : MonoBehaviour
     }
 
 
-    void cagadon()
+    void LevelWeaponProbs()
     {
         switch (playedLevels)
         {
             case 0:
-                enemyWeapons[0].probability = 100;
-                enemyWeapons[1].probability = 0;
-                enemyWeapons[2].probability = 0;
+                enemyWeapons[0].probability = 100 + DDA.instance.config.actVariables.pistolProb;
+                enemyWeapons[1].probability = 0 + DDA.instance.config.actVariables.akProb;
+                enemyWeapons[2].probability = 0 + DDA.instance.config.actVariables.shotgunProb;
                 break;
             case 1:
-                enemyWeapons[0].probability = 94;
-                enemyWeapons[1].probability = 3;
-                enemyWeapons[2].probability = 3;
+                enemyWeapons[0].probability = 94 + DDA.instance.config.actVariables.pistolProb;
+                enemyWeapons[1].probability = 3 + DDA.instance.config.actVariables.akProb;
+                enemyWeapons[2].probability = 3 + DDA.instance.config.actVariables.shotgunProb;
                 break;
             case 2:
-                enemyWeapons[0].probability = 88;
-                enemyWeapons[1].probability = 6;
-                enemyWeapons[2].probability = 6;
+                enemyWeapons[0].probability = 88 + DDA.instance.config.actVariables.pistolProb;
+                enemyWeapons[1].probability = 6 + DDA.instance.config.actVariables.akProb;
+                enemyWeapons[2].probability = 6 + DDA.instance.config.actVariables.shotgunProb;
                 break;
             case 3:
-                enemyWeapons[0].probability = 82;
-                enemyWeapons[1].probability = 9;
-                enemyWeapons[2].probability = 9;
+                enemyWeapons[0].probability = 82 + DDA.instance.config.actVariables.pistolProb;
+                enemyWeapons[1].probability = 9 + DDA.instance.config.actVariables.akProb;
+                enemyWeapons[2].probability = 9 + DDA.instance.config.actVariables.shotgunProb;
                 break;
             case 4:
-                enemyWeapons[0].probability = 76;
-                enemyWeapons[1].probability = 12;
-                enemyWeapons[2].probability = 12;
+                enemyWeapons[0].probability = 76 + DDA.instance.config.actVariables.pistolProb;
+                enemyWeapons[1].probability = 12 + DDA.instance.config.actVariables.akProb;
+                enemyWeapons[2].probability = 12 + DDA.instance.config.actVariables.shotgunProb;
                 break;
             case 5:
-                enemyWeapons[0].probability = 70;
-                enemyWeapons[1].probability = 15;
-                enemyWeapons[2].probability = 15;
+                enemyWeapons[0].probability = 70 + DDA.instance.config.actVariables.pistolProb;
+                enemyWeapons[1].probability = 15 + DDA.instance.config.actVariables.akProb;
+                enemyWeapons[2].probability = 15 + DDA.instance.config.actVariables.shotgunProb;
                 break;
             case 6:
-                enemyWeapons[0].probability = 64;
-                enemyWeapons[1].probability = 18;
-                enemyWeapons[2].probability = 18;
+                enemyWeapons[0].probability = 64 + DDA.instance.config.actVariables.pistolProb;
+                enemyWeapons[1].probability = 18 + DDA.instance.config.actVariables.akProb;
+                enemyWeapons[2].probability = 18 + DDA.instance.config.actVariables.shotgunProb;
                 break;
             case 7:
-                enemyWeapons[0].probability = 58;
-                enemyWeapons[1].probability = 21;
-                enemyWeapons[2].probability = 21;
+                enemyWeapons[0].probability = 58 + DDA.instance.config.actVariables.pistolProb;
+                enemyWeapons[1].probability = 21 + DDA.instance.config.actVariables.akProb;
+                enemyWeapons[2].probability = 21 + DDA.instance.config.actVariables.shotgunProb;
                 break;
             case 8:
-                enemyWeapons[0].probability = 52;
-                enemyWeapons[1].probability = 24;
-                enemyWeapons[2].probability = 24;
+                enemyWeapons[0].probability = 52 + DDA.instance.config.actVariables.pistolProb;
+                enemyWeapons[1].probability = 24 + DDA.instance.config.actVariables.akProb;
+                enemyWeapons[2].probability = 24 + DDA.instance.config.actVariables.shotgunProb;
                 break;
             case 9:
-                enemyWeapons[0].probability = 46;
-                enemyWeapons[1].probability = 27;
-                enemyWeapons[2].probability = 27;
+                enemyWeapons[0].probability = 46 + DDA.instance.config.actVariables.pistolProb;
+                enemyWeapons[1].probability = 27 + DDA.instance.config.actVariables.akProb;
+                enemyWeapons[2].probability = 27 + DDA.instance.config.actVariables.shotgunProb;
                 break;
             case 10:
-                enemyWeapons[0].probability = 40;
-                enemyWeapons[1].probability = 30;
-                enemyWeapons[2].probability = 30;
+                enemyWeapons[0].probability = 40 + DDA.instance.config.actVariables.pistolProb;
+                enemyWeapons[1].probability = 30 + DDA.instance.config.actVariables.akProb;
+                enemyWeapons[2].probability = 30 + DDA.instance.config.actVariables.shotgunProb;
                 break;
             case 11:
-                enemyWeapons[0].probability = 34;
-                enemyWeapons[1].probability = 33;
-                enemyWeapons[2].probability = 33;
+                enemyWeapons[0].probability = 34 + DDA.instance.config.actVariables.pistolProb;
+                enemyWeapons[1].probability = 33 + DDA.instance.config.actVariables.akProb;
+                enemyWeapons[2].probability = 33 + DDA.instance.config.actVariables.shotgunProb;
                 break;
             case 12:
-                enemyWeapons[0].probability = 28;
-                enemyWeapons[1].probability = 36;
-                enemyWeapons[2].probability = 36;
+                enemyWeapons[0].probability = 28 + DDA.instance.config.actVariables.pistolProb;
+                enemyWeapons[1].probability = 36 + DDA.instance.config.actVariables.akProb;
+                enemyWeapons[2].probability = 36 + DDA.instance.config.actVariables.shotgunProb;
                 break;
             case 13:
-                enemyWeapons[0].probability = 22;
-                enemyWeapons[1].probability = 39;
-                enemyWeapons[2].probability = 39;
+                enemyWeapons[0].probability = 22 + DDA.instance.config.actVariables.pistolProb;
+                enemyWeapons[1].probability = 39 + DDA.instance.config.actVariables.akProb;
+                enemyWeapons[2].probability = 39 + DDA.instance.config.actVariables.shotgunProb;
                 break;
             case 14:
-                enemyWeapons[0].probability = 16;
-                enemyWeapons[1].probability = 42;
-                enemyWeapons[2].probability = 42;
+                enemyWeapons[0].probability = 16 + DDA.instance.config.actVariables.pistolProb;
+                enemyWeapons[1].probability = 42 + DDA.instance.config.actVariables.akProb;
+                enemyWeapons[2].probability = 42 + DDA.instance.config.actVariables.shotgunProb;
                 break;
             case 15:
-                enemyWeapons[0].probability = 0;
-                enemyWeapons[1].probability = 50;
-                enemyWeapons[2].probability = 50;
+                enemyWeapons[0].probability = 0 + DDA.instance.config.actVariables.pistolProb;
+                enemyWeapons[1].probability = 50 + DDA.instance.config.actVariables.akProb;
+                enemyWeapons[2].probability = 50 + DDA.instance.config.actVariables.shotgunProb;
                 break;
             case 20:
-                enemyWeapons[0].probability = 0;
-                enemyWeapons[1].probability = 0;
-                enemyWeapons[2].probability = 100;
+                enemyWeapons[0].probability = 0 + DDA.instance.config.actVariables.pistolProb;
+                enemyWeapons[1].probability = 0 + DDA.instance.config.actVariables.akProb;
+                enemyWeapons[2].probability = 100 + DDA.instance.config.actVariables.shotgunProb;
                 break;
 
 
@@ -354,7 +354,7 @@ public class GameManager : MonoBehaviour
         //enemyWeapons[2].probability = (playedLevels * (10 / 3));
 
         // perdon
-        cagadon();
+        LevelWeaponProbs();
 
         playedLevels++;
 
@@ -385,7 +385,7 @@ public class GameManager : MonoBehaviour
             Tracker.Instance.AddEvent(new StartLevelEvent(playedLevels, "Level" + (lvl + 1)));
             StartCoroutine(LoadLevelAsync("Level" + (lvl + 1)));
         }
-            
+
 
     }
 
@@ -479,8 +479,8 @@ public class GameManager : MonoBehaviour
 #endif
     }
 
-        // Provisional
-        public Card[] getCard()
+    // Provisional
+    public Card[] getCard()
     {
         Card[] cards = new Card[2];
         if (playedLevels == 2)
@@ -700,7 +700,7 @@ public class GameManager : MonoBehaviour
     {
         // Vuelve al menu porque ha muerto
         if (PLAYER_LIFE <= 0)
-           Tracker.Instance.AddEvent(new EndLevelEvent(playedLevels, SceneManager.GetActiveScene().name));
+            Tracker.Instance.AddEvent(new EndLevelEvent(playedLevels, SceneManager.GetActiveScene().name));
 
         checkTimeForArrow = false;
 
@@ -718,7 +718,7 @@ public class GameManager : MonoBehaviour
         playedLevels = 0;
         cardApplied = true;
         musicEmitter.Stop();
-        
+
         SceneManager.LoadScene("MenuPrincipal");
         Tracker.Instance.Flush();
     }
@@ -789,7 +789,7 @@ public class GameManager : MonoBehaviour
 
             if (!connected && controllers.Length != 0)
             {
-                if(controllers[0] != "")
+                if (controllers[0] != "")
                 {
                     connected = true;
                     Debug.LogWarning("Connected");
@@ -805,7 +805,7 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
-            else if (connected && (controllers.Length == 0 ||controllers[0] == ""))
+            else if (connected && (controllers.Length == 0 || controllers[0] == ""))
             {
                 connected = false;
                 Debug.LogWarning("Disconnected");
@@ -843,10 +843,10 @@ public class GameManager : MonoBehaviour
         Debug.LogError("Error en la llamada a PostJSON");
     }
 
-    public void setFormValue(int f) { form_Value = f;}
-    public int getFormValue() {return form_Value;}
+    public void setFormValue(int f) { form_Value = f; }
+    public int getFormValue() { return form_Value; }
     public bool getShowForm() { return showForm; }
-    public int getPlayedRuns() {  return playedRuns; }
+    public int getPlayedRuns() { return playedRuns; }
 
     public void FlushTracker()
     {
@@ -857,7 +857,7 @@ public class GameManager : MonoBehaviour
     {
         shotCounter++;
     }
-    
+
     public void AddInfiniteShot()
     {
         infiniteShotCounter++;
@@ -865,7 +865,7 @@ public class GameManager : MonoBehaviour
 
     public void AddHit(string name)
     {
-        if(name == "PistolInfinite")
+        if (name == "PistolInfinite")
             infiniteHitCounter++;
         else
             hitCounter++;

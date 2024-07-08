@@ -7575,7 +7575,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: David carmona
+  m_text: "oscar garc\xEDa"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc08094ddd747f940b3f5706b2bd37a8, type: 2}
   m_sharedMaterial: {fileID: 1813009505634318643, guid: dc08094ddd747f940b3f5706b2bd37a8, type: 2}
@@ -8222,7 +8222,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: variablesModify.Array.data[0].enemyDamage
-      value: 0.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: variablesModify.Array.data[0].enemyHealth
@@ -8230,7 +8230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: variablesModify.Array.data[1].enemyDamage
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: variablesModify.Array.data[1].enemyHealth
@@ -8238,7 +8238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: variablesModify.Array.data[2].enemyDamage
-      value: 1.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: variablesModify.Array.data[2].enemyHealth
@@ -9940,7 +9940,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "oscar garc\xEDa"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc08094ddd747f940b3f5706b2bd37a8, type: 2}
   m_sharedMaterial: {fileID: 1813009505634318643, guid: dc08094ddd747f940b3f5706b2bd37a8, type: 2}

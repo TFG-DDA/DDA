@@ -20,4 +20,9 @@ public struct DDAVariables
 
     // Mapas
     public bool hardMap;
+
+    // Modificadores ratios drop armas (es un valor que se suma a la probabilidad base de cada nivel, entre los tres tienen que sumar 0 para que las problabilidades sumen 100)
+    public int pistolProb;
+    public int akProb;
+    public int shotgunProb;
 }

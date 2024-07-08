@@ -9,11 +9,13 @@ public class DDAEditorWindow : EditorWindow
 {
     private static DDAConfigEditor editor;
     Vector2 scrollPosition = Vector2.zero;
+    private static DDAEditorWindow window;
+
     [MenuItem("Window/DDA Config")]
     public static void Init()
     {
         // Cogemos la ventana y le cambiamos el titulo
-        DDAEditorWindow window = (DDAEditorWindow)GetWindow(typeof(DDAEditorWindow));
+        window = (DDAEditorWindow)GetWindow(typeof(DDAEditorWindow));
         window.titleContent.text = "DDA Config";
 
         // Encontramos los objetos en la escena que tengan el componente DDAConfig
@@ -56,7 +58,7 @@ public class DDAEditorWindow : EditorWindow
         scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, true);
         // Se muestra el editor
         if (editor != null)
-            editor.Editor();
+            editor.Editor(window);
 
         GUILayout.EndScrollView();
     }

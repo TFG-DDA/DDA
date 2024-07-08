@@ -26,7 +26,7 @@ public class DDAConfigEditor : Editor
     }
 
     // Editor para la ventana
-    public void Editor()
+    public void Editor(DDAEditorWindow window)
     {
         serializedObject.Update();
 
@@ -36,7 +36,7 @@ public class DDAConfigEditor : Editor
         // Array de dificultades
         SerializedProperty diffConfig = data.FindPropertyRelative("difficultiesConfig");
         EditorGUIUtility.labelWidth = 50;
-        buttonWidth = EditorWindow.GetWindow(typeof(DDAEditorWindow)).position.width / 5;
+        buttonWidth = window.position.width / 5;
         uniqueDificulties.Clear();
         duplicateDifficulties.Clear();
         string diff;

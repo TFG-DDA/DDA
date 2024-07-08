@@ -36,8 +36,6 @@ public class MenuManager : MonoBehaviour
     int actual_resolution;
 
     bool toOptions;
-    int picia = 0;
-    string pepinillos = "";
 
     [SerializeField]
     GameObject fadeObject;
@@ -186,51 +184,6 @@ public class MenuManager : MonoBehaviour
     public void setFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
-    }
-
-    public void changeResolution()
-    {
-        // Avanzamos el indice de resolucion
-        if (actual_resolution == resolution_list.Count - 1)
-            actual_resolution = 0;
-        else
-            actual_resolution++;
-
-        //// Cambiamos el texto de la UI
-        //setResolutionText();
-
-        // Cambiamos la resolucion
-        //Screen.SetResolution(resolution_list[actual_resolution].width, resolution_list[actual_resolution].height, true);
-        //int acuetate = resolution_list[actual_resolution].width;
-        //int acuetat2 = resolution_list[actual_resolution].height;
-        //Debug.Log(acuetate);
-        //Debug.Log(acuetat2);
-        //Screen.SetResolution(acuetate, acuetat2, true);
-        Screen.SetResolution(resolution_list[actual_resolution].width, resolution_list[actual_resolution].height, true);
-        //resolutionText.text = resolution_list[actual_resolution].width + " x " + resolution_list[actual_resolution].height;
-    }
-
-    void setResolutionText()
-    {
-        //int a = resolution_list[actual_resolution].width;
-        int b = 50;
-        resolutionText.text = actual_resolution.ToString();
-        //if (resolution_list.Count > 0)
-        //{
-        //    //resolutionText.text = a.ToString();
-
-        //    resolutionText.text = "MIERDA";
-        //}
-        //resolutionText.text = resolution_list[actual_resolution].width.ToString() + " x " + resolution_list[actual_resolution].height.ToString();
-        //else
-        //resolutionText.text = resolution_list[actual_resolution].width.ToString() + " x " + resolution_list[actual_resolution].height.ToString();
-        //resolutionText.text = resolution_list.Count.ToString();
-        // resolutionText.text = "MIERDON";
-        //resolutionText.text = resolution_list[picia].width + " x " + resolution_list[picia].height;
-        //resolutionText.text = picia.ToString();
-        //pepinillos += resolution_list[picia].width + " x " + resolution_list[picia].height + " HZ: "+ resolution_list[picia].refreshRate + " ---- ";
-        //resolutionText.text = pepinillos;
-        //resolutionText.text = resolution_list.Length.ToString();
     }
 
     public void ChangeMaster(float val)
