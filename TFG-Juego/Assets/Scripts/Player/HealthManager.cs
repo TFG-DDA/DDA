@@ -56,7 +56,6 @@ public class HealthManager : MonoBehaviour
                 Camera.main.GetComponent<CameraShake>().StartShake();
                 GameManager.instance.slowTime();
                 GameManager.instance.lostHealth += damage;
-                Tracker.Instance.AddEvent(new RecieveDamageEvent(health));
             }
         }
         else
@@ -123,7 +122,6 @@ public class HealthManager : MonoBehaviour
         if (isEnemy)
         {
             // Destruir al enemigo
-            Tracker.Instance.AddEvent(new EnemyDeath(transform.position));
             Destroy(gameObject);
         }
         else

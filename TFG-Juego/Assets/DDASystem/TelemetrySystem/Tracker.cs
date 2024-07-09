@@ -14,7 +14,7 @@ public class Tracker
     float tSinceLastPost = 0;
 
     FilePersistence filePersistence;
-    bool filePers = false;
+    bool filePers = true;
     ServerPersistence serverPersistence;
     bool serverPers = false;
 #if !UNITY_WEBGL

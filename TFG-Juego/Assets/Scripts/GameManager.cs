@@ -712,8 +712,6 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-        Tracker.Instance.AddEvent(new ShotEvent(PlayerInstance.instance.GetWeaponName(), shotCounter, hitCounter));
-        Tracker.Instance.AddEvent(new ShotEvent("Infite", infiniteShotCounter, infiniteHitCounter));
         playedRuns++;
         ResetPlayer();
         transitionTime = -1;
@@ -738,8 +736,6 @@ public class GameManager : MonoBehaviour
         }
         transitionTime = -1;
 
-        Tracker.Instance.AddEvent(new ShotEvent(PlayerInstance.instance.GetWeaponName(), shotCounter, hitCounter));
-        Tracker.Instance.AddEvent(new ShotEvent("Infite", infiniteShotCounter, infiniteHitCounter));
         shotCounter = 0;
         infiniteShotCounter = 0;
         hitCounter = 0;
