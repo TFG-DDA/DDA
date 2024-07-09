@@ -80,6 +80,7 @@ public class Tracker
         AddTrackableEvent<PlayerDeathEvent>(true);
         AddTrackableEvent<PlayerPositionEvent>(true);
         AddTrackableEvent<RecieveDamageEvent>(true);
+        AddTrackableEvent<LevelCompletedEvent>(true);
         AddEvent(new StartEvent());
     }
 
