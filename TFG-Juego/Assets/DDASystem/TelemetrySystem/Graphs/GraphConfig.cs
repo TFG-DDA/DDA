@@ -86,7 +86,7 @@ public struct GraphData
     [HideInInspector]
     public Scaling scaling;
     [HideInInspector]
-    [Range(0.0f, 0.2f)]
+    [Range(0.5f, 2f)]
     public float line_Width;
     [HideInInspector]
     [Range(0.0f, 1.0f)]
@@ -205,7 +205,7 @@ public class GraphConfigEditor : Editor
         }
 
         //El resto de configuracion
-        actGraphConf.line_Width = EditorGUILayout.Slider("Line Width", actGraphConf.line_Width, 0.01f, 0.2f);
+        actGraphConf.line_Width = EditorGUILayout.Slider("Line Width", actGraphConf.line_Width, 0.0f, 2f);
         actGraphConf.point_Size = EditorGUILayout.Slider("Point Size", actGraphConf.point_Size, 0.01f, 1.0f);
 
         if (graphPersistence.gameObject.GetComponent<UnityTracker>().constraintsGraphs == Constraints.FREE_CONFIG)

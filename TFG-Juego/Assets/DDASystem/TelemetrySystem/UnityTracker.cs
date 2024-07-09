@@ -51,7 +51,7 @@ public class UnityTracker : MonoBehaviour
         canvasObject.AddComponent<GraphicRaycaster>();          // Agregar el componente grafico GraphicRaycaster al objeto Canvas
         canvasObject.transform.SetParent(transform, false);     // Hacer que el objeto Canvas sea hijo del objeto padre
         Canvas cv = canvasObject.GetComponent<Canvas>();
-        cv.renderMode = RenderMode.ScreenSpaceCamera;
+        cv.renderMode = RenderMode.ScreenSpaceOverlay;
         cv.worldCamera = Camera.main;
         cv.scaleFactor = 1f;
         cv.enabled = false;

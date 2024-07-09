@@ -416,7 +416,7 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1664055371
+  m_SortingLayerID: 1662215201
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Positions:
@@ -1305,7 +1305,7 @@ LineRenderer:
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
-  m_MotionVectors: 0
+  m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
@@ -1331,7 +1331,7 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1664055371
+  m_SortingLayerID: 1662215201
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Positions:
