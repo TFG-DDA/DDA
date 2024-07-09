@@ -15,7 +15,14 @@ public class NextLevel : MonoBehaviour
             Tracker.Instance.AddEvent(new LevelCompletedEvent(GameManager.instance.GetPlayedLevels()));
             Tracker.Instance.AddEvent(new EndLevelEvent(GameManager.instance.GetPlayedLevels(), SceneManager.GetActiveScene().name));
             GameManager.instance.SetTransitionTime(.5f);
-            GameManager.instance.StartTransition(TransitionTypes.TOCARDS);
+            if(GameManager.instance.GetPlayedLevels() == 15)
+            {
+                GameManager.instance.StartTransition(TransitionTypes.TOMENU);
+            }
+            else
+            {
+                GameManager.instance.StartTransition(TransitionTypes.TOCARDS);
+            }
             PlayerInstance.instance.ToggleMovement(false);
         }
     }
