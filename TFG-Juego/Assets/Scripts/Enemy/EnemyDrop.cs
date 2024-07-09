@@ -27,7 +27,7 @@ public class EnemyDrop : MonoBehaviour
         EnemyAttribs eAt = GetComponent<EnemyAttribs>();
         maxDrop = eAt.maxDrop;
         dropProb = eAt.dropProb * DDA.instance.config.actVariables.enemyDrops;
-        ammoProb = eAt.ammoProb;
+        ammoProb = eAt.ammoProb / DDA.instance.config.actVariables.ammoDropAgainstHP;
         maxDropForce = eAt.maxDropForce;
     }
 

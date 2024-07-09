@@ -12,6 +12,7 @@ public struct DDAVariables
     public float enemySpeed;
     public float enemyCadence;
     public float enemyDrops;
+    public float ammoDropAgainstHP;
 
     // Probabilidades de Cartas
     public float Q1Prob;
