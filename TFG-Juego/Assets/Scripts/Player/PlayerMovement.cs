@@ -61,9 +61,6 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(direction * dashSpeed * 2);
             }
 
-            Debug.Log("DASH: " + direction);
-            Tracker.Instance.AddEvent(new DashEvent());
-
             dashParticles.Play();
             dashTime = 0;
             GameManager.instance.setIgnoreBullets(invincibleTime);
