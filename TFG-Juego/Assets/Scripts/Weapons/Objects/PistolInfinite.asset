@@ -15,7 +15,7 @@ MonoBehaviour:
   cadence: 0.45
   ammoPerAttack: 1
   attackSpeed: 3
-  damage: 2
+  damage: 3
   sprite: {fileID: 21300000, guid: 20a8a0ad992604b4e912a69daa40b190, type: 3}
   uiTexture: {fileID: 2800000, guid: 10668631fc186e4488a359a943cf6a2a, type: 3}
   fmodParamValue: 1

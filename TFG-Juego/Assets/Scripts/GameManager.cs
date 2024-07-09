@@ -249,8 +249,8 @@ public class GameManager : MonoBehaviour
         switch (playedLevels)
         {
             case 0:
-                enemyWeapons[0].probability = 100 + DDA.instance.config.actVariables.pistolProb;
-                enemyWeapons[1].probability = 0 + DDA.instance.config.actVariables.akProb;
+                enemyWeapons[0].probability = 0 + DDA.instance.config.actVariables.pistolProb;
+                enemyWeapons[1].probability = 100 + DDA.instance.config.actVariables.akProb;
                 enemyWeapons[2].probability = 0 + DDA.instance.config.actVariables.shotgunProb;
                 break;
             case 1:

@@ -16,8 +16,8 @@ MonoBehaviour:
   ammoPerAttack: 1
   attackSpeed: 3
   damage: 1
-  sprite: {fileID: 21300000, guid: e8a633779daf3144c853dcd74591b21a, type: 3}
-  uiTexture: {fileID: 2800000, guid: e0178ee3c4a1d134aa0c8c61eebd2116, type: 3}
+  sprite: {fileID: 21300000, guid: 6dd82e8271dbaf14bb9ceccddec84ac2, type: 3}
+  uiTexture: {fileID: 2800000, guid: e6634e9645053c544bdaed5d2b275744, type: 3}
   fmodParamValue: 2
   infiniteAmmo: 0
   initialAmmo: 150
@@ -28,5 +28,5 @@ MonoBehaviour:
   bulletType: {fileID: 3267609022091429887, guid: 4207ecd5028d55a4bba844dc78943a30, type: 3}
   knockback: 0
   sound: 1
-  spawnPos: {x: 0.656, y: 0.124, z: 0}
+  spawnPos: {x: 0.972, y: 0.148, z: 0}
   vfxShoot: {fileID: 3321792067501531045, guid: 6409b2cfe2999b340884c57f028595dd, type: 3}

@@ -20,9 +20,9 @@ MonoBehaviour:
   uiTexture: {fileID: 2800000, guid: b79975a742c0d9844ac0f75dc532b5f1, type: 3}
   fmodParamValue: 3
   infiniteAmmo: 0
-  initialAmmo: 500
-  maxAmmo: 500
-  ammoMultiplier: 40
+  initialAmmo: 600
+  maxAmmo: 600
+  ammoMultiplier: 70
   timeBetweenBullets: 0
   shotAngle: 15
   bulletType: {fileID: 3267609022091429887, guid: 112432057dfffea43ba7a244007702f0, type: 3}

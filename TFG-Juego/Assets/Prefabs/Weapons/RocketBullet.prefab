@@ -144,7 +144,7 @@ MonoBehaviour:
   VFX_Explosion: {fileID: 0}
   timeToExplode: 0
   explosionObject: {fileID: 4373492053183275681, guid: 58168ee199cbc4a4e95b7c34df087f6e, type: 3}
-  explosionDamage: 7
+  explosionDamage: 12
 --- !u!1 &6382444274708170235
 GameObject:
   m_ObjectHideFlags: 0
