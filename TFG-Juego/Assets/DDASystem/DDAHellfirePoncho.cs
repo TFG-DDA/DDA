@@ -47,13 +47,16 @@ public class DDAHellfirePoncho : DDA
     void UpdateResourcesDifficulty()
     {
         config.actVariables.enemyDrops = config.variablesModify[currentPlayerDifficult].enemyDrops;
+        config.actVariables.ammoDropAgainstHP = config.variablesModify[currentPlayerDifficult].ammoDropAgainstHP;
         config.actVariables.Q1Prob = config.variablesModify[currentPlayerDifficult].Q1Prob;
         config.actVariables.Q2Prob = config.variablesModify[currentPlayerDifficult].Q2Prob;
     }
 
     void UpdateEnemiesDifficulty()
     {
-        // Actualizar solo variables que afectan a los enemigos
+        config.actVariables.enemyHealth = config.variablesModify[currentPlayerDifficult].enemyHealth;
+        config.actVariables.enemySpeed = config.variablesModify[currentPlayerDifficult].enemySpeed;
+        config.actVariables.enemyCadence = config.variablesModify[currentPlayerDifficult].enemyCadence;
     }
 
     void UpdateEnvironmentDifficulty()

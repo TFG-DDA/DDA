@@ -259,7 +259,7 @@ public class Window_Graph : MonoBehaviour
             // Comprobamos que el punto se este renderizando en el Viewport
             if (RectTransformUtility.RectangleContainsScreenPoint(render_viewport.viewport, t.position))
             {
-                Vector3 v = new Vector3(t.position.x, t.position.y);
+                Vector3 v = new Vector3(t.position.x / 1920, t.position.y / 1080);
                 aux.Add(v);
             }
         }
@@ -274,6 +274,7 @@ public class Window_Graph : MonoBehaviour
         // Creamos la linea 
         line_renderer.positionCount = aux.Count;
         line_renderer.SetPositions(aux_def);
+        line_renderer.useWorldSpace = false;
 
         /// OBJETIVO ///
         // Creamos una lista de Posiciones dentro del Viewport
