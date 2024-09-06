@@ -7717,23 +7717,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
       propertyPath: data.line_Width
-      value: 1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
       propertyPath: data.point_Size
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
-      propertyPath: data.actualGraphCol.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
-      propertyPath: data.actualGraphCol.g
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.actualGraphCol.b
+      value: 0.91294956
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.actualGraphCol.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067396912352002530, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
       propertyPath: data.actualGraphCol.r
-      value: 0.5351658
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3067396912352002531, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
       propertyPath: constraintsGraphs
@@ -7757,7 +7757,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8758682636726464748, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
       propertyPath: data.line_Width
-      value: 0.03
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8758682636726464748, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
+      propertyPath: data.point_Size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8758682636726464748, guid: 141b39fb1396f0d4c872ae266b4ed41f, type: 3}
       propertyPath: data.pointsNumber

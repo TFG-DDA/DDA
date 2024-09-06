@@ -14,12 +14,12 @@ public class Window_Graph : MonoBehaviour
     // Puntos de la telemetria
     List<float> points;
     [SerializeField]
-    LineRenderer line_renderer;
+    LineRenderUI line_renderer;
 
     // Puntos del disenador
     List<float> objective_points = new List<float>();
     [SerializeField]
-    LineRenderer objective_line_renderer;
+    LineRenderUI objective_line_renderer;
 
     // Containers para los objetos
     [SerializeField]
@@ -137,34 +137,18 @@ public class Window_Graph : MonoBehaviour
         ShowGraph();
 
         // Setteo de los tamaños de las lineas y puntos
-        line_renderer.startWidth = graphConfig.line_Width;
-        line_renderer.endWidth = graphConfig.line_Width;
-        objective_line_renderer.startWidth = graphConfig.line_Width;
-        objective_line_renderer.endWidth = graphConfig.line_Width;
-
-
-        // Obtener el tamano de la resolucion actual de la pantalla
-        Resolution resolution = Screen.currentResolution;
-
-
-        // Obtener el tamano de la ventana de juego
-        int windowWidth = Screen.width;
-        int windowHeight = Screen.height;
+        line_renderer.thickness = graphConfig.line_Width;
+        objective_line_renderer.thickness = graphConfig.line_Width;
 
         circle_scale *= graphConfig.point_Size;
 
-
         // Nombre y Leyenda
-        List<Material> m = new List<Material>();
-        line_renderer.GetMaterials(m);
-        m[0].color = graphConfig.actualGraphCol;
-        track_image.color = m[0].color;
-        List<Material> m2 = new List<Material>();
-        objective_line_renderer.GetMaterials(m2);
-        m2[0].color = graphConfig.designerGraphCol;
-        obj_image.color = m2[0].color;
+        line_renderer.color = graphConfig.actualGraphCol;
+        track_image.color = graphConfig.actualGraphCol;
+        
+        objective_line_renderer.color = graphConfig.designerGraphCol;
+        obj_image.color = graphConfig.designerGraphCol;
         chart_name.text = g.name;
-
     }
 
     void ShowGraph()
@@ -251,7 +235,7 @@ public class Window_Graph : MonoBehaviour
     {
         /// TELEMETRIA ///
         // Creamos una lista de Posiciones dentro del Viewport
-        List<Vector3> aux = new List<Vector3>();
+        List<Vector2> aux = new List<Vector2>();
         for (int i = 0; i < circles.Count; i++)
         {
             Transform t = circles[i].transform;
@@ -259,26 +243,17 @@ public class Window_Graph : MonoBehaviour
             // Comprobamos que el punto se este renderizando en el Viewport
             if (RectTransformUtility.RectangleContainsScreenPoint(render_viewport.viewport, t.position))
             {
-                Vector3 v = new Vector3(t.position.x / 1920, t.position.y / 1080);
+                Vector2 v = t.localPosition;
                 aux.Add(v);
             }
         }
-        // Volcamos la lista en un vector
-        Vector3[] aux_def = new Vector3[aux.Count];
-        for (int i = 0; i < aux.Count; i++)
-        {
-            aux_def[i] = aux[i];
-        }
 
-
-        // Creamos la linea 
-        line_renderer.positionCount = aux.Count;
-        line_renderer.SetPositions(aux_def);
-        line_renderer.useWorldSpace = false;
+        line_renderer.points = aux;
+        line_renderer.HandUpdate();
 
         /// OBJETIVO ///
         // Creamos una lista de Posiciones dentro del Viewport
-        List<Vector3> aux_o = new List<Vector3>();
+        List<Vector2> aux_o = new List<Vector2>();
         for (int i = 0; i < objective_index; i++)
         {
             Transform t = objective_circles[i].transform;
@@ -286,20 +261,13 @@ public class Window_Graph : MonoBehaviour
             // Comprobamos que el punto se este renderizando en el Viewport
             if (RectTransformUtility.RectangleContainsScreenPoint(render_viewport.viewport, t.transform.position))
             {
-                Vector3 v = new Vector3(t.position.x, t.position.y);
+                Vector2 v = t.localPosition;
                 aux_o.Add(v);
             }
         }
-        // Volcamos la lista en un vector
-        Vector3[] aux_def_o = new Vector3[aux_o.Count];
-        for (int i = 0; i < aux_o.Count; i++)
-        {
-            aux_def_o[i] = aux_o[i];
-        }
 
-        // Creamos la linea 
-        objective_line_renderer.positionCount = aux_o.Count;
-        objective_line_renderer.SetPositions(aux_def_o);
+        objective_line_renderer.points = aux_o;
+        objective_line_renderer.HandUpdate();
     }
 
     public void RefreshChart()

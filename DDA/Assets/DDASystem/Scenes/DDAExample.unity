@@ -493,7 +493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.startDiff
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.playerModifierType
@@ -560,8 +560,12 @@ PrefabInstance:
       value: Easy
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
-      propertyPath: variablesModify.Array.data[2].example
+      propertyPath: variablesModify.Array.data[1].example
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[2].example
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: variablesModify.Array.data[3].example
@@ -576,8 +580,20 @@ PrefabInstance:
       value: FinEvent
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[0].example2
+      value: a
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[0].example3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
+      propertyPath: variablesModify.Array.data[1].example2
+      value: a
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: variablesModify.Array.data[2].example2
-      value: 
+      value: a
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: variablesModify.Array.data[2].example3
@@ -585,7 +601,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.eventVariables.Array.data[0].weight
-      value: 0.435
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.eventVariables.Array.data[1].weight
@@ -633,7 +649,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.eventVariables.Array.data[0].eventName
-      value: FinEvent
+      value: StartEvent
       objectReference: {fileID: 0}
     - target: {fileID: 6458814853635604129, guid: 3f2117261154bed409b9e61dcc5006b3, type: 3}
       propertyPath: data.eventVariables.Array.data[1].eventName
