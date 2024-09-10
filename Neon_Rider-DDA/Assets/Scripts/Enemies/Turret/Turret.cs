@@ -45,8 +45,8 @@ public class Turret : MonoBehaviour
         child = transform.GetChild(0);
         animator = child.GetComponent<Animator>();
         nextPos = 1; //Primera posicion 
-        speed *= DDA.Instance.config.actVariables.enemySpeed;
-        cadence *= DDA.Instance.config.actVariables.enemyCadence;
+        speed *= DDA.instance.config.actVariables.enemySpeed;
+        cadence *= DDA.instance.config.actVariables.enemyCadence;
     }
 
 

@@ -33,7 +33,7 @@ public class EnemyMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         vision = GetComponent<EnemyVision>();
         clockwise = false;
-        speed *= DDA.Instance.config.actVariables.enemySpeed;
+        speed *= DDA.instance.config.actVariables.enemySpeed;
     }
 
     void Update()

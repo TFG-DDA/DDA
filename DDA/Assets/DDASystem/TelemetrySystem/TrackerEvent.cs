@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 public class TrackerEvent
 {
     //Variables comunes
-    protected string type;
+    protected string type; 
     protected long timeStamp;
 
     public TrackerEvent(string t)
@@ -63,7 +63,7 @@ public class TrackerEvent
         // Escribimos sus atributos (variables)
         xml_writer.WriteAttributeString("SessionId", Tracker.Instance.GetSessionId().ToString());
         xml_writer.WriteAttributeString("TimeStamp", timeStamp.ToString());
-
+        
 
         return stringWriter.ToString();
     }

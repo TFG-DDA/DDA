@@ -21,8 +21,6 @@ public class DDAHellfirePoncho : DDA
 
     public override void UpdateDifficulty()
     {
-        base.UpdateDifficulty();
-
         if (modifier.HasFlag(DifficultyModifierTypes.ALL))
         {
             UpdateAll();

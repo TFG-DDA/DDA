@@ -30,7 +30,7 @@ public class EnemyAttack : MonoBehaviour
             animatorArm = child.GetChild(0).GetComponentInChildren<Animator>();
             rotator = child.GetChild(0);
         }
-        cadencia *= DDA.Instance.config.actVariables.enemyCadence;
+        cadencia *= DDA.instance.config.actVariables.enemyCadence;
     }
 
     void Update()

@@ -18,7 +18,7 @@ public class Drone : MonoBehaviour
     {
         vision = GetComponent<EnemyVision>();
         rb = GetComponent<Rigidbody2D>();
-        speed *= DDA.Instance.config.actVariables.enemySpeed;
+        speed *= DDA.instance.config.actVariables.enemySpeed;
     }
 
     void Update()

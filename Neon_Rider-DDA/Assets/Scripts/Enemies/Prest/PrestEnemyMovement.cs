@@ -22,7 +22,7 @@ public class PrestEnemyMovement : MonoBehaviour
         vision = GetComponent<EnemyVision>();
         rb = GetComponent<Rigidbody2D>();
         anim = transform.GetComponentInChildren<Animator>();
-        speed *= DDA.Instance.config.actVariables.enemySpeed;
+        speed *= DDA.instance.config.actVariables.enemySpeed;
     }
 
     void Update() // Toma la dirección de movimiento respecto al player

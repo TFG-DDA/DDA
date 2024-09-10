@@ -65,6 +65,7 @@ public class DDA : MonoBehaviour
         // Crea los rangos de dificultades
         InitializeRanges();
         // Aplica la dificultad por defecto
+        Tracker.Instance.AddEvent(new DDAGraphActEvent(currentPlayerDifficult));
         UpdateDifficulty();
     }
 
@@ -92,15 +93,15 @@ public class DDA : MonoBehaviour
             else if (currentPlayerDifficult < rangeLimits.Length && difficultyRange > rangeLimits[currentPlayerDifficult]) currentPlayerDifficult++;
 
             difficultyRange = 0;
+            Tracker.Instance.AddEvent(new DDAGraphActEvent(currentPlayerDifficult));
             UpdateDifficulty();
         }
     }
 
-    //Método que aplica los cambios a la dificultad.
-    //Añadir los distintos métodos según las flags que defina el diseñador.
+    //Método que aplica los cambios a la dificultad. 
     public virtual void UpdateDifficulty()
     {
-        Tracker.Instance.AddEvent(new DDAGraphActEvent(currentPlayerDifficult));
+        config.actVariables = config.variablesModify[currentPlayerDifficult];
     }
 
     private void InitializeRanges()
