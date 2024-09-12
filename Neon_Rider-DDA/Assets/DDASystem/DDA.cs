@@ -88,6 +88,7 @@ public class DDA : MonoBehaviour
         // Se lanza la atualización de dificultad cuando llega el evento de trigger dado por el diseñador
         if (eventType == configData.triggerEvent)
         {
+            Debug.Log(difficultyRange);
             if (currentPlayerDifficult > 0 && difficultyRange < rangeLimits[currentPlayerDifficult - 1]) currentPlayerDifficult--;
             else if (currentPlayerDifficult < rangeLimits.Length && difficultyRange > rangeLimits[currentPlayerDifficult]) currentPlayerDifficult++;
 

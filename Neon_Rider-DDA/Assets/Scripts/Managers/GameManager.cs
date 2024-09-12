@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
                  SFXVolSlider = 0.2f,
                  musicVolSlider = 0.2f;
 
+    public int deads = 0;
+
     [SerializeField] GameObject[] prefabsEnemies;
 
     // En el método Awake comprueba si hay otro GameManger

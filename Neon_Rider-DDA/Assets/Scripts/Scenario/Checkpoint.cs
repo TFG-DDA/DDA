@@ -19,6 +19,8 @@ public class Checkpoint : MonoBehaviour
                 if(deadVal > 0)
                 {
                     Debug.Log("Actualizacion");
+                    Tracker.Instance.AddEvent(new LostHealthEvent(GameManager.instance.deads));
+                    GameManager.instance.deads = 0;
                     Tracker.Instance.AddEvent(new FinNivelEvent(deadVal, "Level: " + GameManager.instance.actualScene + ", Room: " + deadVal));
                 }
                 GameManager.instance.deadVal = deadVal;
