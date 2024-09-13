@@ -121,8 +121,8 @@ public class GraphConfig : MonoBehaviour
             data.scaling = Scaling.X_SCALING_OFFSET;
             data.eventX = "DDAGraphActEvent";
             data.eventY = "GraphDifficEvent";
-            data.x_segments = DDA.instance.config.data.difficultiesConfig.Count;
-            data.y_segments = 6;
+            data.x_segments = 6;
+            data.y_segments = DDA.instance.config.data.difficultiesConfig.Count - 1;
         }
 
         // Creamos el objeto grafica
